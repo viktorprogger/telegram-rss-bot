@@ -6,6 +6,7 @@
         }
     ],
     "require": {
+        "php": "^7.4",
         "simplepie/simplepie": "^1.5",
         "yiisoft/yii2": "^2.0"
     }

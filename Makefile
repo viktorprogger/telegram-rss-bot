@@ -26,7 +26,7 @@ echo-build-tag:
 
 
 build: ## Build an image for app service and tag it within the branch name
-	@docker build --pull -t $(APP_NAME):$(CI_COMMIT_REF_SLUG) -f .docker/php/Dockerfile ./api
+	@docker build --pull -t $(APP_NAME):$(CI_COMMIT_REF_SLUG) -f .docker/php/Dockerfile ./src
 	@if test "$(CI_COMMIT_REF_SLUG)" = "$(BRANCH_DEFAULT)"  ; \
 		then docker tag $(APP_NAME):$(CI_COMMIT_REF_SLUG) $(APP_NAME):latest ; \
 	fi
@@ -66,23 +66,8 @@ exec: ## Use `docker-compose exec` within the app container (it must be up). See
 exec-db: ## Use `docker-compose exec` within the db container
 	@docker-compose exec $(exec_args) db $(c)
 
-test: db-refresh serve-detached codecept ## Run php tests
-
-codecept: codecept-build ## Run codeception tests
-	@exec_args=-T make exec c="php -d xdebug.remote_autostart=1 vendor/bin/codecept run"
-
-codecept-build: ## Build codeception config
-	@exec_args=-T make exec c="php vendor/bin/codecept build"
-
-
 db-refresh: ## non-interactively refresh the database structure
 	@exec_args=-T make exec c="php yii migrate/fresh --interactive=0"
-
-serve: ## Run php built-in server and expose it to local 8080 port. You may open http://localhost:8080 to see the site.
-	@exec_args="-T" make exec c="php ./yii serve -t @api/web --interactive"
-
-serve-detached: ## Run php built-in server and expose it to local 8080 port. You may open http://localhost:8080 to see the site.
-	@exec_args="-T -d" make exec c="php ./yii serve -t @api/web"
 
 yii: ## Execute `php yii some/command` in the php container
 	@make exec c="php ./yii $(c)"
