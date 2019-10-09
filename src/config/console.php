@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 use yii\log\FileTarget;
 use yii\db\Connection;
-use yii\helpers\ArrayHelper;
 
 $params = require __DIR__ . '/params.php';
 
@@ -42,5 +41,3 @@ if (YII_ENV_DEV) {
         'class' => 'yii\gii\Module',
     ];
 }
-
-return ArrayHelper::merge($config, require __DIR__ . '/common.php');

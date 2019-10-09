@@ -4,7 +4,6 @@ RUN apk --update add \
         postgresql-dev \
         oniguruma-dev && \
     docker-php-ext-install \
-        curl \
         mbstring \
         opcache \
         pdo_pgsql && \
@@ -30,10 +29,11 @@ RUN apk --no-cache add --virtual .build-deps \
     docker-php-ext-enable xdebug && \
     apk del .build-deps && \
     rm -r /tmp/pear/* && \
+    mkdir -p /var/log/app && \
+    touch /var/log/app/xdebug.log && \
     echo -e "xdebug.remote_port = 9001\n\
 xdebug.idekey = \"PHPSTORM\"\n\
-xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    touch /var/log/app/xdebug.log
+xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 WORKDIR /var/www
 RUN rm -rf ./* && \
