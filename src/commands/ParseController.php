@@ -42,6 +42,9 @@ class ParseController extends Controller
                         $ar->save();
 
                         $this->sender->send($element, $channelConfig['chat_id']);
+
+                        $ar->processed = true;
+                        $ar->save();
                     }
                 }
             }
