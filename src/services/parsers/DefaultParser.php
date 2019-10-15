@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 namespace rssBot\services\parsers;
 
+use rssBot\dto\FeedItem;
 use rssBot\dto\FeedItemFactory;
 use Zend\Feed\Reader\Reader;
 
 class DefaultParser implements ParserInterface
 {
-    public string $itemClass;
+    public string $itemClass = FeedItem::class;
 
     private Reader $feed;
     /**
