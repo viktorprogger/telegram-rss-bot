@@ -60,9 +60,6 @@ down: ## Put the docker-compose services down
 run: ## Use `docker-compose run` within the app container (it may be down). See https://docs.docker.com/compose/reference/run/
 	@BUILD_TAG=$(BUILD_TAG) docker-compose run --rm $(exec_args) app $(c)
 
-exec: ## Use `docker-compose exec` within the app container (it must be up). See https://docs.docker.com/compose/reference/exec/
-	@BUILD_TAG=$(BUILD_TAG) docker-compose exec $(exec_args) app $(c)
-
 exec-db: ## Use `docker-compose exec` within the db container
 	@BUILD_TAG=$(BUILD_TAG) docker-compose exec $(exec_args) db $(c)
 
@@ -70,4 +67,4 @@ db-refresh: ## non-interactively refresh the database structure
 	@exec_args=-T make exec c="php yii migrate/fresh --interactive=0"
 
 yii: ## Execute `php yii some/command` in the php container
-	@make exec c="php ./yii $(c)"
+	@make run c="php ./yii $(c)"

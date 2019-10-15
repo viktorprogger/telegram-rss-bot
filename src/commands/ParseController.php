@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace rssBot\commands;
 
+use rssBot\ar\Feed;
+use rssBot\dto\FeedItemInterface;
 use rssBot\services\parsers\DefaultParser;
 use rssBot\services\senders\SenderInterface;
 use Yii;
@@ -31,8 +33,16 @@ class ParseController extends Controller
                 foreach ($linkConfig as $key => $value) {
                     $parser->$key = $value;
                 }
+
+                /** @var FeedItemInterface $element */
                 foreach ($parser->parse() as $element) {
-                    $this->sender->send($element, $channelConfig['chat_id']);
+                    if (!Feed::findOne(['hash' => $element->getHash()])) {
+                        $ar = new Feed();
+                        $ar->hash = $element->getHash();
+                        $ar->save();
+
+                        $this->sender->send($element, $channelConfig['chat_id']);
+                    }
                 }
             }
         }
