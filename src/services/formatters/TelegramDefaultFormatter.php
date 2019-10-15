@@ -13,7 +13,7 @@ class TelegramDefaultFormatter implements FormatterInterface
         $body = htmlspecialchars_decode($body);
         $body = strip_tags($body);
 
-        $result = '# ' . $item->getTitle() . "\n";
+        $result = '*' . $item->getTitle() . "*\n";
         $result .= '_' . $item->getSiteName() . "_\n\n";
         $result .= $body . "\n\n";
         $result .= "[Перейти](" . $item->getUrl() . ")";
