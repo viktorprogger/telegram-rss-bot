@@ -7,7 +7,7 @@ return [
     'bot_token' => getenv('BOT_TOKEN'),
     'rss_channels' => [
         [
-            'chat_id' => 'viktorprogger_php_info',
+            'chat_id' => '@vitorprogger_php_info',
             'links'   => [
                 [
                     'title'     => 'JetBrains PhpStorm',

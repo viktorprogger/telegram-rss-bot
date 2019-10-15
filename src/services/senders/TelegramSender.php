@@ -33,7 +33,14 @@ class TelegramSender implements SenderInterface
 
     public function send(FeedItemInterface $item, string $chatId)
     {
-        $message = $this->formatter->formatMessage($item);
-        $this->client->post(self::URI . $this->token . '/sendMessage', ['json' => json_encode($message, JSON_THROW_ON_ERROR)]);
+        $text = $this->formatter->formatMessage($item);
+        $message = [
+            'text'                     => $text,
+            'chat_id'                  => $chatId,
+            'parse_mode'               => 'Markdown',
+            'disable_web_page_preview' => true,
+        ];
+        $options = ['json' => $message];
+        $this->client->post(self::URI . 'bot' . $this->token . '/sendMessage', $options);
     }
 }
