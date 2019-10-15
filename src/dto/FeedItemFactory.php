@@ -17,8 +17,8 @@ class FeedItemFactory
      */
     public static function createItem(?string $siteTitle, string $class, EntryInterface $feedItem): FeedItemInterface
     {
-        if ($class === FeedItem::class) {
-            return new FeedItem($siteTitle, $feedItem->getTitle(), $feedItem->getDescription(), $feedItem->getLink());
+        if (in_array($class, [FeedItem::class, StormItem::class], true)) {
+            return new $class($siteTitle, $feedItem->getTitle(), $feedItem->getDescription(), $feedItem->getLink());
         }
 
         /** @noinspection PhpUnhandledExceptionInspection */
