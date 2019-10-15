@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-use rssBot\dto\FeedItem;
+use rssBot\dto\StormItem;
 
 return [
     'bot_token' => getenv('BOT_TOKEN'),
@@ -12,7 +12,7 @@ return [
                 [
                     'title'     => 'JetBrains PhpStorm',
                     'url'       => 'https://blog.jetbrains.com/phpstorm/feed/',
-                    'itemClass' => FeedItem::class,
+                    'itemClass' => StormItem::class,
                 ],
             ],
         ],
