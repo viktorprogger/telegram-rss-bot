@@ -13,12 +13,12 @@ class ParseController extends Controller
     /**
      * @var SenderInterface
      */
-    private SenderInterface $sender;
+    private $sender;
 
     public function __construct($id, $module, SenderInterface $sender, $config = [])
     {
-        $this->sender = $sender;
         parent::__construct($id, $module, $config);
+        $this->sender = $sender;
     }
 
     public function actionIndex()
@@ -27,7 +27,10 @@ class ParseController extends Controller
             foreach ($channelConfig['links'] as $linkConfig) {
                 /** @var DefaultParser $parser */
                 /** @noinspection PhpUnhandledExceptionInspection */
-                $parser = Yii::createObject(DefaultParser::class, $linkConfig);
+                $parser = Yii::createObject(DefaultParser::class);
+                foreach ($linkConfig as $key => $value) {
+                    $parser->$key = $value;
+                }
                 foreach ($parser->parse() as $element) {
                     $this->sender->send($element, $channelConfig['chat_id']);
                 }

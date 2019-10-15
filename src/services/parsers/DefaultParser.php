@@ -15,11 +15,11 @@ class DefaultParser implements ParserInterface
     /**
      * @var string
      */
-    private string $title;
+    public string $title;
     /**
      * @var string
      */
-    private string $url;
+    public string $url;
 
     public function __construct(Reader $feed)
     {

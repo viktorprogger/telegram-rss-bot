@@ -4,18 +4,18 @@ declare(strict_types=1);
 namespace rssBot\dto;
 
 use yii\base\NotSupportedException;
-use Zend\Feed\Reader\Feed\FeedInterface;
+use Zend\Feed\Reader\Entry\EntryInterface;
 
 class FeedItemFactory
 {
     /**
      * @param string|null              $siteTitle
      * @param string|FeedItemInterface $class
-     * @param FeedInterface            $feedItem
+     * @param EntryInterface           $feedItem
      *
      * @return FeedItemInterface
      */
-    public static function createItem(?string $siteTitle, string $class, FeedInterface $feedItem): FeedItemInterface
+    public static function createItem(?string $siteTitle, string $class, EntryInterface $feedItem): FeedItemInterface
     {
         if ($class === FeedItem::class) {
             return new FeedItem($siteTitle, $feedItem->getTitle(), $feedItem->getDescription(), $feedItem->getLink());
