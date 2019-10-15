@@ -10,8 +10,6 @@ class TelegramDefaultFormatter implements FormatterInterface
     public function formatMessage(FeedItemInterface $item): string
     {
         $body = $item->getBody();
-        $body = htmlspecialchars_decode($body);
-        $body = strip_tags($body);
 
         $result = '*' . $item->getTitle() . "*\n";
         $result .= '_' . $item->getSiteName() . "_\n\n";

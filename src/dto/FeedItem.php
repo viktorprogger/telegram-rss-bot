@@ -42,7 +42,12 @@ class FeedItem implements FeedItemInterface
 
     public function getBody(): string
     {
-        return $this->body;
+        $body = $this->body;
+        $body = htmlspecialchars_decode($body);
+        $body = strip_tags($body);
+        $body = trim($body);
+
+        return $body;
     }
 
     public function getUrl(): string
