@@ -14,6 +14,20 @@ return [
                     'url'       => 'https://blog.jetbrains.com/phpstorm/feed/',
                     'itemClass' => StormItem::class,
                 ],
+                [
+                    'title'     => 'JetBrains YouTrack',
+                    'url'       => 'https://blog.jetbrains.com/youtrack/feed/',
+                    'itemClass' => StormItem::class,
+                ],
+                [
+                    'title'     => 'JetBrains TeamCity',
+                    'url'       => 'https://blog.jetbrains.com/teamcity/feed/',
+                    'itemClass' => StormItem::class,
+                ],
+                [
+                    'title'     => 'Пятиминутка PHP',
+                    'url'       => 'http://feeds.soundcloud.com/users/soundcloud:users:153519653/sounds.rss',
+                ],
             ],
         ],
     ],
