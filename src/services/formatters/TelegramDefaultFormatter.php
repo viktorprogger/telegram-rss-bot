@@ -14,7 +14,7 @@ class TelegramDefaultFormatter implements FormatterInterface
         $result = '*' . $item->getTitle() . "*\n";
         $result .= '_' . $item->getSiteName() . "_\n\n";
         $result .= $body . "\n\n";
-        $result .= "[Перейти](" . $item->getUrl() . ")";
+        $result .= "[Читать дальше ->](" . $item->getUrl() . ")";
 
         return $result;
     }
