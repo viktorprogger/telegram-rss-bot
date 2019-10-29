@@ -2,3 +2,4 @@
 .env
 tags
 src/vendor
+src/config/channels.php
