@@ -17,7 +17,7 @@ class FeedItemFactory
      */
     public static function createItem(?string $siteTitle, string $class, EntryInterface $feedItem): FeedItemInterface
     {
-        if (in_array($class, [FeedItem::class, StormItem::class], true)) {
+        if (in_array($class, [FeedItem::class, StormItem::class, HHItem::class], true)) {
             return new $class($siteTitle, $feedItem->getTitle(), $feedItem->getDescription(), $feedItem->getLink());
         }
 

@@ -8,19 +8,19 @@ class FeedItem implements FeedItemInterface
     /**
      * @var string
      */
-    private string $siteName;
+    protected string $siteName;
     /**
      * @var string
      */
-    private string $title;
+    protected string $title;
     /**
      * @var string
      */
-    private string $body;
+    protected string $body;
     /**
      * @var string
      */
-    private string $url;
+    protected string $url;
 
     public function __construct(string $siteName, string $title, string $body, string $url)
     {
