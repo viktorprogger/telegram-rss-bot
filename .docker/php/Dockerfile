@@ -1,4 +1,4 @@
-FROM php:rc-cli-alpine
+FROM php:7.4.1-cli-alpine
 
 RUN apk --update add \
         postgresql-dev \
@@ -20,7 +20,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     composer global dumpautoload --optimize
 
 # xdebug
-ENV XDEBUG_VERSION 2.8.0
+ENV XDEBUG_VERSION 2.9.0
 RUN apk --no-cache add --virtual .build-deps \
         g++ \
         autoconf \
