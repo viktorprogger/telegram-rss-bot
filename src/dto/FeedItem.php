@@ -43,7 +43,7 @@ class FeedItem implements FeedItemInterface
     public function getBody(): string
     {
         $body = $this->body;
-        $body = htmlspecialchars_decode($body);
+        $body = html_entity_decode($body);
         $body = strip_tags($body);
         $body = trim($body);
 
