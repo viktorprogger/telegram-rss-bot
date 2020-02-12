@@ -12,7 +12,7 @@ ifndef $(BUILD_TAG)
 	BUILD_TAG := $(CI_COMMIT_REF_SLUG)
 endif
 
-APP_NAME=docker.pkg.github.com/viktorprogger/telegram-rss-bot/app
+APP_NAME=docker.pkg.github.com/viktorprogger/telegram-rss-bot/bot
 
 BRANCH_DEFAULT=master
 
@@ -25,7 +25,7 @@ echo-build-tag:
 	@echo "Current tag for images is $(CI_COMMIT_REF_SLUG)"
 
 
-build: ## Build an image for app service and tag it within the branch name
+build: ## Build an image for bot service and tag it within the branch name
 	@docker build --pull -t $(APP_NAME):$(CI_COMMIT_REF_SLUG) -f .docker/php/Dockerfile ./src
 	@if test "$(CI_COMMIT_REF_SLUG)" = "$(BRANCH_DEFAULT)"  ; \
 		then docker tag $(APP_NAME):$(CI_COMMIT_REF_SLUG) $(APP_NAME):latest ; \
@@ -36,7 +36,7 @@ publish: build tag push ## Build an image, tag it and publish to the registry
 push: ## Push an existent image to the registry
 	@docker push $(APP_NAME)
 
-tag: ## Add tags to the app service
+tag: ## Add tags to the bot service
 	@for a_tag in $$(git tag --points-at HEAD) ; do \
 		echo "Tagging image '$(APP_NAME)' with tag '$$a_tag'"; \
 		docker tag $(APP_NAME):$(CI_COMMIT_REF_SLUG) $(APP_NAME):$$a_tag ; \
@@ -57,8 +57,8 @@ pull: ## Pull all new images listed in docker-compose
 down: ## Put the docker-compose services down
 	@docker-compose down
 
-run: ## Use `docker-compose run` within the app container (it may be down). See https://docs.docker.com/compose/reference/run/
-	@BUILD_TAG=$(BUILD_TAG) docker-compose run --rm $(exec_args) app $(c)
+run: ## Use `docker-compose run` within the bot container (it may be down). See https://docs.docker.com/compose/reference/run/
+	@BUILD_TAG=$(BUILD_TAG) docker-compose run --rm $(exec_args) bot $(c)
 
 exec-db: ## Use `docker-compose exec` within the db container
 	@BUILD_TAG=$(BUILD_TAG) docker-compose exec $(exec_args) db $(c)

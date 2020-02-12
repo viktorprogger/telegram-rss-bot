@@ -29,8 +29,8 @@ RUN apk --no-cache add --virtual .build-deps \
     docker-php-ext-enable xdebug && \
     apk del .build-deps && \
     rm -r /tmp/pear/* && \
-    mkdir -p /var/log/app && \
-    touch /var/log/app/xdebug.log && \
+    mkdir -p /var/log/bot && \
+    touch /var/log/bot/xdebug.log && \
     echo -e "xdebug.remote_port = 9001\n\
 xdebug.idekey = \"PHPSTORM\"\n\
 xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini

@@ -1,7 +1,7 @@
 version: "3.7"
 services:
-    app:
-        image: docker.pkg.github.com/viktorprogger/telegram-rss-bot/app:${BUILD_TAG}
+    bot:
+        image: docker.pkg.github.com/viktorprogger/telegram-rss-bot/bot:${BUILD_TAG}
         user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
         volumes:
             - ./.docker/logs:/var/log
