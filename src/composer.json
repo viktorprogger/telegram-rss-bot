@@ -13,15 +13,27 @@
         "yiisoft/yii2": "^2.0",
         "yiisoft/yii2-queue": "^2.3",
         "guzzlehttp/guzzle": "^6.3",
-        "zendframework/zend-http": "^2.10"
+        "zendframework/zend-http": "^2.10",
+        "yiisoft/di": "^3.0@dev",
+        "yiisoft/yii-console": "^3.0@dev",
+        "yiisoft/factory": "^3.0@dev",
+        "yiisoft/yii-cycle": "^3.0@dev",
+        "cycle/annotated": "^2.0",
+        "yiisoft/validator": "^3.0@dev"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
 
     "autoload": {
         "psr-4": {
             "rssBot\\": "./"
         }
+    },
+
+    "extra": {
+        "config-plugin": {}
     }
 }

@@ -7,6 +7,8 @@ use rssBot\services\parsers\DefaultParser;
 use rssBot\services\parsers\ParserInterface;
 use rssBot\services\senders\SenderInterface;
 use rssBot\services\senders\TelegramSender;
+use Spiral\Database\DatabaseInterface;
+use Spiral\Database\DatabaseManager;
 use yii\db\Connection;
 use yii\log\FileTarget;
 
