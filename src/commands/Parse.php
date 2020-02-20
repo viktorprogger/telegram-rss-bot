@@ -13,7 +13,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use yii\queue\Queue;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
  * @property array source
@@ -21,22 +21,16 @@ use yii\queue\Queue;
 class Parse extends Command
 {
     protected static $defaultName = 'parse';
-    private Factory $factory;
-    /**
-     * @var ORM
-     */
+    private Factory $sourceFactory;
     private ORM $orm;
-    /**
-     * @var Queue
-     */
-    private Queue $queue;
+    private MessageBusInterface $messageBus;
 
-    public function __construct(Factory $factory, ORM $orm, Queue $queue, string $name = null)
+    public function __construct(Factory $factory, ORM $orm, MessageBusInterface $messageBus, string $name = null)
     {
         parent::__construct($name);
-        $this->factory = $factory;
+        $this->sourceFactory = $factory;
         $this->orm = $orm;
-        $this->queue = $queue;
+        $this->messageBus = $messageBus;
     }
 
     protected function configure(): void
@@ -62,8 +56,8 @@ class Parse extends Command
         }
 
         foreach ($query->fetchAll() as $sourceDefinition) {
-            $source = $this->factory->create($sourceDefinition);
-            $job = new \rssBot\jobs\Parse($source);
+            $source = $this->sourceFactory->create($sourceDefinition);
+            $this->messageBus->dispatch($source);
         }
     }
 }
