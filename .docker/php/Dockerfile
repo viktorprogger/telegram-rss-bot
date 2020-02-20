@@ -1,12 +1,17 @@
-FROM php:7.4.1-cli-alpine
+FROM php:7.4-cli-alpine
 
-RUN apk --update add \
+RUN apk --no-cache add \
         postgresql-dev \
-        oniguruma-dev && \
+        oniguruma-dev \
+        icu-dev \
+        gettext-dev && \
     docker-php-ext-install \
         mbstring \
         opcache \
-        pdo_pgsql && \
+        gettext \
+        intl \
+        pdo_pgsql \
+        > /dev/null && \
     apk del \
         gcc \
         g++
@@ -20,7 +25,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     composer global dumpautoload --optimize
 
 # xdebug
-ENV XDEBUG_VERSION 2.9.0
+ENV XDEBUG_VERSION 2.9.2
 RUN apk --no-cache add --virtual .build-deps \
         g++ \
         autoconf \
