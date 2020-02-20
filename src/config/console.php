@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use rssBot\services\formatters\FormatterInterface;
 use rssBot\services\formatters\TelegramDefaultFormatter;
-use rssBot\services\parsers\DefaultParser;
+use rssBot\services\parsers\RssParser;
 use rssBot\services\parsers\ParserInterface;
 use rssBot\services\senders\SenderInterface;
 use rssBot\services\senders\TelegramSender;
@@ -43,7 +43,7 @@ $config = [
     'container'           => [
         'singletons' => [
             FormatterInterface::class => ['class' => TelegramDefaultFormatter::class],
-            ParserInterface::class    => ['class' => DefaultParser::class],
+            ParserInterface::class    => ['class' => RssParser::class],
             SenderInterface::class    => ['class' => TelegramSender::class],
         ],
     ],

@@ -7,7 +7,7 @@ use rssBot\dto\FeedItem;
 use rssBot\dto\FeedItemFactory;
 use Zend\Feed\Reader\Reader;
 
-class DefaultParser implements ParserInterface
+class RssParser implements ParserInterface
 {
     public string $itemClass = FeedItem::class;
 

@@ -5,7 +5,7 @@ namespace rssBot\commands;
 
 use rssBot\ar\Feed;
 use rssBot\dto\FeedItemInterface;
-use rssBot\services\parsers\DefaultParser;
+use rssBot\services\parsers\RssParser;
 use rssBot\services\senders\SenderInterface;
 use Yii;
 use yii\console\Controller;
@@ -27,9 +27,9 @@ class ParseController extends Controller
     {
         foreach (Yii::$app->params['rss_channels'] as $channelConfig) {
             foreach ($channelConfig['links'] as $linkConfig) {
-                /** @var DefaultParser $parser */
+                /** @var RssParser $parser */
                 /** @noinspection PhpUnhandledExceptionInspection */
-                $parser = Yii::createObject(DefaultParser::class);
+                $parser = Yii::createObject(RssParser::class);
                 foreach ($linkConfig as $key => $value) {
                     $parser->$key = $value;
                 }

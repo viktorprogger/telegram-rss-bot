@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use rssBot\commands\Parse;
+use rssBot\sources\SourceType;
 use Spiral\Database\Driver\Postgres\PostgresDriver;
 
 return [
@@ -32,6 +33,13 @@ return [
                     'timezone' => 'Europe/Moscow',
                 ],
             ],
+        ],
+    ],
+    'sources' => [
+        'storm' => [
+            'type' => SourceType::RSS,
+            'title' => 'JetBrains PhpStorm',
+            'url' => 'https://blog.jetbrains.com/phpstorm/feed/',
         ],
     ],
 ];

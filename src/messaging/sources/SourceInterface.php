@@ -18,9 +18,4 @@ interface SourceInterface
     public function getItems(): iterable;
 
     public function attachFilter(Validator $validator): void;
-
-    /**
-     * @return ReceiverInterface[]
-     */
-    public function getReceivers(): iterable;
 }

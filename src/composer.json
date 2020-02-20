@@ -33,6 +33,8 @@
     },
 
     "extra": {
-        "config-plugin": {}
+        "config-plugin": {
+            ""
+        }
     }
 }

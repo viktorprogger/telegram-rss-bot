@@ -48,6 +48,8 @@ class Parse implements JobInterface
             if (!$repository->findOne(['hash' => $item->getHash()])) {
                 (new Transaction($this->orm))->persist($item)->run();
 
+                // TODO вместо этого слать эвент с инфой о том, что найден такой item.
+                // TODO В свою очередь ресиверы подписываются на такие эвенты и сами фильтруют и логируют item'ы
                 foreach ($this->source->getReceivers() as $receiver) {
                     if ($receiver->suites($item)) {
                         $job = $this->factory->create(Send::class, [$item, $receiver]);
