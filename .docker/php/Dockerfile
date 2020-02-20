@@ -1,44 +1,38 @@
 FROM php:7.4-cli-alpine
 
+ENV XDEBUG_VERSION=2.9.2 \
+	VERSION_PRESTISSIMO_PLUGIN=^0.3.9 \
+    COMPOSER_ALLOW_SUPERUSER=1
+
 RUN apk --no-cache add \
         postgresql-dev \
         oniguruma-dev \
         icu-dev \
-        gettext-dev && \
-    docker-php-ext-install \
+        gettext-dev \
+        g++ \
+        autoconf \
+        make && \
+	docker-php-ext-install \
         mbstring \
         opcache \
         gettext \
         intl \
         pdo_pgsql \
         > /dev/null && \
-    apk del \
-        gcc \
-        g++
+    pecl install xdebug-$XDEBUG_VERSION > /dev/null && \
+        docker-php-ext-enable xdebug > /dev/null && \
+        apk del g++ autoconf make && \
+        rm -r /tmp/pear/* && \
+        mkdir -p /var/log/bot && \
+        touch /var/log/bot/xdebug.log && \
+        echo -e "xdebug.remote_port = 9001\n\
+xdebug.idekey = \"PHPSTORM\"\n\
+xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-# Configure version constraints
-ENV VERSION_PRESTISSIMO_PLUGIN=^0.3.9 \
-    COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     composer global require --optimize-autoloader \
         "hirak/prestissimo:${VERSION_PRESTISSIMO_PLUGIN}" && \
     composer global dumpautoload --optimize
-
-# xdebug
-ENV XDEBUG_VERSION 2.9.2
-RUN apk --no-cache add --virtual .build-deps \
-        g++ \
-        autoconf \
-        make && \
-    pecl install xdebug-$XDEBUG_VERSION && \
-    docker-php-ext-enable xdebug && \
-    apk del .build-deps && \
-    rm -r /tmp/pear/* && \
-    mkdir -p /var/log/bot && \
-    touch /var/log/bot/xdebug.log && \
-    echo -e "xdebug.remote_port = 9001\n\
-xdebug.idekey = \"PHPSTORM\"\n\
-xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 WORKDIR /var/www
 RUN rm -rf ./* && \
