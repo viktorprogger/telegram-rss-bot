@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace rssBot\sources;
+namespace rssBot\models\source;
+
+use InvalidArgumentException;
 
 class SourceType
 {
@@ -13,8 +15,13 @@ class SourceType
     public function __construct(int $type)
     {
         if (!in_array($type, self::all(), true)) {
-            throw new \InvalidArgumentException('Given type is not supported');
+            throw new InvalidArgumentException('Given type is not supported');
         }
+    }
+
+    public function current(): int
+    {
+        return $this->type;
     }
 
     public static function all(): array

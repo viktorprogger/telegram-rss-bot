@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace rssBot\sources;
+namespace rssBot\models\source;
 
 use rssBot\system\Parameters;
 
-class Repository
+class FileRepository implements SourceRepositoryInterface
 {
     /**
      * @var Factory
@@ -23,8 +23,10 @@ class Repository
         $this->parameters = $parameters;
     }
 
-    public function get(array $codes = []): iterable
+    public function get(array $codes, int $timestamp): iterable
     {
+        // TODO заюзать timestamp (как-то сохранять дату последнего фетча)
+
         if ($codes === []) {
             $codes = array_keys($this->parameters->get('sources'));
         }

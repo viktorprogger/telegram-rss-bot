@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use rssBot\commands\Parse;
-use rssBot\sources\SourceType;
+use rssBot\models\source\SourceType;
 use Spiral\Database\Driver\Postgres\PostgresDriver;
 
 return [
@@ -37,7 +37,7 @@ return [
     ],
     'sources' => [
         'storm' => [
-            'type' => SourceType::RSS,
+            'type' => SourceType::rss(),
             'title' => 'JetBrains PhpStorm',
             'url' => 'https://blog.jetbrains.com/phpstorm/feed/',
         ],

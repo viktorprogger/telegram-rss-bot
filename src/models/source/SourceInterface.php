@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace rssBot\sources;
+namespace rssBot\models\source;
 
 use rssBot\orm\items\ItemInterface;
-use rssBot\receivers\ReceiverInterface;
 use Yiisoft\Validator\Validator;
 
 interface SourceInterface
