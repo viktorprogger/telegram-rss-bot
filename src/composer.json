@@ -18,7 +18,8 @@
         "yiisoft/yii-cycle": "^3.0@dev",
         "cycle/annotated": "^2.0",
         "yiisoft/validator": "^3.0@dev",
-        "symfony/messenger": "^5.0"
+        "symfony/messenger": "^5.0",
+        "laminas/laminas-feed": "^2.12"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"
