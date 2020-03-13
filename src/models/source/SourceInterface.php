@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace rssBot\models\source;
 
-use rssBot\orm\items\ItemInterface;
 use Yiisoft\Validator\Validator;
 
 interface SourceInterface

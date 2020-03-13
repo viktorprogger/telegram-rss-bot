@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace rssBot\models\source;
 
-use rssBot\sources\SourceInterface;
-
 interface SourceRepositoryInterface
 {
     /**

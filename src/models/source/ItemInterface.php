@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace rssBot\orm\items;
+namespace rssBot\models\source;
 
 interface ItemInterface
 {
     public function getHash(): string;
+
+    public function __toString();
 }

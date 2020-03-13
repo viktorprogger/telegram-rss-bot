@@ -9,9 +9,7 @@
         "php": "^7.4",
         "ext-json": "*",
 
-        "zendframework/zend-feed": "^2.9",
         "guzzlehttp/guzzle": "^6.3",
-        "zendframework/zend-http": "^2.10",
         "yiisoft/di": "^3.0@dev",
         "yiisoft/yii-console": "^3.0@dev",
         "yiisoft/factory": "^3.0@dev",
@@ -19,7 +17,8 @@
         "cycle/annotated": "^2.0",
         "yiisoft/validator": "^3.0@dev",
         "symfony/messenger": "^5.0",
-        "laminas/laminas-feed": "^2.12"
+        "debril/feed-io": "^4.5",
+        "monolog/monolog": "^2.0"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"

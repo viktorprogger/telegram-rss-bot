@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace rssBot\receivers;
 
-use rssBot\orm\items\ItemInterface;
+use rssBot\models\source\ItemInterface;
 use Yiisoft\Validator\Validator;
 
 interface ReceiverInterface

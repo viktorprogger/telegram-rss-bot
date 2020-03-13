@@ -2,22 +2,24 @@
 
 declare(strict_types=1);
 
-namespace rssBot\models\source;
+namespace rssBot\models\source\rss;
 
+use FeedIo\FeedIo;
 use Laminas\Feed\Reader\Reader;
+use rssBot\models\source\SourceInterface;
 use Yiisoft\Validator\Validator;
 
-class Rss implements SourceInterface
+class Source implements SourceInterface
 {
     private string $title;
     private string $url;
-    private Reader $reader;
+    private FeedIo $reader;
     /**
      * @var Validator[]
      */
     private array $filters = [];
 
-    public function __construct(string $title, string $url, Reader $reader)
+    public function __construct(string $title, string $url, FeedIo $reader)
     {
         $this->title = $title;
         $this->url = $url;
@@ -30,7 +32,7 @@ class Rss implements SourceInterface
     public function getItems(): iterable
     {
         /** @noinspection StaticInvocationViaThisInspection */
-        $itemsSource = $this->reader->import($this->url);
+        $itemsSource = $this->reader->read($this->url)->getFeed();
 
 
     }
