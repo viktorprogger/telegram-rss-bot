@@ -47,6 +47,7 @@ return [
     'senders' => [
         [
             'type' => SenderType::telegram(),
+            'token' => '', // TODO
             'sources' => [
                 [
                     'code' => 'storm',
