@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use rssBot\commands\Parse;
+use rssBot\models\sender\SenderType;
 use rssBot\models\source\SourceType;
 use Spiral\Database\Driver\Postgres\PostgresDriver;
 
@@ -39,7 +40,19 @@ return [
         'storm' => [
             'type' => SourceType::rss(),
             'title' => 'JetBrains PhpStorm',
+            'code' => 'storm',
             'url' => 'https://blog.jetbrains.com/phpstorm/feed/',
+        ],
+    ],
+    'senders' => [
+        [
+            'type' => SenderType::telegram(),
+            'sources' => [
+                [
+                    'code' => 'storm',
+                    'converters' => '', //TODO
+                ],
+            ],
         ],
     ],
 ];

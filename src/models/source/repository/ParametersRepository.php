@@ -2,19 +2,14 @@
 
 declare(strict_types=1);
 
-namespace rssBot\models\source;
+namespace rssBot\models\source\repository;
 
+use rssBot\models\source\Factory;
 use rssBot\system\Parameters;
 
-class FileRepository implements SourceRepositoryInterface
+class ParametersRepository implements SourceRepositoryInterface
 {
-    /**
-     * @var Factory
-     */
     private Factory $factory;
-    /**
-     * @var Parameters
-     */
     private Parameters $parameters;
 
     public function __construct(Factory $factory, Parameters $parameters)
@@ -27,10 +22,6 @@ class FileRepository implements SourceRepositoryInterface
     {
         // TODO заюзать timestamp (как-то сохранять дату последнего фетча)
 
-        if ($codes === []) {
-            $codes = array_keys($this->parameters->get('sources'));
-        }
-
         foreach ($this->getDefinitions($codes) as $definition) {
             yield $this->factory->create($definition);
         }
@@ -38,8 +29,10 @@ class FileRepository implements SourceRepositoryInterface
 
     private function getDefinitions(array $codes): iterable
     {
-        foreach ($codes as $code) {
-            yield $this->parameters->get("sources.$code");
+        foreach ($this->parameters->get("sources") as $definition) {
+            if ($codes === [] || in_array($definition['code'], $codes, true)) {
+                yield $definition;
+            }
         }
     }
 }

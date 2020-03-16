@@ -25,6 +25,9 @@ class Item implements ItemInterface
     {
         $result = $this->feedItem->getTitle() . PHP_EOL
             . $this->feedItem->getLastModified()->format('Y.m.d H:i:s') . PHP_EOL . PHP_EOL
-            . $this->feedItem->getDescription();
+            . $this->feedItem->getDescription() . PHP_EOL
+            . $this->feedItem->getLink();
+
+        return $result;
     }
 }

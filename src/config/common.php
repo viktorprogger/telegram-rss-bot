@@ -3,11 +3,19 @@
 declare(strict_types=1);
 
 use hiqdev\composer\config\Builder;
-use Laminas\Feed\Reader\Reader;
-use rssBot\services\http\Client;
+use rssBot\models\source\repository\ParametersRepository;
+use rssBot\models\source\repository\SourceRepositoryInterface;
+use rssBot\queue\handlers\ItemSender;
+use rssBot\queue\handlers\SourceFetcher;
+use rssBot\queue\messages\SourceFetchMessage;
+use rssBot\queue\messages\SourceItemMessage;
 use rssBot\system\Parameters;
 use Spiral\Database\DatabaseInterface;
 use Spiral\Database\DatabaseManager;
+use Symfony\Component\Messenger\Handler\HandlersLocator;
+use Symfony\Component\Messenger\MessageBus;
+use Symfony\Component\Messenger\MessageBusInterface;
+use Yiisoft\Di\Container;
 
 return [
     DatabaseInterface::class => fn(DatabaseManager $manager) => $manager->database(),
@@ -15,9 +23,13 @@ return [
         '__class' => Parameters::class,
         '__construct()' => require Builder::path('params'),
     ],
-    Reader::class => static function(Client $client) {
-        Reader::setHttpClient($client);
+    SourceRepositoryInterface::class => ParametersRepository::class,
+    MessageBusInterface::class => static function (Container $container) {
+        $handlers = [
+            SourceFetchMessage::class => [$container->get(SourceFetcher::class)],
+            SourceItemMessage::class => [$container->get(ItemSender::class)],
+        ];
 
-        return new Reader();
+        return new MessageBus([new HandlersLocator($handlers)]);
     },
 ];

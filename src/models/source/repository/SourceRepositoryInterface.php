@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace rssBot\models\source;
+namespace rssBot\models\source\repository;
+
+use rssBot\models\source\SourceInterface;
 
 interface SourceRepositoryInterface
 {
