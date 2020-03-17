@@ -9,4 +9,6 @@ interface ItemInterface
     public function getHash(): string;
 
     public function __toString();
+
+    public function getSource(): SourceInterface;
 }

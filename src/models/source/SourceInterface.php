@@ -15,6 +15,8 @@ interface SourceInterface
      */
     public function getCode(): string;
 
+    public function getTitle(): string;
+
     /**
      * Return filtered item list
      *

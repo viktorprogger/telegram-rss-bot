@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use rssBot\commands\Parse;
+use rssBot\models\sender\converter\RssMarkdownConverter;
 use rssBot\models\sender\SenderType;
 use rssBot\models\source\SourceType;
 use Spiral\Database\Driver\Postgres\PostgresDriver;
@@ -51,7 +52,7 @@ return [
             'sources' => [
                 [
                     'code' => 'storm',
-                    'converters' => '', //TODO
+                    'converter' => RssMarkdownConverter::class, //TODO Надо подумать: хватит одного тут, или поддержка нужна массива? И еще: каков должен быть возвращаемый тип у конвертера? Если сообщение будет отправлять в markdown - понятно, что строка. А что делать с письмом? Там надо и отправителя, и получателя, и тему заполнять. Скидывать все это на конфиг - не вариант. Надо подумать. Склоняюсь к версии, что каждый sender будет принимать к отправке свой определенный DTO, а конвертер будет перегонять SourceItem в формат этого DTO.
                 ],
             ],
         ],
