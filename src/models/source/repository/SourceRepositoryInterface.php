@@ -11,6 +11,7 @@ interface SourceRepositoryInterface
     /**
      * @param array $codes Unique codes of sources
      * @param int $timestamp Sources with last fetch time more than this won't be returned
+     * // TODO Понять, нафига я сюда timestamp написал...
      *
      * @return SourceInterface[]
      */
