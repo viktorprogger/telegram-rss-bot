@@ -11,5 +11,7 @@ interface SenderInterface
 {
     public function send(ItemInterface $item): void;
 
-    public function addFilter(ValidatorInterface $filter);
+    public function addFilter(ValidatorInterface ...$filters);
+
+    public function suits(ItemInterface $item): bool;
 }

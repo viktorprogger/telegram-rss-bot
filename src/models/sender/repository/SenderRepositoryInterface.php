@@ -16,5 +16,5 @@ interface SenderRepositoryInterface
      *
      * @return SenderInterface[]
      */
-    public function getBySender(SourceInterface $source): iterable;
+    public function getBySource(SourceInterface $source): iterable;
 }

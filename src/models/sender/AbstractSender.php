@@ -5,12 +5,32 @@ declare(strict_types=1);
 namespace rssBot\models\sender;
 
 use rssBot\models\source\ItemInterface;
+use Yiisoft\Validator\Result;
+use Yiisoft\Validator\ValidatorInterface;
 
-class AbstractSender implements SenderInterface
+abstract class AbstractSender implements SenderInterface
 {
+    /**
+     * @var ValidatorInterface[]
+     */
+    protected array $filters = [];
 
-    public function send(ItemInterface $item): void
+    public function suits(ItemInterface $item) : bool{
+        foreach ($this->filters as $filter) {
+            $results = $filter->validate($item)->getIterator();
+            /** @var Result $result */
+            foreach ($results as $result) {
+                if ($result->getErrors() !== []) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public function addFilter(ValidatorInterface ...$filters): void
     {
-        // TODO: Implement send() method.
+        $this->filters = array_merge($this->filters, $filters);
     }
 }

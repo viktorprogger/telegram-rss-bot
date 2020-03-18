@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace rssBot\commands;
 
 use rssBot\models\source\repository\SourceRepositoryInterface;
+use rssBot\queue\messages\SourceFetchMessage;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -46,7 +47,7 @@ final class Parse extends Command
         $codes = $this->source;
 
         foreach ($this->repository->get($codes, time()) as $source) {
-            $this->messageBus->dispatch($source);
+            $this->messageBus->dispatch(new SourceFetchMessage($source));
         }
     }
 }

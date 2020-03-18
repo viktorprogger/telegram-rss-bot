@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace rssBot\models\source;
 
-interface ItemInterface
+use Yiisoft\Validator\DataSetInterface;
+
+interface ItemInterface extends DataSetInterface
 {
     public function getHash(): string;
 
