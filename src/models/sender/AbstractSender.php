@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace rssBot\models\sender;
 
-use rssBot\models\source\ItemInterface;
+use rssBot\models\sender\converter\ConverterInterface;
+use Yiisoft\Validator\DataSetInterface;
 use Yiisoft\Validator\Result;
 use Yiisoft\Validator\ValidatorInterface;
 
@@ -14,10 +15,17 @@ abstract class AbstractSender implements SenderInterface
      * @var ValidatorInterface[]
      */
     protected array $filters = [];
+    protected ConverterInterface $converter;
 
-    public function suits(ItemInterface $item) : bool{
+    public function getConverter(): ConverterInterface
+    {
+        return $this->converter;
+    }
+
+    public function suits(DataSetInterface $message): bool
+    {
         foreach ($this->filters as $filter) {
-            $results = $filter->validate($item)->getIterator();
+            $results = $filter->validate($message)->getIterator();
             /** @var Result $result */
             foreach ($results as $result) {
                 if ($result->getErrors() !== []) {

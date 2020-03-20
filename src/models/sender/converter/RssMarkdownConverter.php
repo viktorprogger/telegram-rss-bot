@@ -4,12 +4,25 @@ declare(strict_types=1);
 
 namespace rssBot\models\sender\converter;
 
-use rssBot\models\source\rss\ItemInterface;
+use InvalidArgumentException;
+use rssBot\models\sender\messages\TextMessage;
+use rssBot\models\sender\messages\TextMessageType;
+use rssBot\models\source\ItemInterface;
+use rssBot\models\source\rss\ItemInterface as RssItemInterface;
 
-class RssMarkdownConverter
+class RssMarkdownConverter implements ConverterInterface
 {
-    public function convert(ItemInterface $item): string
+    /**
+     * @param ItemInterface|RssItemInterface $item
+     *
+     * @return TextMessage
+     */
+    public function convert(ItemInterface $item): TextMessage
     {
+        if (!$item instanceof RssItemInterface) {
+            throw new InvalidArgumentException('Given item must implement ' . RssItemInterface::class);
+        }
+
         $body = html_entity_decode($item->getDescription());
         $body = strip_tags($body);
         $body = trim($body);
@@ -22,6 +35,6 @@ class RssMarkdownConverter
             $result .= "[Читать дальше ->](" . $item->getLink() . ")";
         }
 
-        return $result;
+        return new TextMessage($result, TextMessageType::markdown());
     }
 }
