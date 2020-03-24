@@ -33,7 +33,7 @@ class SourceFetcher implements MessageHandlerInterface
             foreach ($this->repository->getBySource($source) as $sender) {
                 if ($sender->suits($item)) {
                     $dto = $sender->getConverter()->convert($item);
-                    $this->bus->dispatch(new SourceItemMessage($item, $sender));
+                    $this->bus->dispatch(new SourceItemMessage($dto, $sender));
                 }
             }
         }

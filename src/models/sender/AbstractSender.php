@@ -4,41 +4,56 @@ declare(strict_types=1);
 
 namespace rssBot\models\sender;
 
+use InvalidArgumentException;
 use rssBot\models\sender\converter\ConverterInterface;
-use Yiisoft\Validator\DataSetInterface;
-use Yiisoft\Validator\Result;
-use Yiisoft\Validator\ValidatorInterface;
+use rssBot\models\sender\messages\MessageInterface;
+use rssBot\models\source\ItemInterface;
+use Yiisoft\Validator\Rules;
 
 abstract class AbstractSender implements SenderInterface
 {
-    /**
-     * @var ValidatorInterface[]
-     */
-    protected array $filters = [];
+    protected Rules $preFilters;
+    protected Rules $postFilters;
     protected ConverterInterface $converter;
+
+    public function __construct(Rules $preFilters, Rules $postFilters)
+    {
+        $this->preFilters = $preFilters;
+        $this->postFilters = $postFilters;
+    }
 
     public function getConverter(): ConverterInterface
     {
         return $this->converter;
     }
 
-    public function suits(DataSetInterface $message): bool
+    public function suits($message): bool
     {
-        foreach ($this->filters as $filter) {
-            $results = $filter->validate($message)->getIterator();
-            /** @var Result $result */
-            foreach ($results as $result) {
-                if ($result->getErrors() !== []) {
-                    return false;
-                }
-            }
+        if ($message instanceof ItemInterface) {
+            $filter = $this->preFilters;
+        } elseif ($message instanceof MessageInterface) {
+            $filter = $this->postFilters;
+        } else {
+            $type = is_object($message) ? get_class($message) : gettype($message);
+            $error = sprintf('%s or %s expected, %s given', ItemInterface::class, MessageInterface::class, $type);
+
+            throw new InvalidArgumentException($error);
         }
 
-        return true;
+        return $filter->validate($message)->isValid();
     }
 
-    public function addFilter(ValidatorInterface ...$filters): void
+    public function addPreFilter(...$filters): void
     {
-        $this->filters = array_merge($this->filters, $filters);
+        foreach ($filters as $filter) {
+            $this->preFilters->add($filter);
+        }
+    }
+
+    public function addPostFilter(...$filters): void
+    {
+        foreach ($filters as $filter) {
+            $this->postFilters->add($filter);
+        }
     }
 }

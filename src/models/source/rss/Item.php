@@ -6,9 +6,11 @@ namespace rssBot\models\source\rss;
 
 use DateTime;
 use FeedIo\Feed\ItemInterface as FeedItemInterface;
+use rssBot\models\source\HashAwareInterface;
 use rssBot\models\source\SourceInterface;
+use Yiisoft\Validator\MissingAttributeException;
 
-class Item implements ItemInterface
+class Item implements ItemInterface, HashAwareInterface
 {
     private FeedItemInterface $feedItem;
     private SourceInterface $source;
@@ -26,6 +28,7 @@ class Item implements ItemInterface
 
     public function __toString(): string
     {
+        // FIXME NullPointerException
         return $this->feedItem->getTitle() . PHP_EOL
             . $this->feedItem->getLastModified()->format('Y.m.d H:i:s') . PHP_EOL . PHP_EOL
             . $this->feedItem->getDescription() . PHP_EOL
@@ -55,5 +58,23 @@ class Item implements ItemInterface
     public function getLink(): ?string
     {
         return $this->feedItem->getLink();
+    }
+
+    public function getAttributeValue(string $attribute)
+    {
+        if ($this->hasAttribute($attribute)) {
+            $method = "get$attribute";
+
+            return $this->$method();
+        }
+
+        $message = sprintf('There is no attribute "%s" in class %s', $attribute, static::class);
+
+        throw new MissingAttributeException("");
+    }
+
+    public function hasAttribute(string $attribute): bool
+    {
+        return in_array($attribute, ['link', 'lastModified', 'description', 'title']);
     }
 }

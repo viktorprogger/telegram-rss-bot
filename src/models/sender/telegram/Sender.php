@@ -11,6 +11,7 @@ use rssBot\models\sender\converter\ConverterInterface;
 use rssBot\models\sender\messages\AbstractMessage;
 use rssBot\models\sender\messages\TextMessage;
 use rssBot\models\source\rss\ItemInterface as RssItemInterface;
+use Yiisoft\Validator\Rules;
 
 class Sender extends AbstractSender
 {
@@ -20,12 +21,21 @@ class Sender extends AbstractSender
     private string $chatId;
     private Client $client;
 
-    public function __construct(string $token, string $chatId, Client $client, ConverterInterface $converter)
+    public function __construct(
+        string $token,
+        string $chatId,
+        Client $client,
+        ConverterInterface $converter,
+        Rules $preFilter,
+        Rules $postFilter
+    )
     {
         $this->token = $token;
         $this->chatId = $chatId;
         $this->client = $client;
         $this->converter = $converter;
+
+        parent::__construct($preFilter, $postFilter);
     }
 
     /**

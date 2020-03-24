@@ -8,8 +8,6 @@ use Yiisoft\Validator\DataSetInterface;
 
 interface ItemInterface extends DataSetInterface
 {
-    public function getHash(): string;
-
     public function __toString();
 
     public function getSource(): SourceInterface;

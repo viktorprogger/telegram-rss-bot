@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace rssBot\models\sender\messages;
 
-use Yiisoft\Validator\DataSetInterface;
 use Yiisoft\Validator\MissingAttributeException;
 
-abstract class AbstractMessage implements DataSetInterface
+abstract class AbstractMessage implements MessageInterface
 {
     public function getAttributeValue(string $attribute)
     {
