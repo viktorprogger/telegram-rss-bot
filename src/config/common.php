@@ -72,14 +72,14 @@ return [
     'queueSettingsSend' => [
         '__class' => QueueSettings::class,
         '__construct()' => [
-            'queueName' => 'rss-bot-fetch',
+            'queueName' => 'rss-bot-send',
             'durable' => true,
         ],
     ],
     'exchangeSettingsSend' => [
         '__class' => Exchange::class,
         '__construct()' => [
-            'exchangeName' => 'rss-bot-fetch',
+            'exchangeName' => 'rss-bot-send',
             'durable' => true,
         ],
     ],
