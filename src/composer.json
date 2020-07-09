@@ -13,12 +13,13 @@
         "yiisoft/di": "^3.0@dev",
         "yiisoft/yii-console": "^3.0@dev",
         "yiisoft/factory": "^3.0@dev",
-        "yiisoft/yii-cycle": "^3.0@dev",
-        "cycle/annotated": "^2.0",
         "yiisoft/validator": "^3.0@dev",
-        "symfony/messenger": "^5.0",
         "debril/feed-io": "^4.5",
-        "monolog/monolog": "^2.0"
+        "monolog/monolog": "^2.0",
+        "yiisoft/yii-queue": "^3.0@dev",
+        "yiisoft/yii-queue-amqp": "^3.0@dev",
+        "yiisoft/db": "^3.0@dev",
+        "yiisoft/db-pgsql": "^3.0@dev"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master"
@@ -31,8 +32,10 @@
             "rssBot\\": "./"
         }
     },
-
     "extra": {
         "config-plugin": {}
+    },
+    "config": {
+        "sort-packages": true
     }
 }

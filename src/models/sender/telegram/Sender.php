@@ -9,6 +9,7 @@ use InvalidArgumentException;
 use rssBot\models\sender\AbstractSender;
 use rssBot\models\sender\converter\ConverterInterface;
 use rssBot\models\sender\messages\AbstractMessage;
+use rssBot\models\sender\messages\MessageInterface;
 use rssBot\models\sender\messages\TextMessage;
 use rssBot\models\source\rss\ItemInterface as RssItemInterface;
 use Yiisoft\Validator\Rules;
@@ -41,7 +42,7 @@ class Sender extends AbstractSender
     /**
      * @param AbstractMessage|TextMessage $message
      */
-    public function send(AbstractMessage $message): void
+    public function send(MessageInterface $message): void
     {
         if (!$message instanceof TextMessage) {
             throw new InvalidArgumentException('Given item must implement ' . RssItemInterface::class);

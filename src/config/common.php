@@ -7,8 +7,8 @@ use rssBot\models\source\repository\ParametersRepository;
 use rssBot\models\source\repository\SourceRepositoryInterface;
 use rssBot\queue\handlers\ItemSender;
 use rssBot\queue\handlers\SourceFetcher;
-use rssBot\queue\messages\SourceFetchMessage;
-use rssBot\queue\messages\SourceItemMessage;
+use rssBot\queue\messages\SourceFetchJob;
+use rssBot\queue\messages\SendItemJob;
 use rssBot\system\Parameters;
 use Spiral\Database\DatabaseInterface;
 use Spiral\Database\DatabaseManager;
@@ -26,8 +26,8 @@ return [
     SourceRepositoryInterface::class => ParametersRepository::class,
     MessageBusInterface::class => static function (Container $container) {
         $handlers = [
-            SourceFetchMessage::class => [$container->get(SourceFetcher::class)],
-            SourceItemMessage::class => [$container->get(ItemSender::class)],
+            SourceFetchJob::class => [$container->get(SourceFetcher::class)],
+            SendItemJob::class => [$container->get(ItemSender::class)],
         ];
 
         return new MessageBus([new HandlersLocator($handlers)]);

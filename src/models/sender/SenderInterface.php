@@ -11,7 +11,7 @@ use Yiisoft\Validator\Rule;
 
 interface SenderInterface
 {
-    public function send(AbstractMessage $message): void;
+    public function send(MessageInterface $message): void;
 
     /**
      * @param Rule|callable ...$filters

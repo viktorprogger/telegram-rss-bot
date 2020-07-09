@@ -6,34 +6,33 @@ namespace rssBot\queue\handlers;
 
 use rssBot\models\sender\repository\SenderRepositoryInterface;
 use rssBot\models\source\SourceInterface;
-use rssBot\queue\messages\SourceItemMessage;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
-use Symfony\Component\Messenger\MessageBusInterface;
+use rssBot\queue\messages\SendItemJob;
+use Yiisoft\Yii\Queue\Queue;
 
-class SourceFetcher implements MessageHandlerInterface
+class SourceFetcher
 {
-    /**
-     * @var MessageBusInterface
-     */
-    private MessageBusInterface $bus;
     /**
      * @var SenderRepositoryInterface
      */
     private SenderRepositoryInterface $repository;
+    /**
+     * @var Queue
+     */
+    private Queue $queue;
 
-    public function __construct(MessageBusInterface $bus, SenderRepositoryInterface $repository)
+    public function __construct(Queue $queue, SenderRepositoryInterface $repository)
     {
-        $this->bus = $bus;
         $this->repository = $repository;
+        $this->queue = $queue;
     }
 
-    public function __invoke(SourceInterface $source)
+    public function fetch(SourceInterface $source): void
     {
         foreach ($source->getItems() as $item) {
             foreach ($this->repository->getBySource($source) as $sender) {
                 if ($sender->suits($item)) {
                     $dto = $sender->getConverter()->convert($item);
-                    $this->bus->dispatch(new SourceItemMessage($dto, $sender));
+                    $this->queue->push(new SendItemJob($dto, $sender));
                 }
             }
         }
