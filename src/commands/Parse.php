@@ -27,8 +27,8 @@ final class Parse extends Command
     private SourceFetcher $fetcher;
 
     public function __construct(
-        SourceRepositoryInterface $repository,
         Queue $queue,
+        SourceRepositoryInterface $repository,
         SourceFetcher $fetcher,
         string $name = null
     ) {
