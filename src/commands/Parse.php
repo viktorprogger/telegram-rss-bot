@@ -6,7 +6,7 @@ namespace rssBot\commands;
 
 use rssBot\models\source\repository\SourceRepositoryInterface;
 use rssBot\queue\handlers\SourceFetcher;
-use rssBot\queue\messages\SourceFetchJob;
+use rssBot\queue\jobs\SourceFetchJob;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace rssBot\queue\messages;
+namespace rssBot\queue\jobs;
 
 use rssBot\models\source\SourceInterface;
 use rssBot\queue\handlers\SourceFetcher;

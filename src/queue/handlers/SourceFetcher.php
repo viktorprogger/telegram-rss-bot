@@ -6,7 +6,7 @@ namespace rssBot\queue\handlers;
 
 use rssBot\models\sender\repository\SenderRepositoryInterface;
 use rssBot\models\source\SourceInterface;
-use rssBot\queue\messages\SendItemJob;
+use rssBot\queue\jobs\SendItemJob;
 use Yiisoft\Yii\Queue\Queue;
 
 class SourceFetcher

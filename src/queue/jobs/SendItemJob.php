@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace rssBot\queue\messages;
+namespace rssBot\queue\jobs;
 
 use rssBot\models\sender\messages\MessageInterface;
 use rssBot\models\sender\SenderInterface;
