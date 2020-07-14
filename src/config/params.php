@@ -6,9 +6,13 @@ use rssBot\commands\Parse;
 use rssBot\models\sender\converter\RssMarkdownConverter;
 use rssBot\models\sender\SenderType;
 use rssBot\models\source\SourceType;
-use Spiral\Database\Driver\Postgres\PostgresDriver;
 
 return [
+    'yiisoft/yii-console' => [
+        'commands' => [
+            'parse' => Parse::class,
+        ],
+    ],
     'console' => [
         'commands' => [
             'parse' => Parse::class,

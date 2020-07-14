@@ -60,6 +60,9 @@ down: ## Put the docker-compose services down
 run: ## Use `docker-compose run` within the bot container (it may be down). See https://docs.docker.com/compose/reference/run/
 	@BUILD_TAG=$(BUILD_TAG) docker-compose run --rm $(exec_args) bot $(c)
 
+exec: ## Use `docker-compose exec` within the main app container
+	@BUILD_TAG=$(BUILD_TAG) docker-compose exec $(exec_args) bot $(c)
+
 exec-db: ## Use `docker-compose exec` within the db container
 	@BUILD_TAG=$(BUILD_TAG) docker-compose exec $(exec_args) db $(c)
 

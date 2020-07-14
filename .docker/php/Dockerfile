@@ -1,7 +1,7 @@
 FROM php:7.4-cli-alpine
 
-ENV XDEBUG_VERSION=2.9.2 \
-	VERSION_PRESTISSIMO_PLUGIN=^0.3.9 \
+ENV XDEBUG_VERSION=2.9.6 \
+    VERSION_PRESTISSIMO_PLUGIN=^0.3.9 \
     COMPOSER_ALLOW_SUPERUSER=1
 
 RUN apk --no-cache add \
@@ -12,7 +12,7 @@ RUN apk --no-cache add \
         g++ \
         autoconf \
         make && \
-	docker-php-ext-install \
+    docker-php-ext-install \
         mbstring \
         opcache \
         gettext \
@@ -28,7 +28,9 @@ RUN apk --no-cache add \
         touch /var/log/bot/xdebug.log && \
         echo -e "xdebug.remote_port = 9001\n\
 xdebug.idekey = \"PHPSTORM\"\n\
-xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+xdebug.remote_enable=on\n\
+xdebug.remote_connect_back=0\n\
+" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     composer global require --optimize-autoloader \
@@ -42,7 +44,5 @@ RUN rm -rf ./* && \
     chown -R appuser:appuser .
 USER appuser
 
-ADD composer.* /var/www/
-RUN composer install --prefer-dist
-
 COPY . /var/www/
+RUN composer install --prefer-dist
