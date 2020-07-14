@@ -1,39 +1,41 @@
-FROM php:7.4.1-cli-alpine
+FROM php:7.4-cli-alpine
 
-RUN apk --update add \
+ENV XDEBUG_VERSION=2.9.6 \
+    VERSION_PRESTISSIMO_PLUGIN=^0.3.9 \
+    COMPOSER_ALLOW_SUPERUSER=1
+
+RUN apk --no-cache add \
         postgresql-dev \
-        oniguruma-dev && \
+        oniguruma-dev \
+        icu-dev \
+        gettext-dev \
+        g++ \
+        autoconf \
+        make && \
     docker-php-ext-install \
         mbstring \
         opcache \
-        pdo_pgsql && \
-    apk del \
-        gcc \
-        g++
+        gettext \
+        intl \
+        pdo_pgsql \
+        sockets \
+        > /dev/null && \
+    pecl install xdebug-$XDEBUG_VERSION > /dev/null && \
+        docker-php-ext-enable xdebug > /dev/null && \
+        apk del g++ autoconf make && \
+        rm -r /tmp/pear/* && \
+        mkdir -p /var/log/bot && \
+        touch /var/log/bot/xdebug.log && \
+        echo -e "xdebug.remote_port = 9001\n\
+xdebug.idekey = \"PHPSTORM\"\n\
+xdebug.remote_enable=on\n\
+xdebug.remote_connect_back=0\n\
+" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-# Configure version constraints
-ENV VERSION_PRESTISSIMO_PLUGIN=^0.3.9 \
-    COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     composer global require --optimize-autoloader \
         "hirak/prestissimo:${VERSION_PRESTISSIMO_PLUGIN}" && \
     composer global dumpautoload --optimize
-
-# xdebug
-ENV XDEBUG_VERSION 2.9.0
-RUN apk --no-cache add --virtual .build-deps \
-        g++ \
-        autoconf \
-        make && \
-    pecl install xdebug-$XDEBUG_VERSION && \
-    docker-php-ext-enable xdebug && \
-    apk del .build-deps && \
-    rm -r /tmp/pear/* && \
-    mkdir -p /var/log/bot && \
-    touch /var/log/bot/xdebug.log && \
-    echo -e "xdebug.remote_port = 9001\n\
-xdebug.idekey = \"PHPSTORM\"\n\
-xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 WORKDIR /var/www
 RUN rm -rf ./* && \
@@ -42,7 +44,5 @@ RUN rm -rf ./* && \
     chown -R appuser:appuser .
 USER appuser
 
-ADD composer.* /var/www/
-RUN composer install --prefer-dist
-
 COPY . /var/www/
+RUN composer install --prefer-dist

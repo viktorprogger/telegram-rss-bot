@@ -12,14 +12,18 @@ services:
             - ./.env:/var/.env
         environment:
             TZ: Europe/Moscow
+            XDEBUG_CONFIG: "remote_enable=On remote_host=${HOST_IP}"
+            PHP_IDE_CONFIG: ${PHP_IDE_CONFIG}
+            APP_ENV: dev
         env_file:
             - .env
-        depends_on:
+        links:
             - db
+            - amqp
 
     db:
         image: postgres:11-alpine
-        restart: always
+        restart: on-failure
         volumes:
             - .docker/data/db:/var/lib/postgresql/data
         environment:
@@ -29,3 +33,7 @@ services:
             POSTGRES_USER: ${DB_LOGIN}
         ports:
             - ${DB_PORT:-3306}:5432
+
+    amqp:
+        image: rabbitmq:3
+        restart: on-failure
