@@ -20,7 +20,7 @@ use Yiisoft\Yii\Queue\Queue;
 return [
     Parameters::class => [
         '__class' => Parameters::class,
-        '__construct()' => require Builder::path('params'),
+        '__construct()' => [require Builder::path('params')],
     ],
     SourceRepositoryInterface::class => ParametersRepository::class,
 

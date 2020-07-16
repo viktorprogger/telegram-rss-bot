@@ -17,6 +17,8 @@ class SourceType
         if (!in_array($type, self::all(), true)) {
             throw new InvalidArgumentException('Given type is not supported');
         }
+
+        $this->type = $type;
     }
 
     public function current(): int

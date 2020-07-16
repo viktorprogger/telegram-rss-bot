@@ -18,6 +18,7 @@
         "yiisoft/factory": "^3.0@dev",
         "yiisoft/validator": "^3.0@dev",
         "yiisoft/yii-console": "^3.0@dev",
+        "yiisoft/yii-db-migration": "^1.0@dev",
         "yiisoft/yii-queue": "^3.0@dev",
         "yiisoft/yii-queue-amqp": "^3.0@dev"
     },

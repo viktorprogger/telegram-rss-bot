@@ -6,8 +6,7 @@ services:
         volumes:
             - ./.docker/logs:/var/log
             - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/40-custom.ini:ro
-            - ./.docker/data/composer/cache:/root/.composer/cache
-            - ./.docker/data/composer/auth.json:/.composer/auth.json:ro
+            - ./.docker/data/composer:/root/.composer
             - ./src:/var/www
             - ./.env:/var/.env
         environment:
@@ -31,8 +30,6 @@ services:
             POSTGRES_PASSWORD: ${DB_PASSWORD}
             POSTGRES_DB: ${DB_NAME}
             POSTGRES_USER: ${DB_LOGIN}
-        ports:
-            - ${DB_PORT:-3306}:5432
 
     amqp:
         image: rabbitmq:3

@@ -13,34 +13,6 @@ return [
             'parse' => Parse::class,
         ],
     ],
-    'console' => [
-        'commands' => [
-            'parse' => Parse::class,
-        ],
-    ],
-    'cycle.dbal' => [
-        'default' => 'default',
-        'databases' => [
-            'default' => [
-                'connection' => 'default',
-                'prefix' => 'cycle_'
-            ],
-            'old' => [
-                'connection' => 'default',
-            ],
-        ],
-        'connections' => [
-            'default' => [
-                'driver' => PostgresDriver::class,
-                'options' => [
-                    'connection' => 'pgsql:host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_NAME'),
-                    'username' => getenv('DB_LOGIN'),
-                    'password' => getenv('DB_PASSWORD'),
-                    'timezone' => 'Europe/Moscow',
-                ],
-            ],
-        ],
-    ],
     'sources' => [
         'storm' => [
             'type' => SourceType::rss(),
@@ -52,7 +24,7 @@ return [
     'senders' => [
         [
             'type' => SenderType::telegram(),
-            'token' => '', // TODO
+            'token' => getenv('BOT_TOKEN'), // TODO
             'sources' => [
                 [
                     'code' => 'storm',
