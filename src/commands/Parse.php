@@ -51,7 +51,8 @@ final class Parse extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $codes = $this->source;
+        error_reporting (E_ALL ^ E_NOTICE);
+        $codes = $this->source ?? [];
 
         foreach ($this->repository->get($codes, time()) as $source) {
             $this->queue->push(new SourceFetchJob($source, $this->fetcher));

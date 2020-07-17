@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace rssBot\models\source\exceptions;
+namespace rssBot\models\exceptions;
 
 use InvalidArgumentException;
 use Throwable;

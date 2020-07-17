@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace rssBot\models\source;
+namespace rssBot\models\sender;
 
 use rssBot\models\exceptions\UnknownTypeException;
-use rssBot\models\source\rss\Source;
+use rssBot\models\sender\telegram\Sender as TelegramSender;
 use Yiisoft\Factory\Factory as GlobalFactory;
 
 class Factory
@@ -17,15 +17,15 @@ class Factory
         $this->factory = $factory;
     }
 
-    public function create($config): SourceInterface
+    public function create($config): SenderInterface
     {
-        /** @var SourceType $type */
+        /** @var SenderType $type */
         $type = $config['type'];
         switch ($type->current()) {
-            case SourceType::RSS:
+            case SenderType::TELEGRAM:
                 $factoryConfig = [
                     '__construct()' => $config,
-                    '__class' => Source::class,
+                    '__class' => TelegramSender::class,
                 ];
 
                 return $this->factory->create($factoryConfig);

@@ -70,4 +70,4 @@ db-refresh: ## non-interactively refresh the database structure
 	@exec_args=-T make exec c="php yii migrate/fresh --interactive=0"
 
 yii: ## Execute `php yii some/command` in the php container
-	@make run c="php ./yii $(c)"
+	@make run c="php vendor/bin/yii $(c)"

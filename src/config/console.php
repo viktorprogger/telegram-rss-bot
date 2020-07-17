@@ -2,15 +2,26 @@
 
 declare(strict_types=1);
 
+use FeedIo\Adapter\ClientInterface as FeedClientInterface;
+use FeedIo\Adapter\Guzzle\Client as GuzzleFeedClient;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use PhpAmqpLib\Connection\AbstractConnection;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use rssBot\commands\Parse;
+use rssBot\models\sender\repository\ParametersRepositoryInterface;
+use rssBot\models\sender\repository\SenderRepositoryInterface;
 use rssBot\models\source\repository\ParametersRepository;
 use rssBot\models\source\repository\SourceRepositoryInterface;
 use rssBot\queue\handlers\SourceFetcher;
 use rssBot\system\Parameters;
 use Yiisoft\Composer\Config\Builder;
 use Yiisoft\Factory\Definitions\Reference;
+use Yiisoft\Serializer\IgbinarySerializer;
+use Yiisoft\Serializer\PhpSerializer;
+use Yiisoft\Serializer\SerializerInterface;
 use Yiisoft\Yii\Queue\Driver\AMQP\Driver;
 use Yiisoft\Yii\Queue\Driver\AMQP\QueueProvider;
 use Yiisoft\Yii\Queue\Driver\AMQP\Settings\Exchange;
@@ -95,6 +106,9 @@ return [
             'guest'
         ],
     ],
-    \Yiisoft\Serializer\SerializerInterface::class => \Yiisoft\Serializer\IgbinarySerializer::class,
-    \Psr\Log\LoggerInterface::class => \Psr\Log\NullLogger::class,
+    SerializerInterface::class => PhpSerializer::class,
+    LoggerInterface::class => NullLogger::class,
+    SenderRepositoryInterface::class => ParametersRepositoryInterface::class,
+    FeedClientInterface::class => GuzzleFeedClient::class,
+    GuzzleClientInterface::class => GuzzleClient::class,
 ];
