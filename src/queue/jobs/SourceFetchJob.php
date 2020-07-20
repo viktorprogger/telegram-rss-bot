@@ -4,23 +4,25 @@ declare(strict_types=1);
 
 namespace rssBot\queue\jobs;
 
+use Psr\EventDispatcher\EventDispatcherInterface;
 use rssBot\models\source\SourceInterface;
-use rssBot\queue\handlers\SourceFetcher;
+use rssBot\queue\events\FetchEvent;
 use Yiisoft\Yii\Queue\Job\JobInterface;
 
 final class SourceFetchJob implements JobInterface
 {
     private SourceInterface $source;
-    private SourceFetcher $fetcher;
+    private EventDispatcherInterface $dispatcher;
 
-    public function __construct(SourceInterface $source, SourceFetcher $fetcher)
+    public function __construct(SourceInterface $source, EventDispatcherInterface $dispatcher)
     {
         $this->source = $source;
-        $this->fetcher = $fetcher;
+        $this->dispatcher = $dispatcher;
     }
 
     public function execute(): void
     {
-        $this->fetcher->fetch($this->source);
+        $event = new FetchEvent($this->source);
+        $this->dispatcher->dispatch($event);
     }
 }

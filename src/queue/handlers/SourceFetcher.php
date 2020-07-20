@@ -6,6 +6,7 @@ namespace rssBot\queue\handlers;
 
 use rssBot\models\sender\repository\SenderRepositoryInterface;
 use rssBot\models\source\SourceInterface;
+use rssBot\queue\events\FetchEvent;
 use rssBot\queue\jobs\SendItemJob;
 use Yiisoft\Yii\Queue\Queue;
 
@@ -26,8 +27,10 @@ class SourceFetcher
         $this->queue = $queue;
     }
 
-    public function fetch(SourceInterface $source): void
+    public function fetch(FetchEvent $event): void
     {
+        $source = $event->getSource();
+
         foreach ($source->getItems() as $item) {
             foreach ($this->repository->getBySource($source) as $sender) {
                 if ($sender->suits($item)) {

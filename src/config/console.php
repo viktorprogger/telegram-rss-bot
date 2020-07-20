@@ -8,6 +8,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use PhpAmqpLib\Connection\AbstractConnection;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
+use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use rssBot\commands\Parse;
@@ -19,6 +20,7 @@ use rssBot\queue\handlers\SourceFetcher;
 use rssBot\system\Parameters;
 use Yiisoft\Composer\Config\Builder;
 use Yiisoft\Factory\Definitions\Reference;
+use Yiisoft\Factory\Factory;
 use Yiisoft\Serializer\IgbinarySerializer;
 use Yiisoft\Serializer\PhpSerializer;
 use Yiisoft\Serializer\SerializerInterface;
@@ -111,4 +113,5 @@ return [
     SenderRepositoryInterface::class => ParametersRepositoryInterface::class,
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleClientInterface::class => GuzzleClient::class,
+    Factory::class => fn(ContainerInterface $container) => new Factory($container),
 ];

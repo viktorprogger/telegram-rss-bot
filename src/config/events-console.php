@@ -10,4 +10,7 @@ return [
             ['queueSend', 'jobRetry'],
         ]
     ),
+    \rssBot\queue\events\FetchEvent::class => [
+        [\rssBot\queue\handlers\SourceFetcher::class, 'fetch']
+    ],
 ];
