@@ -6,11 +6,18 @@ use rssBot\commands\Parse;
 use rssBot\models\sender\converter\RssMarkdownConverter;
 use rssBot\models\sender\SenderType;
 use rssBot\models\source\SourceType;
+use Yiisoft\Factory\Definitions\Reference;
+use Yiisoft\Yii\Queue\Command\ListenCommand;
+use Yiisoft\Yii\Queue\Command\RunCommand;
 
 return [
     'yiisoft/yii-console' => [
         'commands' => [
             'parse' => Parse::class,
+            'queue/fetch/listen' => 'queueFetchListenCommand',
+            'queue/fetch/run' => 'queueFetchRunCommand',
+            'queue/send/listen' => 'queueSendListenCommand',
+            'queue/send/run' => 'queueSendRunCommand',
         ],
     ],
     'sources' => [

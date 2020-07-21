@@ -21,9 +21,10 @@ use rssBot\system\Parameters;
 use Yiisoft\Composer\Config\Builder;
 use Yiisoft\Factory\Definitions\Reference;
 use Yiisoft\Factory\Factory;
-use Yiisoft\Serializer\IgbinarySerializer;
 use Yiisoft\Serializer\PhpSerializer;
 use Yiisoft\Serializer\SerializerInterface;
+use Yiisoft\Yii\Queue\Command\ListenCommand;
+use Yiisoft\Yii\Queue\Command\RunCommand;
 use Yiisoft\Yii\Queue\Driver\AMQP\Driver;
 use Yiisoft\Yii\Queue\Driver\AMQP\QueueProvider;
 use Yiisoft\Yii\Queue\Driver\AMQP\Settings\Exchange;
@@ -114,4 +115,33 @@ return [
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleClientInterface::class => GuzzleClient::class,
     Factory::class => fn(ContainerInterface $container) => new Factory($container),
+
+    'queueFetchListenCommand' => [
+        '__class' => ListenCommand::class,
+        '__construct()' => [
+            'queue/fetch/listen',
+            Reference::to('queueFetch'),
+        ],
+    ],
+    'queueFetchRunCommand' => [
+        '__class' => RunCommand::class,
+        '__construct()' => [
+            'queue/fetch/run',
+            Reference::to('queueFetch'),
+        ],
+    ],
+    'queueSendListenCommand' => [
+        '__class' => ListenCommand::class,
+        '__construct()' => [
+            'queue/send/listen',
+            Reference::to('queueSend'),
+        ],
+    ],
+    'queueSendRunCommand' => [
+        '__class' => RunCommand::class,
+        '__construct()' => [
+            'queue/send/run',
+            Reference::to('queueSend'),
+        ],
+    ],
 ];
