@@ -56,7 +56,7 @@ final class Parse extends Command
         $codes = $this->source ?? [];
 
         foreach ($this->repository->get($codes, time()) as $source) {
-            $job = $this->factory->create(['__class' => SourceFetchJob::class, '__construct()' => $source]);
+            $job = $this->factory->create(['__class' => SourceFetchJob::class, '__construct()' => [$source]]);
             $this->queue->push($job);
         }
     }
