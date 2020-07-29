@@ -50,14 +50,16 @@ final class Parse extends Command
         );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         error_reporting (E_ALL ^ E_NOTICE);
-        $codes = $this->source ?? [];
+        $codes = $this->source ?? $this->repository->getCodes();
 
-        foreach ($this->repository->getCodes() as $code) {
+        foreach ($codes as $code) {
             $job = new SourceFetchJob($code);
             $this->queue->push($job);
         }
+
+        return 0;
     }
 }
