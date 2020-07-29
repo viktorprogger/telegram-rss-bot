@@ -45,7 +45,7 @@ class SourceFetcher
         foreach ($source->getItems() as $item) {
             foreach ($this->repository->getBySource($source) as $sender) {
                 if ($sender->suits($item)) {
-                    $this->queue->push(new SendItemJob($item));
+                    $this->queue->push(new SendItemJob($item, $sender->getCode()));
                 }
             }
         }
