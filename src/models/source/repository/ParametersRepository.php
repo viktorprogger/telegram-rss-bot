@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace rssBot\models\source\repository;
 
 use rssBot\models\source\Factory;
+use rssBot\models\source\SourceInterface;
 use rssBot\system\Parameters;
 
 class ParametersRepository implements SourceRepositoryInterface
@@ -18,21 +19,24 @@ class ParametersRepository implements SourceRepositoryInterface
         $this->parameters = $parameters;
     }
 
-    public function get(array $codes, int $timestamp): iterable
+    public function get(string $code): SourceInterface
     {
-        // TODO заюзать timestamp (как-то сохранять дату последнего фетча)
-
-        foreach ($this->getDefinitions($codes) as $definition) {
-            yield $this->factory->create($definition);
+        foreach ($this->getDefinitions() as $definition) {
+            if ($definition['code'] === $code) {
+                return $this->factory->create($definition);
+            }
         }
     }
 
-    private function getDefinitions(array $codes): iterable
+    private function getDefinitions(): iterable
     {
-        foreach ($this->parameters->get("sources") as $definition) {
-            if ($codes === [] || in_array($definition['code'], $codes, true)) {
-                yield $definition;
-            }
+        yield from $this->parameters->get("sources");
+    }
+
+    public function getCodes(): iterable
+    {
+        foreach ($this->getDefinitions() as $definition) {
+            yield $definition['code'];
         }
     }
 }

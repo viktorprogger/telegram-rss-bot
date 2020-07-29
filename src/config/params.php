@@ -6,6 +6,8 @@ use rssBot\commands\Parse;
 use rssBot\models\sender\converter\RssMarkdownConverter;
 use rssBot\models\sender\SenderType;
 use rssBot\models\source\SourceType;
+use rssBot\queue\handlers\SourceFetcher;
+use rssBot\queue\jobs\SourceFetchJob;
 use Yiisoft\Factory\Definitions\Reference;
 use Yiisoft\Yii\Queue\Command\ListenCommand;
 use Yiisoft\Yii\Queue\Command\RunCommand;
@@ -31,6 +33,7 @@ return [
     'senders' => [
         [
             'type' => SenderType::telegram(),
+            'code' => 'jb-sender',
             'token' => getenv('BOT_TOKEN'), // TODO
             'sources' => [
                 [
@@ -43,6 +46,11 @@ return [
                 // Список фильтров, применяемых к Message (после конвертации из SourceItem)
                 'postFilters' => [],
             ],
+        ],
+    ],
+    'yiisoft/yii-queue' => [
+        'handlers' => [
+            SourceFetchJob::class => [SourceFetcher::class, 'fetch'],
         ],
     ],
 ];

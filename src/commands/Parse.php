@@ -55,8 +55,8 @@ final class Parse extends Command
         error_reporting (E_ALL ^ E_NOTICE);
         $codes = $this->source ?? [];
 
-        foreach ($this->repository->get($codes, time()) as $source) {
-            $job = $this->factory->create(['__class' => SourceFetchJob::class, '__construct()' => [$source]]);
+        foreach ($this->repository->getCodes() as $code) {
+            $job = new SourceFetchJob($code);
             $this->queue->push($job);
         }
     }

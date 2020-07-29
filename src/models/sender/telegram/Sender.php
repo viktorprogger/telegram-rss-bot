@@ -23,6 +23,7 @@ class Sender extends AbstractSender
     private Client $client;
 
     public function __construct(
+        string $code,
         string $token,
         string $chatId,
         Client $client,
@@ -36,7 +37,7 @@ class Sender extends AbstractSender
         $this->client = $client;
         $this->converter = $converter;
 
-        parent::__construct($preFilter, $postFilter);
+        parent::__construct($code, $preFilter, $postFilter);
     }
 
     /**

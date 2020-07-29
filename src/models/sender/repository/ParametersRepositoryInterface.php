@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace rssBot\models\sender\repository;
 
 use rssBot\models\sender\Factory;
+use rssBot\models\sender\SenderInterface;
 use rssBot\models\source\SourceInterface;
 use rssBot\system\Parameters;
 
@@ -23,6 +24,11 @@ class ParametersRepositoryInterface implements SenderRepositoryInterface
      * @inheritDoc
      */
     public function getBySource(SourceInterface $source): iterable
+    {
+        return $this->getBySourceCode($source->getCode());
+    }
+
+    public function getBySourceCode(string $code): iterable
     {
         foreach ($this->parameters->get("senders") as $senderConfig) {
             foreach ($senderConfig['sources'] as $sourceDefinition) {

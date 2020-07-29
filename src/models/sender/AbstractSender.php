@@ -15,9 +15,11 @@ abstract class AbstractSender implements SenderInterface
     protected Rules $preFilters;
     protected Rules $postFilters;
     protected ConverterInterface $converter;
+    private string $code;
 
-    public function __construct(Rules $preFilters, Rules $postFilters)
+    public function __construct(string $code, Rules $preFilters, Rules $postFilters)
     {
+        $this->code = $code;
         $this->preFilters = $preFilters;
         $this->postFilters = $postFilters;
     }
@@ -55,5 +57,10 @@ abstract class AbstractSender implements SenderInterface
         foreach ($filters as $filter) {
             $this->postFilters->add($filter);
         }
+    }
+
+    public function getCode(): string
+    {
+        return $this->code;
     }
 }

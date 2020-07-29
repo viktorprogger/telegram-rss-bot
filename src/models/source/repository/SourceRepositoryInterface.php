@@ -8,12 +8,10 @@ use rssBot\models\source\SourceInterface;
 
 interface SourceRepositoryInterface
 {
+    public function get(string $code): SourceInterface;
+
     /**
-     * @param array $codes Unique codes of sources
-     * @param int $timestamp Sources with last fetch time more than this won't be returned
-     * // TODO Понять, нафига я сюда timestamp написал...
-     *
-     * @return SourceInterface[]
+     * @return string[]
      */
-    public function get(array $codes, int $timestamp): iterable;
+    public function getCodes(): iterable;
 }

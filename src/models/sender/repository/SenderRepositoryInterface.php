@@ -9,6 +9,8 @@ use rssBot\models\source\SourceInterface;
 
 interface SenderRepositoryInterface
 {
+    public function getByCode($sender): SenderInterface;
+
     /**
      * Returns senders filtered by the given source
      *
@@ -17,4 +19,13 @@ interface SenderRepositoryInterface
      * @return SenderInterface[]
      */
     public function getBySource(SourceInterface $source): iterable;
+
+    /**
+     * Returns senders filtered by the given source code
+     *
+     * @param string $code
+     *
+     * @return SenderInterface[]
+     */
+    public function getBySourceCode(string $code): iterable;
 }

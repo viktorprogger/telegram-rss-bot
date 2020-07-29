@@ -20,7 +20,16 @@ interface SenderInterface
      */
     public function addPreFilter(...$filters);
 
+    /**
+     * @param Rule|callable ...$filters
+     *
+     * @return mixed
+     */
+    public function addPostFilter(...$filters);
+
     public function suits(MessageInterface $message): bool;
 
     public function getConverter(): ConverterInterface;
+
+    public function getCode(): string;
 }

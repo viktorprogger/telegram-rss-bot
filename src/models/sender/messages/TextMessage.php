@@ -24,4 +24,13 @@ class TextMessage extends AbstractMessage
     {
         return $this->type;
     }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'class' => static::class,
+            'text' => $this->text,
+            'type' => $this->type->current(),
+        ];
+    }
 }
