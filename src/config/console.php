@@ -16,7 +16,7 @@ use rssBot\models\sender\repository\ParametersRepositoryInterface;
 use rssBot\models\sender\repository\SenderRepositoryInterface;
 use rssBot\models\source\repository\ParametersRepository;
 use rssBot\models\source\repository\SourceRepositoryInterface;
-use rssBot\queue\handlers\SourceFetcher;
+use rssBot\queue\handlers\SourceHandler;
 use rssBot\system\Parameters;
 use Yiisoft\Composer\Config\Builder;
 use Yiisoft\Factory\Definitions\Reference;
@@ -30,6 +30,10 @@ use Yiisoft\Yii\Queue\Driver\AMQP\QueueProvider;
 use Yiisoft\Yii\Queue\Driver\AMQP\Settings\Exchange;
 use Yiisoft\Yii\Queue\Driver\AMQP\Settings\Queue as QueueSettings;
 use Yiisoft\Yii\Queue\Queue;
+
+/**
+ * @var array $params
+ */
 
 return [
     Parameters::class => [
@@ -69,7 +73,7 @@ return [
         ],
     ],
 
-    SourceFetcher::class => ['__construct()' => [Reference::to('queueSend')]],
+    SourceHandler::class => ['__construct()' => [Reference::to('queueSend')]],
     'queueSend' => [
         '__class' => Queue::class,
         '__construct()' => [Reference::to('queueDriverSend')],
@@ -115,6 +119,12 @@ return [
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleClientInterface::class => GuzzleClient::class,
     Factory::class => fn(ContainerInterface $container) => new Factory($container),
+    \rssBot\services\converter\ConverterLocatorInterface::class => [
+        '__class' => \rssBot\services\converter\ConverterLocator::class,
+        '__construct()' => [
+            $params['converters'],
+        ],
+    ],
 
     'queueFetchListenCommand' => [
         '__class' => ListenCommand::class,

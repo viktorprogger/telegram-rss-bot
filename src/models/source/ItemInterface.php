@@ -9,4 +9,5 @@ use Yiisoft\Validator\DataSetInterface;
 
 interface ItemInterface extends DataSetInterface, JsonSerializable
 {
+    public function getResourceCode(): string;
 }

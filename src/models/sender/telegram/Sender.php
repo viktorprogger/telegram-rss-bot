@@ -7,9 +7,6 @@ namespace rssBot\models\sender\telegram;
 use GuzzleHttp\Client;
 use InvalidArgumentException;
 use rssBot\models\sender\AbstractSender;
-use rssBot\models\sender\converter\ConverterInterface;
-use rssBot\models\sender\messages\AbstractMessage;
-use rssBot\models\sender\messages\MessageInterface;
 use rssBot\models\sender\messages\TextMessage;
 use rssBot\models\source\rss\ItemInterface as RssItemInterface;
 use Yiisoft\Validator\Rules;
@@ -23,27 +20,23 @@ class Sender extends AbstractSender
     private Client $client;
 
     public function __construct(
-        string $code,
         string $token,
         string $chatId,
         Client $client,
-        ConverterInterface $converter,
         Rules $preFilter,
         Rules $postFilter
-    )
-    {
+    ) {
         $this->token = $token;
         $this->chatId = $chatId;
         $this->client = $client;
-        $this->converter = $converter;
 
-        parent::__construct($code, $preFilter, $postFilter);
+        parent::__construct($preFilter, $postFilter);
     }
 
     /**
-     * @param AbstractMessage|TextMessage $message
+     * @param TextMessage $message
      */
-    public function send(MessageInterface $message): void
+    public function send($message): void
     {
         if (!$message instanceof TextMessage) {
             throw new InvalidArgumentException('Given item must implement ' . RssItemInterface::class);

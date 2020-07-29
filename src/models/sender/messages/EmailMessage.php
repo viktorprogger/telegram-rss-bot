@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace rssBot\models\sender\messages;
 
-class EmailMessage extends AbstractMessage
+use JsonSerializable;
+
+class EmailMessage extends AbstractMessage implements JsonSerializable
 {
     private string $theme;
     private string $body;

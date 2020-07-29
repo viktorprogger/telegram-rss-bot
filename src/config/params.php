@@ -5,12 +5,12 @@ declare(strict_types=1);
 use rssBot\commands\Parse;
 use rssBot\models\sender\converter\RssMarkdownConverter;
 use rssBot\models\sender\SenderType;
+use rssBot\models\sender\telegram\Sender as TelegramSender;
 use rssBot\models\source\SourceType;
-use rssBot\queue\handlers\SourceFetcher;
+use rssBot\queue\handlers\MessageHandler;
+use rssBot\queue\handlers\SourceHandler;
+use rssBot\queue\jobs\SendItemJob;
 use rssBot\queue\jobs\SourceFetchJob;
-use Yiisoft\Factory\Definitions\Reference;
-use Yiisoft\Yii\Queue\Command\ListenCommand;
-use Yiisoft\Yii\Queue\Command\RunCommand;
 
 return [
     'yiisoft/yii-console' => [
@@ -28,29 +28,25 @@ return [
             'title' => 'JetBrains PhpStorm',
             'code' => 'storm',
             'url' => 'https://blog.jetbrains.com/phpstorm/feed/',
+            'senders' => [
+
+            ]
         ],
     ],
     'senders' => [
-        [
-            'type' => SenderType::telegram(),
-            'code' => 'jb-sender',
-            'token' => getenv('BOT_TOKEN'), // TODO
-            'sources' => [
-                [
-                    'code' => 'storm',
-                    'converter' => RssMarkdownConverter::class,
-                ],
-                // В обоих фильтрах ниже - массив объектов \Yiisoft\Validator\Rule или просто callable
-                // Список фильтров, применяемых к SourceItem до того, как произведется конвертация в Message
-                'preFilters' => [],
-                // Список фильтров, применяемых к Message (после конвертации из SourceItem)
-                'postFilters' => [],
-            ],
+        'storm' => [
+            TelegramSender::class,
         ],
+    ],
+    'converters' => [
+        TelegramSender::class => [
+            'storm' => RssMarkdownConverter::class,
+        ]
     ],
     'yiisoft/yii-queue' => [
         'handlers' => [
-            SourceFetchJob::class => [SourceFetcher::class, 'fetch'],
+            SourceFetchJob::NAME => [SourceHandler::class, 'handle'],
+            SendItemJob::NAME => [MessageHandler::class, 'handle'],
         ],
     ],
 ];

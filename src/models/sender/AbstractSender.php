@@ -14,19 +14,11 @@ abstract class AbstractSender implements SenderInterface
 {
     protected Rules $preFilters;
     protected Rules $postFilters;
-    protected ConverterInterface $converter;
-    private string $code;
 
-    public function __construct(string $code, Rules $preFilters, Rules $postFilters)
+    public function __construct(Rules $preFilters, Rules $postFilters)
     {
-        $this->code = $code;
         $this->preFilters = $preFilters;
         $this->postFilters = $postFilters;
-    }
-
-    public function getConverter(): ConverterInterface
-    {
-        return $this->converter;
     }
 
     public function suits($message): bool
@@ -45,22 +37,8 @@ abstract class AbstractSender implements SenderInterface
         return $filter->validate($message)->isValid();
     }
 
-    public function addPreFilter(...$filters): void
-    {
-        foreach ($filters as $filter) {
-            $this->preFilters->add($filter);
-        }
-    }
-
-    public function addPostFilter(...$filters): void
-    {
-        foreach ($filters as $filter) {
-            $this->postFilters->add($filter);
-        }
-    }
-
     public function getCode(): string
     {
-        return $this->code;
+        return static::class;
     }
 }

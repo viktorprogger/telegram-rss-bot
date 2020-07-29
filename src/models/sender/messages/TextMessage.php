@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace rssBot\models\sender\messages;
 
-class TextMessage extends AbstractMessage
+use JsonSerializable;
+
+class TextMessage extends AbstractMessage implements JsonSerializable
 {
     private string $text;
     private TextMessageType $type;

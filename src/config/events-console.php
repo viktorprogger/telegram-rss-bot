@@ -11,6 +11,6 @@ return [
         ]
     ),
     \rssBot\queue\events\FetchEvent::class => [
-        [\rssBot\queue\handlers\SourceFetcher::class, 'fetch']
+        [\rssBot\queue\handlers\SourceHandler::class, 'fetch']
     ],
 ];

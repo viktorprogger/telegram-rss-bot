@@ -8,7 +8,7 @@ use rssBot\models\sender\repository\SenderRepositoryInterface;
 use Yiisoft\Factory\Factory;
 use Yiisoft\Yii\Queue\MessageInterface as QueueMessageInterface;
 
-class SourceSender
+final class MessageHandler
 {
     private SenderRepositoryInterface $repository;
     private Factory $factory;
@@ -19,7 +19,7 @@ class SourceSender
         $this->factory = $factory;
     }
 
-    public function send(QueueMessageInterface $message): void
+    public function handle(QueueMessageInterface $message): void
     {
         $sender = $this->repository->getByCode($message->getPayloadData()['sender']);
         $senderItem = $this->factory->create($message->getPayloadData()['item']);
