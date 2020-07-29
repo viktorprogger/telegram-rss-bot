@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace rssBot\queue\handlers;
 
-use rssBot\models\sender\messages\MessageInterface;
 use rssBot\models\sender\repository\SenderRepositoryInterface;
 use Yiisoft\Factory\Factory;
 use Yiisoft\Yii\Queue\MessageInterface as QueueMessageInterface;
@@ -23,15 +22,8 @@ class SourceSender
     public function send(QueueMessageInterface $message): void
     {
         $sender = $this->repository->getByCode($message->getPayloadData()['sender']);
-        $messageDefinition = $this->getMessageDefinition($message);
-        $senderItem = $this->factory->create();
-    }
-
-    private function getMessageDefinition(QueueMessageInterface $message): MessageInterface
-    {
-        $configuration = $message->getPayloadData();
-        switch ($configuration['class']) {
-            
-        }
+        $senderItem = $this->factory->create($message->getPayloadData()['item']);
+        $dto = $sender->getConverter()->convert($senderItem);
+        $sender->send($dto);
     }
 }

@@ -38,11 +38,15 @@ class Source implements SourceInterface
      */
     public function getItems(): iterable
     {
+        /** @var \FeedIo\Feed\ItemInterface[] $itemsSource */
         $itemsSource = $this->reader->read($this->url)->getFeed();
 
         foreach ($itemsSource as $item) {
+            $item->getTitle();
+            $item->getDescription();
+            $item->getLink();
             $config = [
-                '__class' => ItemInterface::class,
+                '__class' => Item::class,
                 '__construct()' => [$item, $this],
             ];
 

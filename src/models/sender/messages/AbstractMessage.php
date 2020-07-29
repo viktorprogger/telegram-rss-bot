@@ -19,6 +19,6 @@ abstract class AbstractMessage implements MessageInterface
 
     public function hasAttribute(string $attribute): bool
     {
-        return (bool) property_exists($this, $attribute);
+        return property_exists($this, $attribute);
     }
 }

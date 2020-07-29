@@ -5,76 +5,73 @@ declare(strict_types=1);
 namespace rssBot\models\source\rss;
 
 use DateTime;
-use FeedIo\Feed\ItemInterface as FeedItemInterface;
 use rssBot\models\source\HashAwareInterface;
-use rssBot\models\source\SourceInterface;
-use Yiisoft\Validator\MissingAttributeException;
 
 class Item implements ItemInterface, HashAwareInterface
 {
-    private FeedItemInterface $feedItem;
-    private SourceInterface $source;
+    private ?string $id;
+    private ?string $link;
+    private ?string $title;
+    private ?string $description;
+    private ?int $lastModified;
 
-    public function __construct(FeedItemInterface $feedItem, SourceInterface $source)
-    {
-        $this->feedItem = $feedItem;
-        $this->source = $source;
+    public function __construct(
+        ?string $id = null,
+        ?string $link = null,
+        ?string $title = null,
+        ?string $description = null,
+        ?int $lastModified = null
+    ) {
+        $this->id = $id;
+        $this->link = $link;
+        $this->title = $title;
+        $this->description = $description;
+        $this->lastModified = ($lastModified === null ? $lastModified : new DateTime($lastModified));
     }
 
     public function getHash(): string
     {
-        return md5($this->feedItem->getPublicId() . '|' . $this->feedItem->getLink());
-    }
-
-    public function __toString(): string
-    {
-        // FIXME NullPointerException
-        return $this->feedItem->getTitle() . PHP_EOL
-            . $this->feedItem->getLastModified()->format('Y.m.d H:i:s') . PHP_EOL . PHP_EOL
-            . $this->feedItem->getDescription() . PHP_EOL
-            . $this->feedItem->getLink();
-    }
-
-    public function getSource(): SourceInterface
-    {
-        return $this->source;
+        return md5(json_encode($this, JSON_THROW_ON_ERROR));
     }
 
     public function getTitle(): string
     {
-        return $this->feedItem->getTitle();
+        return $this->title;
     }
 
     public function getDescription(): string
     {
-        return $this->feedItem->getDescription();
+        return $this->description;
     }
 
     public function getLastModified(): ?DateTime
     {
-        return $this->feedItem->getLastModified();
+        return $this->lastModified;
     }
 
     public function getLink(): ?string
     {
-        return $this->feedItem->getLink();
+        return $this->link;
     }
 
     public function getAttributeValue(string $attribute)
     {
-        if ($this->hasAttribute($attribute)) {
-            $method = "get$attribute";
-
-            return $this->$method();
-        }
-
-        $message = sprintf('There is no attribute "%s" in class %s', $attribute, static::class);
-
-        throw new MissingAttributeException("");
+        return $this->$attribute;
     }
 
     public function hasAttribute(string $attribute): bool
     {
-        return in_array($attribute, ['link', 'lastModified', 'description', 'title']);
+        return property_exists($this, $attribute);
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            $this->id,
+            $this->link,
+            $this->title,
+            $this->description,
+            $this->lastModified,
+        ];
     }
 }

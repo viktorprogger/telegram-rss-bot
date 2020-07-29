@@ -4,24 +4,20 @@ declare(strict_types=1);
 
 namespace rssBot\queue\jobs;
 
-use rssBot\models\sender\messages\MessageInterface;
-use rssBot\models\sender\SenderInterface;
+use rssBot\models\source\ItemInterface;
 use Yiisoft\Yii\Queue\Payload\PayloadInterface;
 
 class SendItemJob implements PayloadInterface
 {
-    private MessageInterface $message;
-    private SenderInterface $sender;
     public const NAME = 'resender-bot/message-send';
 
-    public function __construct(MessageInterface $message)
+    private ItemInterface $message;
+    private string $sender;
+
+    public function __construct(ItemInterface $message, string $sender)
     {
         $this->message = $message;
-    }
-
-    public function execute(): void
-    {
-        $this->sender->send($this->message);
+        $this->sender = $sender;
     }
 
     public function getName(): string
@@ -29,9 +25,15 @@ class SendItemJob implements PayloadInterface
         return self::NAME;
     }
 
-    public function getData(): string
+    public function getData(): array
     {
-        return json_encode($this->message, JSON_THROW_ON_ERROR);
+        return [
+            'sender' => $this->sender,
+            'item' => [
+                '_class' => get_class($this->message),
+                '__construct()' => $this->message,
+            ],
+        ];
     }
 
     public function getMeta(): array

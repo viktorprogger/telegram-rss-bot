@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace rssBot\models\source;
 
+use JsonSerializable;
 use Yiisoft\Validator\DataSetInterface;
 
-interface ItemInterface extends DataSetInterface
+interface ItemInterface extends DataSetInterface, JsonSerializable
 {
-    public function __toString();
-
-    public function getSource(): SourceInterface;
 }
