@@ -13,20 +13,23 @@ class Item implements ItemInterface, HashAwareInterface
     private ?string $link;
     private ?string $title;
     private ?string $description;
-    private ?int $lastModified;
+    private ?DateTime $lastModified;
+    private string $sourceCode;
 
     public function __construct(
+        string $sourceCode,
         ?string $id = null,
         ?string $link = null,
         ?string $title = null,
         ?string $description = null,
         ?int $lastModified = null
     ) {
+        $this->sourceCode = $sourceCode;
         $this->id = $id;
         $this->link = $link;
         $this->title = $title;
         $this->description = $description;
-        $this->lastModified = ($lastModified === null ? $lastModified : new DateTime($lastModified));
+        $this->lastModified = ($lastModified === null ? $lastModified : (new DateTime())->setTimestamp($lastModified));
     }
 
     public function getHash(): string
@@ -71,7 +74,12 @@ class Item implements ItemInterface, HashAwareInterface
             $this->link,
             $this->title,
             $this->description,
-            $this->lastModified,
+            $this->lastModified ? $this->lastModified->getTimestamp() : null,
         ];
+    }
+
+    public function getResourceCode(): string
+    {
+        return $this->sourceCode;
     }
 }

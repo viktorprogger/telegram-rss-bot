@@ -8,6 +8,8 @@ namespace rssBot\services\converter;
 use Psr\Container\ContainerInterface;
 use rssBot\models\sender\converter\ConverterInterface;
 use rssBot\models\sender\SenderInterface;
+use rssBot\models\source\ItemInterface;
+use rssBot\system\Parameters;
 
 class ConverterLocator implements ConverterLocatorInterface
 {
@@ -20,8 +22,10 @@ class ConverterLocator implements ConverterLocatorInterface
         $this->container = $container;
     }
 
-    public function getConverter(SenderInterface $sender, $sourceItem): ConverterInterface
+    public function getConverter(SenderInterface $sender, ItemInterface $sourceItem): ConverterInterface
     {
+        $definition = $this->definitions[$sender->getCode()][$sourceItem->getResourceCode()];
 
+        return $this->container->get($definition);
     }
 }

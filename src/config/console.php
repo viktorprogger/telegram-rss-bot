@@ -14,9 +14,14 @@ use Psr\Log\NullLogger;
 use rssBot\commands\Parse;
 use rssBot\models\sender\repository\ParametersRepositoryInterface;
 use rssBot\models\sender\repository\SenderRepositoryInterface;
+use rssBot\models\sender\telegram\Sender;
 use rssBot\models\source\repository\ParametersRepository;
 use rssBot\models\source\repository\SourceRepositoryInterface;
 use rssBot\queue\handlers\SourceHandler;
+use rssBot\services\converter\ConverterLocator;
+use rssBot\services\converter\ConverterLocatorInterface;
+use rssBot\services\Fetcher;
+use rssBot\services\FetcherInterface;
 use rssBot\system\Parameters;
 use Yiisoft\Composer\Config\Builder;
 use Yiisoft\Factory\Definitions\Reference;
@@ -73,7 +78,7 @@ return [
         ],
     ],
 
-    SourceHandler::class => ['__construct()' => [Reference::to('queueSend')]],
+    Fetcher::class => ['__construct()' => [Reference::to('queueSend')]],
     'queueSend' => [
         '__class' => Queue::class,
         '__construct()' => [Reference::to('queueDriverSend')],
@@ -119,11 +124,16 @@ return [
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleClientInterface::class => GuzzleClient::class,
     Factory::class => fn(ContainerInterface $container) => new Factory($container),
-    \rssBot\services\converter\ConverterLocatorInterface::class => [
-        '__class' => \rssBot\services\converter\ConverterLocator::class,
+    ConverterLocatorInterface::class => [
+        '__class' => ConverterLocator::class,
         '__construct()' => [
             $params['converters'],
         ],
+    ],
+    FetcherInterface::class => Fetcher::class,
+    Sender::class => [
+        '__class' => Sender::class,
+        '__construct()' => ['token', 'chatId'],
     ],
 
     'queueFetchListenCommand' => [

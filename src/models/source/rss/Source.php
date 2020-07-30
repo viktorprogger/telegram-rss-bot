@@ -47,7 +47,14 @@ class Source implements SourceInterface
             $item->getLink();
             $config = [
                 '__class' => Item::class,
-                '__construct()' => [$item, $this],
+                '__construct()' => [
+                    $this->getCode(),
+                    $item->getPublicId(),
+                    $item->getLink(),
+                    $item->getTitle(),
+                    $item->getDescription(),
+                    $item->getLastModified() ? $item->getLastModified()->getTimestamp() : null,
+                ],
             ];
 
             yield $this->factory->create($config);

@@ -28,7 +28,7 @@ class RssMarkdownConverter implements ConverterInterface
         $body = trim($body);
 
         $result = '*' . $item->getTitle() . "*\n";
-        $result .= '_' . $item->getSource()->getTitle() . "_\n\n";
+        $result .= '_' . $item->getTitle() . "_\n\n";
         $result .= $body . "\n\n";
 
         if ($item->getLink() !== null) {

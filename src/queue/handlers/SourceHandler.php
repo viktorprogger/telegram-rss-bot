@@ -21,7 +21,7 @@ final class SourceHandler
 
     public function handle(QueueMessageInterface $message): void
     {
-        $source = $this->sourceRepository->get($message['source']);
+        $source = $this->sourceRepository->get($message->getPayloadData()['source']);
         $this->fetcher->fetch($source);
     }
 }
