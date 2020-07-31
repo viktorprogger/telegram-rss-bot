@@ -19,6 +19,7 @@ RUN apk --no-cache add \
         intl \
         pdo_pgsql \
         sockets \
+        pcntl \
         > /dev/null && \
     pecl install xdebug-$XDEBUG_VERSION > /dev/null && \
         docker-php-ext-enable xdebug > /dev/null && \
