@@ -17,7 +17,6 @@ use rssBot\models\sender\repository\SenderRepositoryInterface;
 use rssBot\models\sender\telegram\Sender;
 use rssBot\models\source\repository\ParametersRepository;
 use rssBot\models\source\repository\SourceRepositoryInterface;
-use rssBot\queue\handlers\SourceHandler;
 use rssBot\services\converter\ConverterLocator;
 use rssBot\services\converter\ConverterLocatorInterface;
 use rssBot\services\Fetcher;
@@ -26,7 +25,7 @@ use rssBot\system\Parameters;
 use Yiisoft\Composer\Config\Builder;
 use Yiisoft\Factory\Definitions\Reference;
 use Yiisoft\Factory\Factory;
-use Yiisoft\Serializer\PhpSerializer;
+use Yiisoft\Serializer\JsonSerializer;
 use Yiisoft\Serializer\SerializerInterface;
 use Yiisoft\Yii\Queue\Command\ListenCommand;
 use Yiisoft\Yii\Queue\Command\RunCommand;
@@ -118,7 +117,7 @@ return [
             'guest'
         ],
     ],
-    SerializerInterface::class => PhpSerializer::class,
+    SerializerInterface::class => JsonSerializer::class,
     LoggerInterface::class => NullLogger::class,
     SenderRepositoryInterface::class => ParametersRepositoryInterface::class,
     FeedClientInterface::class => GuzzleFeedClient::class,

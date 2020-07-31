@@ -14,9 +14,6 @@ class Fetcher implements FetcherInterface
 {
     private SenderRepositoryInterface $senderRepository;
     private Queue $queue;
-    /**
-     * @var ConverterLocatorInterface
-     */
     private ConverterLocatorInterface $converterLocator;
 
     public function __construct(
