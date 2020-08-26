@@ -11,7 +11,8 @@ RUN apk --no-cache add \
         gettext-dev \
         g++ \
         autoconf \
-        make && \
+        make \
+        git && \
     docker-php-ext-install \
         mbstring \
         opcache \

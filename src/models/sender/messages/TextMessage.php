@@ -4,15 +4,23 @@ declare(strict_types=1);
 
 namespace rssBot\models\sender\messages;
 
-use JsonSerializable;
-
-class TextMessage extends AbstractMessage implements JsonSerializable
+class TextMessage extends AbstractMessage
 {
     private string $text;
     private TextMessageType $type;
 
-    public function __construct(string $text, ?TextMessageType $type = null)
+    /**
+     * TextMessage constructor.
+     *
+     * @param string $text
+     * @param int|TextMessageType|null $type
+     */
+    public function __construct(string $text, $type = null)
     {
+        if (is_int($type)) {
+            $type = new TextMessageType($type);
+        }
+
         $this->text = $text;
         $this->type = $type ?? TextMessageType::plainText();
     }

@@ -6,6 +6,10 @@ use FeedIo\Adapter\ClientInterface as FeedClientInterface;
 use FeedIo\Adapter\Guzzle\Client as GuzzleFeedClient;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Monolog\Processor\IntrospectionProcessor;
+use Monolog\Processor\PsrLogMessageProcessor;
 use PhpAmqpLib\Connection\AbstractConnection;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Psr\Container\ContainerInterface;
@@ -27,6 +31,7 @@ use Yiisoft\Factory\Definitions\Reference;
 use Yiisoft\Factory\Factory;
 use Yiisoft\Serializer\JsonSerializer;
 use Yiisoft\Serializer\SerializerInterface;
+use Yiisoft\Yii\Event\EventDispatcherProvider;
 use Yiisoft\Yii\Queue\Command\ListenCommand;
 use Yiisoft\Yii\Queue\Command\RunCommand;
 use Yiisoft\Yii\Queue\Driver\AMQP\Driver;
@@ -45,6 +50,10 @@ return [
         '__construct()' => [require Builder::path('params')],
     ],
     SourceRepositoryInterface::class => ParametersRepository::class,
+    EventDispatcherProvider::class => [
+        '__class' => EventDispatcherProvider::class,
+        '__construct()' => [Builder::require('events-console')],
+    ],
 
     Parse::class => ['__construct()' => [Reference::to('queueFetch')]],
     'queueFetch' => [
@@ -118,7 +127,18 @@ return [
         ],
     ],
     SerializerInterface::class => JsonSerializer::class,
-    LoggerInterface::class => NullLogger::class,
+    LoggerInterface::class => Logger::class,
+    Logger::class => static function () {
+        $handlers = [
+            new StreamHandler(dirname(__DIR__) . '/runtime/application.log', Logger::WARNING, false),
+            new StreamHandler(dirname(__DIR__) . '/runtime/debug.log', Logger::DEBUG),
+        ];
+        $processors = [
+            new PsrLogMessageProcessor(),
+        ];
+
+        return new Logger('application', $handlers, $processors);
+    },
     SenderRepositoryInterface::class => ParametersRepositoryInterface::class,
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleClientInterface::class => GuzzleClient::class,
@@ -132,7 +152,7 @@ return [
     FetcherInterface::class => Fetcher::class,
     Sender::class => [
         '__class' => Sender::class,
-        '__construct()' => ['token', 'chatId'],
+        '__construct()' => [getenv('BOT_TOKEN'), getenv('CHAT_ID')],
     ],
 
     'queueFetchListenCommand' => [

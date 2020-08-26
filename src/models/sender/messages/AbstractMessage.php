@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace rssBot\models\sender\messages;
 
 use Yiisoft\Validator\DataSetInterface;
-use Yiisoft\Validator\MissingAttributeException;
+use Yiisoft\Validator\Exception\MissingAttributeException;
 
 abstract class AbstractMessage implements DataSetInterface, MessageInterface
 {

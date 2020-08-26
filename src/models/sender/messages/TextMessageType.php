@@ -13,7 +13,7 @@ class TextMessageType
     public const HTML = 3;
     private int $type;
 
-    protected function __construct(int $type)
+    public function __construct(int $type)
     {
         if (!in_array($type, static::all(), true)) {
             throw new InvalidArgumentException('The given type is not supported');
