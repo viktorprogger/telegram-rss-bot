@@ -21,20 +21,14 @@ abstract class AbstractSender implements SenderInterface
         $this->postFilters = $postFilters;
     }
 
-    public function suits($message): bool
+    public function suitsSource(ItemInterface $message): bool
     {
-        if ($message instanceof ItemInterface) {
-            $filter = $this->preFilters;
-        } elseif ($message instanceof MessageInterface) {
-            $filter = $this->postFilters;
-        } else {
-            $type = is_object($message) ? get_class($message) : gettype($message);
-            $error = sprintf('%s or %s expected, %s given', ItemInterface::class, MessageInterface::class, $type);
+        return $this->preFilters->validate($message)->isValid();
+    }
 
-            throw new InvalidArgumentException($error);
-        }
-
-        return $filter->validate($message)->isValid();
+    public function suitsMessage(MessageInterface $message): bool
+    {
+        return $this->postFilters->validate($message)->isValid();
     }
 
     public function getCode(): string

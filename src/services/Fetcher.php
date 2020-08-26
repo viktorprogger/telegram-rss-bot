@@ -30,9 +30,9 @@ class Fetcher implements FetcherInterface
     {
         foreach ($source->getItems() as $item) {
             foreach ($this->senderRepository->getBySource($source) as $sender) {
-                if ($sender->suits($item)) {
+                if ($sender->suitsSource($item)) {
                     $message = $this->converterLocator->getConverter($sender, $item)->convert($item);
-                    if ($sender->suits($message)) {
+                    if ($sender->suitsMessage($message)) {
                         $this->queue->push(new SendItemJob($message, $sender->getCode()));
                     }
                 }
