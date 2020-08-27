@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace rssBot\neww;
 
-use rssBot\action\ActionInterface;
+use rssBot\neww\ActionInterface;
 use Yiisoft\Factory\Factory;
 
 final class ActionListenerProvider implements ActionListenerProviderInterface
@@ -62,6 +62,15 @@ final class ActionListenerProvider implements ActionListenerProviderInterface
             return $listener;
         }
 
-        return $this->factory->create($listener);
+        $result = $this->factory->create($listener);
+        if ($result instanceof ActionInterface) {
+            $definition = [
+                '__class' => Listener::class,
+                '__construct()' => [$result],
+            ];
+            $result = $this->factory->create($definition);
+        }
+
+        return $result;
     }
 }

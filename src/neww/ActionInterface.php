@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace rssBot\action;
+namespace rssBot\neww;
 
 interface ActionInterface
 {

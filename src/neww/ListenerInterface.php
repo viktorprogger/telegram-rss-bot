@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace rssBot\neww;
 
-use rssBot\action\ActionInterface;
+use rssBot\neww\ActionInterface;
 
 interface ListenerInterface
 {
