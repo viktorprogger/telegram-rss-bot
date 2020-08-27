@@ -25,7 +25,7 @@ class MessageHandler
 
     public function handle(MessageInterface $message)
     {
-        $action = $this->factory->createAction($message);
+        $action = $this->factory->createFromMessage($message);
         $result = $action->run();
         $this->dispatcher->dispatch($action, $result);
     }

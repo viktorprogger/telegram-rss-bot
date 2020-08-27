@@ -41,7 +41,14 @@ class ActionDispatcher implements ActionDispatcherInterface
         }
 
         foreach ($deferred as $listener) {
-            $this->queue->push($this->factory->createPayload($listener->getAction($result)));
+            $this->queue->push(
+                $this->factory->createPayload(
+                    $this->factory->createAction(
+                        $listener->getActionDefinition(),
+                        $result
+                    )
+                )
+            );
         }
     }
 
@@ -78,7 +85,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 
         if ($listener->suites($result)) {
             if ($listener->isSynchronous()) {
-                $listener->getAction($result)->run();
+                $listener->getActionDefinition($result)->run();
             } else {
                 $deferred[] = $listener;
             }
