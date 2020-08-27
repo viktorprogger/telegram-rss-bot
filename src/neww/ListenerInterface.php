@@ -10,5 +10,7 @@ interface ListenerInterface
 {
     public function isSynchronous(): bool;
 
-    public function getAction($data): ActionInterface;
+    public function getAction($payload): ActionInterface;
+
+    public function suites($payload): bool;
 }

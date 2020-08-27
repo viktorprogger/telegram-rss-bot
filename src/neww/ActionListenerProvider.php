@@ -4,23 +4,19 @@ declare(strict_types=1);
 
 namespace rssBot\neww;
 
-use InvalidArgumentException;
-use Psr\Container\ContainerInterface;
 use rssBot\action\ActionInterface;
-use Yiisoft\Injector\Injector;
+use Yiisoft\Factory\Factory;
 
 final class ActionListenerProvider implements ActionListenerProviderInterface
 {
     private array $resolved = [];
     private array $listeners;
-    private ContainerInterface $container;
-    private Injector $injector;
+    private Factory $factory;
 
-    public function __construct(array $listeners, ContainerInterface $container, Injector $injector)
+    public function __construct(array $listeners, Factory $factory)
     {
         $this->listeners = $listeners;
-        $this->container = $container;
-        $this->injector = $injector;
+        $this->factory = $factory;
     }
 
     /**
@@ -60,22 +56,12 @@ final class ActionListenerProvider implements ActionListenerProviderInterface
         return $result;
     }
 
-    private function convert($listener): ActionInterface
+    private function convert($listener): ListenerInterface
     {
-        //TODO This must return ListenerInterface, not ActionInterface. It should be either created with factory or passed directly
-
-        if ($listener instanceof ActionInterface) {
+        if ($listener instanceof ListenerInterface) {
             return $listener;
         }
 
-        if (is_callable($listener)) {
-            return $this->injector->invoke($listener);
-        }
-
-        if (is_string($listener) && $this->container->has($listener)) {
-            return $this->container->get($listener);
-        }
-
-        throw new InvalidArgumentException('Invalid listener');
+        return $this->factory->create($listener);
     }
 }
