@@ -33,7 +33,7 @@ class ActionDispatcher implements ActionDispatcherInterface
         /** @var ListenerInterface[] $deferred */
         $deferred = [];
         foreach ($this->provider->getListenersForAction($action) as $listener) {
-            if ($result instanceof ResultCollection) {
+            if ($result instanceof ResultCollectionInterface) {
                 $deferred = array_merge($deferred, $this->dispatchCollection($listener, $result));
             } else {
                 $deferred = array_merge($deferred, $this->dispatchWithResult($listener, $result));
@@ -47,16 +47,16 @@ class ActionDispatcher implements ActionDispatcherInterface
 
     /**
      * @param ListenerInterface $listener
-     * @param ResultCollection $result
+     * @param ResultCollectionInterface $result
      *
      * @return ListenerInterface[]
      */
-    protected function dispatchCollection(ListenerInterface $listener, ResultCollection $result): array
+    protected function dispatchCollection(ListenerInterface $listener, ResultCollectionInterface $result): array
     {
         $deferred = [];
 
         foreach ($result as $resultItem) {
-            if ($resultItem instanceof ResultCollection) {
+            if ($resultItem instanceof ResultCollectionInterface) {
                 $deferred = array_merge($deferred, $this->dispatchCollection($listener, $result));
             } else {
                 $deferred = array_merge($deferred, $this->dispatchWithResult($listener, $result));
