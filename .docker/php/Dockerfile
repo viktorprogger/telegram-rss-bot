@@ -40,11 +40,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     composer global dumpautoload --optimize
 
 WORKDIR /var/www
+
+COPY . /var/www/
+RUN composer install --prefer-dist
+
 RUN rm -rf ./* && \
     addgroup -g 1000 appuser && \
     adduser -D -u 1000 -G appuser appuser && \
     chown -R appuser:appuser .
 USER appuser
-
-COPY . /var/www/
-RUN composer install --prefer-dist

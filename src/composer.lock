@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c538321792878072fcdbcfe7decde44",
+    "content-hash": "32e6f3328033e0e9c4e595fb33062aef",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1336,57 +1336,6 @@
                 "source": "https://github.com/php-fig/log/tree/1.1.3"
             },
             "time": "2020-03-23T09:12:05+00:00"
-        },
-        {
-            "name": "psr/simple-cache",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\SimpleCache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interfaces for simple caching",
-            "keywords": [
-                "cache",
-                "caching",
-                "psr",
-                "psr-16",
-                "simple-cache"
-            ],
-            "support": {
-                "source": "https://github.com/php-fig/simple-cache/tree/master"
-            },
-            "time": "2017-10-23T01:57:42+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -2871,62 +2820,6 @@
             "time": "2020-07-08T08:27:49+00:00"
         },
         {
-            "name": "yiisoft/aliases",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/aliases.git",
-                "reference": "4bc46dd461f2676ec7fe002a9a381b99f73fef73"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/aliases/zipball/4bc46dd461f2676ec7fe002a9a381b99f73fef73",
-                "reference": "4bc46dd461f2676ec7fe002a9a381b99f73fef73",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0"
-            },
-            "require-dev": {
-                "infection/infection": "^0.16.3",
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Aliases\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Named paths and URLs storage",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "alias"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/aliases/issues?state=open",
-                "source": "https://github.com/yiisoft/aliases",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-20T21:38:52+00:00"
-        },
-        {
             "name": "yiisoft/arrays",
             "version": "dev-master",
             "source": {
@@ -2988,81 +2881,6 @@
                 }
             ],
             "time": "2020-08-09T18:31:48+00:00"
-        },
-        {
-            "name": "yiisoft/cache",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/cache.git",
-                "reference": "8074830cb398117aab3a43e642be1760195fa471"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/cache/zipball/8074830cb398117aab3a43e642be1760195fa471",
-                "reference": "8074830cb398117aab3a43e642be1760195fa471",
-                "shasum": ""
-            },
-            "require": {
-                "ext-ctype": "*",
-                "ext-json": "*",
-                "ext-mbstring": "*",
-                "php": "^7.4|^8.0",
-                "psr/simple-cache": "~1.0.0"
-            },
-            "provide": {
-                "psr/simple-cache-implementation": "1.0.0"
-            },
-            "require-dev": {
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3"
-            },
-            "suggest": {
-                "yiisoft/cache-apcu": "To store cache using APCu PECL extension",
-                "yiisoft/cache-file": "To store cache in files",
-                "yiisoft/cache-memcached": "To store cache using memcached PECL extension",
-                "yiisoft/cache-wincache": "To store cache using WinCache PECL extension"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Cache\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Yii Caching Library",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "cache",
-                "yii"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/cache/issues",
-                "source": "https://github.com/yiisoft/cache",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-09T18:31:24+00:00"
         },
         {
             "name": "yiisoft/composer-config-plugin",
@@ -3137,223 +2955,6 @@
                 }
             ],
             "time": "2020-08-25T16:07:38+00:00"
-        },
-        {
-            "name": "yiisoft/data",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/data.git",
-                "reference": "07fe0465c81f91f979dfd5390212064abac12942"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/data/zipball/07fe0465c81f91f979dfd5390212064abac12942",
-                "reference": "07fe0465c81f91f979dfd5390212064abac12942",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "yiisoft/arrays": "^3.0@dev"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.3"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Data\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Data providers",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "data provider"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/data/issues?state=open",
-                "source": "https://github.com/yiisoft/data",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-17T09:59:09+00:00"
-        },
-        {
-            "name": "yiisoft/db",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/db.git",
-                "reference": "e0c7aaf6108d49af70917c32b8623945606c89bf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/db/zipball/e0c7aaf6108d49af70917c32b8623945606c89bf",
-                "reference": "e0c7aaf6108d49af70917c32b8623945606c89bf",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "ext-pdo": "*",
-                "php": "^7.4|^8.0",
-                "psr/log": "^1.1",
-                "yiisoft/arrays": "^3.0@dev",
-                "yiisoft/cache": "^3.0@dev",
-                "yiisoft/data": "^3.0@dev",
-                "yiisoft/log": "^3.0@dev",
-                "yiisoft/profiler": "^3.0@dev",
-                "yiisoft/strings": "^3.0@dev"
-            },
-            "require-dev": {
-                "infection/infection": "^0.17",
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3",
-                "yiisoft/aliases": "^1.0",
-                "yiisoft/db-mssql": "@dev",
-                "yiisoft/db-mysql": "^3.0@dev",
-                "yiisoft/db-oracle": "@dev",
-                "yiisoft/db-pgsql": "^3.0@dev",
-                "yiisoft/db-sqlite": "^3.0@dev",
-                "yiisoft/di": "^3.0@dev",
-                "yiisoft/json": "^3.0@dev"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Db\\": "src",
-                    "Yiisoft\\Db\\Tests\\": "tests"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Yii DataBase Library",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "database",
-                "yii"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/db/issues",
-                "source": "https://github.com/yiisoft/db",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-23T21:20:03+00:00"
-        },
-        {
-            "name": "yiisoft/db-pgsql",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/db-pgsql.git",
-                "reference": "a9948fcf880752c2a6dda1c43ca3d7f9b20edd29"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/db-pgsql/zipball/a9948fcf880752c2a6dda1c43ca3d7f9b20edd29",
-                "reference": "a9948fcf880752c2a6dda1c43ca3d7f9b20edd29",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-pdo": "*",
-                "ext-pdo_pgsql": "*",
-                "php": "^7.4|^8.0",
-                "yiisoft/arrays": "^3.0@dev",
-                "yiisoft/db": "^3.0@dev",
-                "yiisoft/json": "^3.0@dev",
-                "yiisoft/strings": "^3.0@dev"
-            },
-            "require-dev": {
-                "infection/infection": "^0.17",
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3",
-                "yiisoft/aliases": "^1.0",
-                "yiisoft/cache": "^3.0@dev",
-                "yiisoft/di": "^3.0@dev",
-                "yiisoft/log": "^3.0@dev"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Db\\Pgsql\\": "src",
-                    "Yiisoft\\Db\\Pgsql\\Tests\\": "tests"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Yii DataBase PostgreSQL Extension",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "pgsql",
-                "yii"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/db-pgsql/issues",
-                "source": "https://github.com/yiisoft/db-pgsql",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-23T19:03:42+00:00"
         },
         {
             "name": "yiisoft/di",
@@ -3567,67 +3168,6 @@
             "time": "2020-08-20T06:56:18+00:00"
         },
         {
-            "name": "yiisoft/files",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/files.git",
-                "reference": "e9f6b642a672a66a8944e974163cae6b8b6b4a16"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/files/zipball/e9f6b642a672a66a8944e974163cae6b8b6b4a16",
-                "reference": "e9f6b642a672a66a8944e974163cae6b8b6b4a16",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "yiisoft/strings": "^3.0@dev"
-            },
-            "require-dev": {
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Files\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "files"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/files/issues?state=open",
-                "source": "https://github.com/yiisoft/files",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-09T18:31:50+00:00"
-        },
-        {
             "name": "yiisoft/friendly-exception",
             "version": "1.0.2",
             "source": {
@@ -3680,69 +3220,6 @@
                 }
             ],
             "time": "2020-08-18T21:03:17+00:00"
-        },
-        {
-            "name": "yiisoft/html",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/html.git",
-                "reference": "002c0dd07dbddd964619f1e5c86601ba6e5343dc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/html/zipball/002c0dd07dbddd964619f1e5c86601ba6e5343dc",
-                "reference": "002c0dd07dbddd964619f1e5c86601ba6e5343dc",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "yiisoft/arrays": "^3.0@dev",
-                "yiisoft/json": "^3.0@dev",
-                "yiisoft/strings": "^3.0@dev"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.3"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Html\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "html",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "html"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/html/issues?state=open",
-                "source": "https://github.com/yiisoft/html",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-09T18:31:51+00:00"
         },
         {
             "name": "yiisoft/i18n",
@@ -3868,144 +3345,6 @@
             "time": "2020-05-17T17:32:28+00:00"
         },
         {
-            "name": "yiisoft/json",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/json.git",
-                "reference": "cc09540324982a1387742d9cbbf66d7d334f19af"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/json/zipball/cc09540324982a1387742d9cbbf66d7d334f19af",
-                "reference": "cc09540324982a1387742d9cbbf66d7d334f19af",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0"
-            },
-            "require-dev": {
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Json\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "json",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "json"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/json/issues?state=open",
-                "source": "https://github.com/yiisoft/json",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-09T18:31:52+00:00"
-        },
-        {
-            "name": "yiisoft/log",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/log.git",
-                "reference": "2c3b5ddf4e8509ecb82e90ac18fa870c3285a21f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/log/zipball/2c3b5ddf4e8509ecb82e90ac18fa870c3285a21f",
-                "reference": "2c3b5ddf4e8509ecb82e90ac18fa870c3285a21f",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "psr/log": "^1.1",
-                "yiisoft/arrays": "^3.0@dev",
-                "yiisoft/var-dumper": "^3.0@dev"
-            },
-            "provide": {
-                "psr/log-implementation": "1.0.0"
-            },
-            "require-dev": {
-                "infection/infection": "^0.17.0",
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3"
-            },
-            "suggest": {
-                "yiisoft/log-target-db": "version ^3.0 for saving logs to the database",
-                "yiisoft/log-target-email": "version ^3.0 for sending logs by email",
-                "yiisoft/log-target-file": "version ^3.0 for saving logs to filesystem",
-                "yiisoft/log-target-syslog": "version ^3.0 for saving logs to Syslog"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Log\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Yii Logging Library",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "framework",
-                "log",
-                "logger",
-                "yii"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/log/issues",
-                "source": "https://github.com/yiisoft/log",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-19T08:22:29+00:00"
-        },
-        {
             "name": "yiisoft/network-utilities",
             "version": "dev-master",
             "source": {
@@ -4067,70 +3406,6 @@
                 }
             ],
             "time": "2020-08-09T18:31:20+00:00"
-        },
-        {
-            "name": "yiisoft/profiler",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/profiler.git",
-                "reference": "07ffbd07e2a192fcedfb78c90d29a98c3d5f8caa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/profiler/zipball/07ffbd07e2a192fcedfb78c90d29a98c3d5f8caa",
-                "reference": "07ffbd07e2a192fcedfb78c90d29a98c3d5f8caa",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "psr/log": "^1.1",
-                "yiisoft/files": "^3.0@dev"
-            },
-            "require-dev": {
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Profiler\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Profiler",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "performance",
-                "profiler"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/profiler/issues?state=open",
-                "source": "https://github.com/yiisoft/profiler",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-09T18:31:18+00:00"
         },
         {
             "name": "yiisoft/serializer",
@@ -4337,156 +3612,6 @@
             "time": "2020-08-18T21:12:17+00:00"
         },
         {
-            "name": "yiisoft/var-dumper",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/var-dumper.git",
-                "reference": "21b47a64dd8b9c1a5d55ec44cf21a2e74779491e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/var-dumper/zipball/21b47a64dd8b9c1a5d55ec44cf21a2e74779491e",
-                "reference": "21b47a64dd8b9c1a5d55ec44cf21a2e74779491e",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.4|^8.0",
-                "yiisoft/arrays": "^3.0@dev"
-            },
-            "require-dev": {
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3",
-                "yiisoft/composer-config-plugin": "^1.0@dev"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\VarDumper\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Yii - VarDumper helper",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "framework",
-                "helper",
-                "var-dumper",
-                "yii"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/var-dumper/issues",
-                "source": "https://github.com/yiisoft/var-dumper",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-09T18:31:50+00:00"
-        },
-        {
-            "name": "yiisoft/view",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/view.git",
-                "reference": "7e2967ec5bb2d2645e4efadf834bdc75aff7ca10"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/view/zipball/7e2967ec5bb2d2645e4efadf834bdc75aff7ca10",
-                "reference": "7e2967ec5bb2d2645e4efadf834bdc75aff7ca10",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "psr/container-implementation": "1.0.0",
-                "psr/event-dispatcher": "1.0.0",
-                "psr/event-dispatcher-implementation": "1.0.0",
-                "psr/log": "^1.1",
-                "yiisoft/arrays": "^3.0@dev",
-                "yiisoft/files": "^3.0@dev",
-                "yiisoft/html": "^3.0@dev",
-                "yiisoft/i18n": "^3.0@dev",
-                "yiisoft/json": "^3.0@dev"
-            },
-            "require-dev": {
-                "infection/infection": "^0.16.3",
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3",
-                "psr/container": "1.0.0",
-                "yiisoft/aliases": "^1.0",
-                "yiisoft/cache": "^3.0@dev",
-                "yiisoft/composer-config-plugin": "^1.0@dev",
-                "yiisoft/di": "^3.0@dev",
-                "yiisoft/event-dispatcher": "^3.0@dev",
-                "yiisoft/log": "^3.0@dev"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                },
-                "config-plugin": {
-                    "common": "config/common.php",
-                    "tests": "config/tests.php"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\View\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Yii View Rendering Library",
-            "homepage": "http://www.yiiframework.com/",
-            "keywords": [
-                "view",
-                "yii"
-            ],
-            "support": {
-                "forum": "http://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/view/issues",
-                "source": "https://github.com/yiisoft/view",
-                "wiki": "http://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-09T18:32:06+00:00"
-        },
-        {
             "name": "yiisoft/yii-console",
             "version": "dev-master",
             "source": {
@@ -4572,93 +3697,6 @@
                 }
             ],
             "time": "2020-08-21T09:12:24+00:00"
-        },
-        {
-            "name": "yiisoft/yii-db-migration",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii-db-migration.git",
-                "reference": "da0902e1b1b15d246e69f9d6fd42e0b0c40470b6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii-db-migration/zipball/da0902e1b1b15d246e69f9d6fd42e0b0c40470b6",
-                "reference": "da0902e1b1b15d246e69f9d6fd42e0b0c40470b6",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "yiisoft/aliases": "^1.0",
-                "yiisoft/arrays": "^3.0@dev",
-                "yiisoft/db": "^3.0@dev",
-                "yiisoft/files": "^3.0@dev",
-                "yiisoft/strings": "^3.0@dev",
-                "yiisoft/view": "^3.0@dev",
-                "yiisoft/yii-console": "^3.0@dev"
-            },
-            "require-dev": {
-                "infection/infection": "^0.16.3",
-                "phan/phan": "^3.0",
-                "phpunit/phpunit": "^9.3",
-                "yiisoft/composer-config-plugin": "^1.0@dev",
-                "yiisoft/db-sqlite": "^3.0@dev",
-                "yiisoft/di": " ^3.0@dev",
-                "yiisoft/event-dispatcher": "^3.0@dev",
-                "yiisoft/log": "^3.0@dev"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                },
-                "config-plugin": {
-                    "params": "config/params.php",
-                    "common": "config/common.php",
-                    "console": "config/console.php"
-                },
-                "config-plugin-dev": {
-                    "tests": [
-                        "$console",
-                        "config/tests.php"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yiisoft\\Yii\\Db\\Migration\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Yii Db Migration",
-            "homepage": "https://www.yiiframework.com/",
-            "keywords": [
-                "db",
-                "migration",
-                "yii"
-            ],
-            "support": {
-                "forum": "https://www.yiiframework.com/forum/",
-                "irc": "irc://irc.freenode.net/yii",
-                "issues": "https://github.com/yiisoft/yii-db-migration/issues?state=open",
-                "source": "https://github.com/yiisoft/yii-db-migration",
-                "wiki": "https://www.yiiframework.com/wiki/"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/yiisoft",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/yiisoft",
-                    "type": "open_collective"
-                }
-            ],
-            "time": "2020-08-11T07:52:01+00:00"
         },
         {
             "name": "yiisoft/yii-event",
@@ -4892,6 +3930,57 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "psr/simple-cache",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/simple-cache.git",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\SimpleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for simple caching",
+            "keywords": [
+                "cache",
+                "caching",
+                "psr",
+                "psr-16",
+                "simple-cache"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/simple-cache/tree/master"
+            },
+            "time": "2017-10-23T01:57:42+00:00"
+        },
         {
             "name": "roave/security-advisories",
             "version": "dev-master",
@@ -5192,18 +4281,683 @@
                 }
             ],
             "time": "2020-08-19T19:01:52+00:00"
+        },
+        {
+            "name": "yiisoft/aliases",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/aliases.git",
+                "reference": "4bc46dd461f2676ec7fe002a9a381b99f73fef73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/aliases/zipball/4bc46dd461f2676ec7fe002a9a381b99f73fef73",
+                "reference": "4bc46dd461f2676ec7fe002a9a381b99f73fef73",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "infection/infection": "^0.16.3",
+                "phan/phan": "^3.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Aliases\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Named paths and URLs storage",
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "alias"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/aliases/issues?state=open",
+                "source": "https://github.com/yiisoft/aliases",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-08-20T21:38:52+00:00"
+        },
+        {
+            "name": "yiisoft/cache",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/cache.git",
+                "reference": "8074830cb398117aab3a43e642be1760195fa471"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/cache/zipball/8074830cb398117aab3a43e642be1760195fa471",
+                "reference": "8074830cb398117aab3a43e642be1760195fa471",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": "^7.4|^8.0",
+                "psr/simple-cache": "~1.0.0"
+            },
+            "provide": {
+                "psr/simple-cache-implementation": "1.0.0"
+            },
+            "require-dev": {
+                "phan/phan": "^3.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "suggest": {
+                "yiisoft/cache-apcu": "To store cache using APCu PECL extension",
+                "yiisoft/cache-file": "To store cache in files",
+                "yiisoft/cache-memcached": "To store cache using memcached PECL extension",
+                "yiisoft/cache-wincache": "To store cache using WinCache PECL extension"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Cache\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Yii Caching Library",
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "cache",
+                "yii"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/cache/issues",
+                "source": "https://github.com/yiisoft/cache",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-08-09T18:31:24+00:00"
+        },
+        {
+            "name": "yiisoft/data",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/data.git",
+                "reference": "07fe0465c81f91f979dfd5390212064abac12942"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/data/zipball/07fe0465c81f91f979dfd5390212064abac12942",
+                "reference": "07fe0465c81f91f979dfd5390212064abac12942",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "yiisoft/arrays": "^3.0@dev"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Data\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Data providers",
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "data provider"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/data/issues?state=open",
+                "source": "https://github.com/yiisoft/data",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-08-17T09:59:09+00:00"
+        },
+        {
+            "name": "yiisoft/files",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/files.git",
+                "reference": "e9f6b642a672a66a8944e974163cae6b8b6b4a16"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/files/zipball/e9f6b642a672a66a8944e974163cae6b8b6b4a16",
+                "reference": "e9f6b642a672a66a8944e974163cae6b8b6b4a16",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "yiisoft/strings": "^3.0@dev"
+            },
+            "require-dev": {
+                "phan/phan": "^3.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Files\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "files"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/files/issues?state=open",
+                "source": "https://github.com/yiisoft/files",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-08-09T18:31:50+00:00"
+        },
+        {
+            "name": "yiisoft/html",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/html.git",
+                "reference": "002c0dd07dbddd964619f1e5c86601ba6e5343dc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/html/zipball/002c0dd07dbddd964619f1e5c86601ba6e5343dc",
+                "reference": "002c0dd07dbddd964619f1e5c86601ba6e5343dc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "yiisoft/arrays": "^3.0@dev",
+                "yiisoft/json": "^3.0@dev",
+                "yiisoft/strings": "^3.0@dev"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Html\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "html",
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "html"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/html/issues?state=open",
+                "source": "https://github.com/yiisoft/html",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-08-09T18:31:51+00:00"
+        },
+        {
+            "name": "yiisoft/json",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/json.git",
+                "reference": "cc09540324982a1387742d9cbbf66d7d334f19af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/json/zipball/cc09540324982a1387742d9cbbf66d7d334f19af",
+                "reference": "cc09540324982a1387742d9cbbf66d7d334f19af",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "phan/phan": "^3.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Json\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "json",
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "json"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/json/issues?state=open",
+                "source": "https://github.com/yiisoft/json",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-08-09T18:31:52+00:00"
+        },
+        {
+            "name": "yiisoft/log",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/log.git",
+                "reference": "2c3b5ddf4e8509ecb82e90ac18fa870c3285a21f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/log/zipball/2c3b5ddf4e8509ecb82e90ac18fa870c3285a21f",
+                "reference": "2c3b5ddf4e8509ecb82e90ac18fa870c3285a21f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "psr/log": "^1.1",
+                "yiisoft/arrays": "^3.0@dev",
+                "yiisoft/var-dumper": "^3.0@dev"
+            },
+            "provide": {
+                "psr/log-implementation": "1.0.0"
+            },
+            "require-dev": {
+                "infection/infection": "^0.17.0",
+                "phan/phan": "^3.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "suggest": {
+                "yiisoft/log-target-db": "version ^3.0 for saving logs to the database",
+                "yiisoft/log-target-email": "version ^3.0 for sending logs by email",
+                "yiisoft/log-target-file": "version ^3.0 for saving logs to filesystem",
+                "yiisoft/log-target-syslog": "version ^3.0 for saving logs to Syslog"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Log\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Yii Logging Library",
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "framework",
+                "log",
+                "logger",
+                "yii"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/log/issues",
+                "source": "https://github.com/yiisoft/log",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-08-19T08:22:29+00:00"
+        },
+        {
+            "name": "yiisoft/profiler",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/profiler.git",
+                "reference": "07ffbd07e2a192fcedfb78c90d29a98c3d5f8caa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/profiler/zipball/07ffbd07e2a192fcedfb78c90d29a98c3d5f8caa",
+                "reference": "07ffbd07e2a192fcedfb78c90d29a98c3d5f8caa",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "psr/log": "^1.1",
+                "yiisoft/files": "^3.0@dev"
+            },
+            "require-dev": {
+                "phan/phan": "^3.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\Profiler\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Profiler",
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "performance",
+                "profiler"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/profiler/issues?state=open",
+                "source": "https://github.com/yiisoft/profiler",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-08-09T18:31:18+00:00"
+        },
+        {
+            "name": "yiisoft/var-dumper",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/var-dumper.git",
+                "reference": "21b47a64dd8b9c1a5d55ec44cf21a2e74779491e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/var-dumper/zipball/21b47a64dd8b9c1a5d55ec44cf21a2e74779491e",
+                "reference": "21b47a64dd8b9c1a5d55ec44cf21a2e74779491e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4|^8.0",
+                "yiisoft/arrays": "^3.0@dev"
+            },
+            "require-dev": {
+                "phan/phan": "^3.0",
+                "phpunit/phpunit": "^9.3",
+                "yiisoft/composer-config-plugin": "^1.0@dev"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\VarDumper\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Yii - VarDumper helper",
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "framework",
+                "helper",
+                "var-dumper",
+                "yii"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/var-dumper/issues",
+                "source": "https://github.com/yiisoft/var-dumper",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-08-09T18:31:50+00:00"
+        },
+        {
+            "name": "yiisoft/view",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/view.git",
+                "reference": "7e2967ec5bb2d2645e4efadf834bdc75aff7ca10"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/view/zipball/7e2967ec5bb2d2645e4efadf834bdc75aff7ca10",
+                "reference": "7e2967ec5bb2d2645e4efadf834bdc75aff7ca10",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "psr/container-implementation": "1.0.0",
+                "psr/event-dispatcher": "1.0.0",
+                "psr/event-dispatcher-implementation": "1.0.0",
+                "psr/log": "^1.1",
+                "yiisoft/arrays": "^3.0@dev",
+                "yiisoft/files": "^3.0@dev",
+                "yiisoft/html": "^3.0@dev",
+                "yiisoft/i18n": "^3.0@dev",
+                "yiisoft/json": "^3.0@dev"
+            },
+            "require-dev": {
+                "infection/infection": "^0.16.3",
+                "phan/phan": "^3.0",
+                "phpunit/phpunit": "^9.3",
+                "psr/container": "1.0.0",
+                "yiisoft/aliases": "^1.0",
+                "yiisoft/cache": "^3.0@dev",
+                "yiisoft/composer-config-plugin": "^1.0@dev",
+                "yiisoft/di": "^3.0@dev",
+                "yiisoft/event-dispatcher": "^3.0@dev",
+                "yiisoft/log": "^3.0@dev"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                },
+                "config-plugin": {
+                    "common": "config/common.php",
+                    "tests": "config/tests.php"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Yiisoft\\View\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Yii View Rendering Library",
+            "homepage": "http://www.yiiframework.com/",
+            "keywords": [
+                "view",
+                "yii"
+            ],
+            "support": {
+                "forum": "http://www.yiiframework.com/forum/",
+                "irc": "irc://irc.freenode.net/yii",
+                "issues": "https://github.com/yiisoft/view/issues",
+                "source": "https://github.com/yiisoft/view",
+                "wiki": "http://www.yiiframework.com/wiki/"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/yiisoft",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/yiisoft",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-08-09T18:32:06+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "yiisoft/db": 20,
-        "yiisoft/db-pgsql": 20,
         "yiisoft/di": 20,
         "yiisoft/factory": 20,
         "yiisoft/validator": 20,
         "yiisoft/yii-console": 20,
-        "yiisoft/yii-db-migration": 20,
         "yiisoft/yii-queue": 20,
         "yiisoft/yii-queue-amqp": 20,
         "roave/security-advisories": 20
