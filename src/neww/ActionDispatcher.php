@@ -43,10 +43,8 @@ class ActionDispatcher implements ActionDispatcherInterface
         foreach ($deferred as $listener) {
             $this->queue->push(
                 $this->factory->createPayload(
-                    $this->factory->createAction(
-                        $listener->getAction(),
-                        $result
-                    )
+                    $listener->getAction(),
+                    $result
                 )
             );
         }

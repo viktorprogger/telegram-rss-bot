@@ -12,5 +12,5 @@ interface ActionFactoryInterface
 {
     public function createAction($definition, $payload);
     public function createFromMessage(MessageInterface $message): ActionInterface;
-    public function createPayload(ActionInterface $action): PayloadInterface;
+    public function createPayload(ActionInterface $action, $result): PayloadInterface;
 }

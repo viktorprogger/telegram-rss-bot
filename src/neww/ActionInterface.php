@@ -6,5 +6,5 @@ namespace rssBot\neww;
 
 interface ActionInterface
 {
-    public function run();
+    public function run($data = null);
 }

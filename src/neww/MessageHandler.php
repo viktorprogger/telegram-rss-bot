@@ -23,10 +23,10 @@ class MessageHandler
         $this->dispatcher = $dispatcher;
     }
 
-    public function handle(MessageInterface $message)
+    public function handle(MessageInterface $message): void
     {
         $action = $this->factory->createFromMessage($message);
-        $result = $action->run();
+        $result = $action->run($message->getPayloadData()['data'] ?? null);
         $this->dispatcher->dispatch($action, $result);
     }
 }
