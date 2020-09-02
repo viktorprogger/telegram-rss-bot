@@ -17,8 +17,10 @@ return [
         ],
     ],
     CheckFingerprintAction => [
-        'action' => OpenDoorAction::class,
-        'condition' => fn(bool $value) => $value,
-        'synchronous' => false,
+        [
+            'action' => OpenDoorAction::class,
+            'condition' => fn (DoorAccessResult $access) => $access->allowed(),
+            'synchronous' => false,
+        ],
     ],
 ];
