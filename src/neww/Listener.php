@@ -13,22 +13,22 @@ class Listener implements ListenerInterface
     /**
      * @var mixed
      */
-    protected $definition;
+    protected ActionInterface $action;
     protected array $definitionNormalized = [];
 
     public function __construct(
-        $actionDefinition,
+        ActionInterface $action,
         ?Rules $validator = null,
         bool $synchronous = true
     ) {
-        $this->definition = $actionDefinition;
+        $this->action = $action;
         $this->validator = $validator;
         $this->synchronous = $synchronous;
     }
 
-    public function getActionDefinition()
+    public function getAction()
     {
-        return $this->definition;
+        return $this->action;
     }
 
     public function isSynchronous(): bool

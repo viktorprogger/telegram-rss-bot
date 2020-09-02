@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace rssBot\neww;
 
-use rssBot\neww\ActionInterface;
-use Yiisoft\Factory\Factory;
-
 final class ActionListenerProvider implements ActionListenerProviderInterface
 {
     private array $resolved = [];
     private array $listeners;
-    private Factory $factory;
+    private ListenerFactory $factory;
 
-    public function __construct(array $listeners, Factory $factory)
+    public function __construct(array $listeners, ListenerFactory $factory)
     {
         $this->listeners = $listeners;
         $this->factory = $factory;
@@ -50,25 +47,7 @@ final class ActionListenerProvider implements ActionListenerProviderInterface
         $result = [];
 
         foreach ($this->listeners[$eventClassName] ?? [] as $listener) {
-            $result[] = $this->convert($listener);
-        }
-
-        return $result;
-    }
-
-    private function convert($listener): ListenerInterface
-    {
-        if ($listener instanceof ListenerInterface) {
-            return $listener;
-        }
-
-        $result = $this->factory->create($listener);
-        if ($result instanceof ActionInterface) {
-            $definition = [
-                '__class' => Listener::class,
-                '__construct()' => [$result],
-            ];
-            $result = $this->factory->create($definition);
+            $result[] = $this->factory->create($listener);
         }
 
         return $result;
