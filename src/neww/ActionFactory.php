@@ -11,9 +11,6 @@ use Yiisoft\Yii\Queue\Payload\PayloadInterface;
 
 class ActionFactory implements ActionFactoryInterface
 {
-    /**
-     * @var Factory
-     */
     private Factory $factory;
 
     public function __construct(Factory $factory)
