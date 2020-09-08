@@ -4,24 +4,28 @@ declare(strict_types=1);
 
 namespace rssBot\neww;
 
-use Yiisoft\Serializer\SerializerInterface;
 use Yiisoft\Yii\Queue\Payload\PayloadInterface;
 
 class ActionPayload implements PayloadInterface
 {
-    public const NAME = '';
-    private ActionInterface $action;
+    public const NAME = ''; // TODO fill after the package name invention
+    private string $action;
     /**
-     * @var mixed
+     * @var mixed $data Data to be passed to the run method of the action
      */
     private $data;
-    private SerializerInterface $serializer;
 
-    public function __construct(ActionInterface $action, $data, SerializerInterface $serializer)
+    /**
+     * ActionPayload constructor.
+     *
+     * @param string $action An action id (typically - class name) which will be used by {@see ActionFactory}
+     *                       to create the action
+     * @param mixed $data Data to be passed to the run method of the action
+     */
+    public function __construct(string $action, $data = null)
     {
         $this->action = $action;
         $this->data = $data;
-        $this->serializer = $serializer;
     }
 
     public function getName(): string
@@ -32,8 +36,8 @@ class ActionPayload implements PayloadInterface
     public function getData(): array
     {
         return [
-            'action' => $this->serializer->serialize($this->action),
-            'data' => $this->serializer->serialize($this->data),
+            'action' => $this->action,
+            'data' => $this->data,
         ];
     }
 

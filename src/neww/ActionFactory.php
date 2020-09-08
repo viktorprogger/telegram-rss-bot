@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace rssBot\neww;
 
+use RuntimeException;
 use Yiisoft\Factory\Factory;
 use Yiisoft\Yii\Queue\MessageInterface;
 use Yiisoft\Yii\Queue\Payload\PayloadInterface;
@@ -27,7 +28,12 @@ class ActionFactory implements ActionFactoryInterface
 
     public function createFromMessage(MessageInterface $message): ActionInterface
     {
-        // TODO
+        $definition = $message->getPayloadData()['action'] ?? null;
+        if (!$this->factory->has($definition)) {
+            throw new RuntimeException('Deferred listener message must provide an action id registered in the factory.');
+        }
+
+        return $this->factory->create($definition);
     }
 
     public function createPayload(ActionInterface $action, $result): PayloadInterface
