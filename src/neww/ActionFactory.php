@@ -21,11 +21,6 @@ class ActionFactory implements ActionFactoryInterface
         $this->factory = $factory;
     }
 
-    public function createAction($definition, $payload)
-    {
-        // TODO: Implement createAction() method.
-    }
-
     public function createFromMessage(MessageInterface $message): ActionInterface
     {
         $definition = $message->getPayloadData()['action'] ?? null;

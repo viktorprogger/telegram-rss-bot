@@ -10,7 +10,6 @@ use Yiisoft\Yii\Queue\Payload\PayloadInterface;
 
 interface ActionFactoryInterface
 {
-    public function createAction($definition, $payload);
     public function createFromMessage(MessageInterface $message): ActionInterface;
     public function createPayload(ActionInterface $action, $result): PayloadInterface;
 }
