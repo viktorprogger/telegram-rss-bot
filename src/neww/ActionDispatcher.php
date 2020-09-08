@@ -4,25 +4,21 @@ declare(strict_types=1);
 
 namespace rssBot\neww;
 
-use rssBot\neww\ActionInterface;
-use rssBot\services\converter\ConverterLocatorInterface;
+use RuntimeException;
 use Yiisoft\Yii\Queue\Queue;
 
 class ActionDispatcher implements ActionDispatcherInterface
 {
-    private ConverterLocatorInterface $converters;
     private ActionListenerProviderInterface $provider;
     private ActionFactoryInterface $factory;
     private Queue $queue;
 
     public function __construct(
-        ConverterLocatorInterface $converters,
         ActionListenerProviderInterface $provider,
         ActionFactoryInterface $factory,
         Queue $queue
     )
     {
-        $this->converters = $converters;
         $this->provider = $provider;
         $this->factory = $factory;
         $this->queue = $queue;
@@ -34,20 +30,13 @@ class ActionDispatcher implements ActionDispatcherInterface
         $deferred = [];
         foreach ($this->provider->getListenersForAction($action) as $listener) {
             if ($result instanceof ResultCollectionInterface) {
-                $deferred = array_merge($deferred, $this->dispatchCollection($listener, $result));
+                $deferred[] = $this->dispatchCollection($listener, $result);
             } else {
-                $deferred = array_merge($deferred, $this->dispatchWithResult($listener, $result));
+                $deferred[] = $this->dispatchWithResult($listener, $result);
             }
         }
 
-        foreach ($deferred as $listener) {
-            $this->queue->push(
-                $this->factory->createPayload(
-                    $listener->getAction(),
-                    $result
-                )
-            );
-        }
+        $this->dispatchDeferred(array_merge(...$deferred));
     }
 
     /**
@@ -62,13 +51,13 @@ class ActionDispatcher implements ActionDispatcherInterface
 
         foreach ($result as $resultItem) {
             if ($resultItem instanceof ResultCollectionInterface) {
-                $deferred = array_merge($deferred, $this->dispatchCollection($listener, $result));
+                $deferred[] = $this->dispatchCollection($listener, $resultItem);
             } else {
-                $deferred = array_merge($deferred, $this->dispatchWithResult($listener, $result));
+                $deferred[] = $this->dispatchWithResult($listener, $resultItem);
             }
         }
 
-        return $deferred;
+        return array_merge(...$deferred);
     }
 
     /**
@@ -83,12 +72,32 @@ class ActionDispatcher implements ActionDispatcherInterface
 
         if ($listener->suites($result)) {
             if ($listener->isSynchronous()) {
-                $listener->getAction($result)->run();
+                $listener->getAction()->run($result);
             } else {
-                $deferred[] = $listener;
+                $deferred[] = [$listener, $result];
             }
         }
 
         return $deferred;
+    }
+
+    /**
+     * @param array $deferred
+     */
+    private function dispatchDeferred(array $deferred): void
+    {
+        if ($deferred !== [] && $this->queue === null) {
+            throw new RuntimeException('Queue must be set to use deferred action listeners');
+        }
+
+        /** @var ListenerInterface $listener */
+        foreach ($deferred as [$listener, $result]) {
+            $this->queue->push(
+                $this->factory->createPayload(
+                    $listener->getAction(),
+                    $result
+                )
+            );
+        }
     }
 }
