@@ -16,7 +16,7 @@ return [
             'synchronous' => false,
         ],
     ],
-    CheckFingerprintAction => [
+    CheckFingerprintAction::class => [
         [
             'action' => OpenDoorAction::class,
             'condition' => fn (DoorAccessResult $access) => $access->allowed(),
