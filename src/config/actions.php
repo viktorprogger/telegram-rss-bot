@@ -2,9 +2,31 @@
 
 declare(strict_types=1);
 
+use rssBot\action\ConvertRssMarkdownAction;
+use rssBot\action\ParseAction;
+use rssBot\action\SourcesReadyAction;
+use rssBot\action\TelegramSendAction;
 use rssBot\neww\ActionInterface;
 
 return [
+    SourcesReadyAction::class => [
+        [
+            'action' => ParseAction::class,
+            'synchronous' => true,
+        ],
+    ],
+    ParseAction::class => [
+        [
+            'action' => ConvertRssMarkdownAction::class,
+        ],
+    ],
+    ConvertRssMarkdownAction::class => [
+        [
+            'action' => TelegramSendAction::class,
+            'synchronous' => true,
+        ],
+    ],
+
     ActionInterface::class => [LogAction::class],
     OpenDoorAction::class => [
         [

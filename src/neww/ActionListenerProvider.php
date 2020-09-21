@@ -47,7 +47,7 @@ final class ActionListenerProvider implements ActionListenerProviderInterface
         $result = [];
 
         foreach ($this->listeners[$eventClassName] ?? [] as $listener) {
-            $result[] = $this->factory->create($listener);
+            $result[] = $this->factory->create($listener['action']);
         }
 
         return $result;

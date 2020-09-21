@@ -8,7 +8,6 @@ use GuzzleHttp\Client;
 use InvalidArgumentException;
 use rssBot\models\sender\AbstractSender;
 use rssBot\models\sender\messages\TextMessage;
-use rssBot\models\source\rss\ItemInterface as RssItemInterface;
 use Yiisoft\Validator\Rules;
 
 class Sender extends AbstractSender
@@ -39,7 +38,7 @@ class Sender extends AbstractSender
     public function send($message): void
     {
         if (!$message instanceof TextMessage) {
-            throw new InvalidArgumentException('Given item must implement ' . RssItemInterface::class);
+            throw new InvalidArgumentException('Given item must implement ' . TextMessage::class);
         }
 
         $json = [

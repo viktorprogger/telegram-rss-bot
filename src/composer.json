@@ -35,7 +35,6 @@
     },
     "extra": {
         "config-plugin": {
-            "events-console": "config/events-console.php",
             "console": [
                 "$common",
                 "config/console.php"
@@ -43,7 +42,8 @@
             "params": [
                 "$params",
                 "config/params.php"
-            ]
+            ],
+            "actions": "config/actions.php"
         }
     },
     "config": {

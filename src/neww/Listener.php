@@ -26,7 +26,7 @@ class Listener implements ListenerInterface
         $this->synchronous = $synchronous;
     }
 
-    public function getAction()
+    public function getAction(): ActionInterface
     {
         return $this->action;
     }

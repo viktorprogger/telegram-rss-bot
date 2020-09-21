@@ -8,7 +8,7 @@ use Yiisoft\Yii\Queue\Payload\PayloadInterface;
 
 class ActionPayload implements PayloadInterface
 {
-    public const NAME = ''; // TODO fill after the package name invention
+    public const NAME = 'yii-resender'; // TODO fill after the package name invention
     private string $action;
     /**
      * @var mixed $data Data to be passed to the run method of the action

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace rssBot\commands;
 
+use rssBot\action\SourcesReadyAction ;
 use rssBot\models\source\repository\SourceRepositoryInterface;
+use rssBot\neww\ActionDispatcher;
 use rssBot\queue\handlers\SourceHandler;
 use rssBot\queue\jobs\SourceFetchJob;
 use Symfony\Component\Console\Command\Command;
@@ -21,22 +23,26 @@ final class Parse extends Command
 {
     protected static $defaultName = 'parse';
     private SourceRepositoryInterface $repository;
-    private Queue $queue;
-    /**
-     * @var Factory
-     */
     private Factory $factory;
+    /**
+     * @var ActionDispatcher
+     */
+    private ActionDispatcher $dispatcher;
+    /**
+     * @var SourcesReadyAction
+     */
+    private SourcesReadyAction $action;
 
     public function __construct(
-        Queue $queue,
         SourceRepositoryInterface $repository,
-        Factory $factory,
+        ActionDispatcher $dispatcher,
+        SourcesReadyAction $action,
         string $name = null
     ) {
         parent::__construct($name);
         $this->repository = $repository;
-        $this->queue = $queue;
-        $this->factory = $factory;
+        $this->dispatcher = $dispatcher;
+        $this->action = $action;
     }
 
     protected function configure(): void
@@ -52,13 +58,8 @@ final class Parse extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        error_reporting (E_ALL ^ E_NOTICE);
-        $codes = $this->source ?? $this->repository->getCodes();
-
-        foreach ($codes as $code) {
-            $job = new SourceFetchJob($code);
-            $this->queue->push($job);
-        }
+        $codes = $this->source ?? iterator_to_array($this->repository->getCodes());
+        $this->dispatcher->dispatch($this->action, $this->action->run($codes));
 
         return 0;
     }
