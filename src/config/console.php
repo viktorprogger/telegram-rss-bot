@@ -13,15 +13,13 @@ use PhpAmqpLib\Connection\AbstractConnection;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use rssBot\models\sender\repository\ParametersRepositoryInterface;
-use rssBot\models\sender\repository\SenderRepositoryInterface;
-use rssBot\models\sender\telegram\Sender;
+use rssBot\models\action\action\ActionFactory;
+use rssBot\models\action\action\ActionFactoryInterface;
+use rssBot\models\action\dispatcher\listener\ActionListenerProvider;
+use rssBot\models\action\dispatcher\listener\ActionListenerProviderInterface;
 use rssBot\models\source\repository\ParametersRepository;
 use rssBot\models\source\repository\SourceRepositoryInterface;
-use rssBot\neww\ActionFactory;
-use rssBot\neww\ActionFactoryInterface;
-use rssBot\neww\ActionListenerProvider;
-use rssBot\neww\ActionListenerProviderInterface;
+use rssBot\models\telegram\Sender;
 use rssBot\system\Parameters;
 use Yiisoft\Composer\Config\Builder;
 use Yiisoft\Factory\Factory;
@@ -91,7 +89,6 @@ return [
 
         return new Logger('application', $handlers, $processors);
     },
-    SenderRepositoryInterface::class => ParametersRepositoryInterface::class,
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleClientInterface::class => GuzzleClient::class,
     Factory::class => static fn(ContainerInterface $container) => new Factory($container),

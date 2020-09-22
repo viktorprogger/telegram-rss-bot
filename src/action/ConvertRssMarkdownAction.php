@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace rssBot\action;
 
 use InvalidArgumentException;
-use rssBot\models\sender\messages\TextMessage;
-use rssBot\models\sender\messages\TextMessageType;
-use rssBot\models\source\rss\ItemInterface;
+use rssBot\models\action\action\ActionInterface;
+use rssBot\models\messages\TextMessage;
+use rssBot\models\messages\TextMessageType;
 use rssBot\models\source\rss\ItemInterface as RssItemInterface;
-use rssBot\neww\ActionInterface;
 
 class ConvertRssMarkdownAction implements ActionInterface
 {
-    public function run($item = null)
+    public function run($item)
     {
         if (!$item instanceof RssItemInterface) {
             throw new InvalidArgumentException('Given item must implement ' . RssItemInterface::class);

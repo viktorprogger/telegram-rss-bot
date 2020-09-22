@@ -4821,12 +4821,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii-queue-amqp.git",
-                "reference": "c8e538efa84ff6dda62766e13678b53f620462ba"
+                "reference": "60b25ef0fbfff376a37e96e4aaddb9d3b67df3dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii-queue-amqp/zipball/c8e538efa84ff6dda62766e13678b53f620462ba",
-                "reference": "c8e538efa84ff6dda62766e13678b53f620462ba",
+                "url": "https://api.github.com/repos/yiisoft/yii-queue-amqp/zipball/60b25ef0fbfff376a37e96e4aaddb9d3b67df3dc",
+                "reference": "60b25ef0fbfff376a37e96e4aaddb9d3b67df3dc",
                 "shasum": ""
             },
             "require": {
@@ -4881,7 +4881,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-09-14T19:51:24+00:00"
+            "time": "2020-09-22T09:23:53+00:00"
         }
     ],
     "packages-dev": [

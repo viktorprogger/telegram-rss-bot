@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace rssBot\action;
 
-use rssBot\models\sender\telegram\Sender;
-use rssBot\neww\ActionInterface;
+use rssBot\models\action\action\ActionInterface;
+use rssBot\models\telegram\Sender;
 
 class TelegramSendAction implements ActionInterface
 {
@@ -16,7 +16,7 @@ class TelegramSendAction implements ActionInterface
         $this->sender = $sender;
     }
 
-    public function run($message = null)
+    public function run($message): void
     {
         $this->sender->send($message);
     }

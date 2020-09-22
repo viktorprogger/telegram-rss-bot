@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace rssBot\action;
 
+use rssBot\models\action\action\ActionInterface;
+use rssBot\models\action\action\ResultCollection;
 use rssBot\models\source\repository\SourceRepositoryInterface;
-use rssBot\neww\ActionInterface;
-use rssBot\neww\ResultCollection;
 
 class ParseAction implements ActionInterface
 {
@@ -17,7 +17,7 @@ class ParseAction implements ActionInterface
         $this->sourceRepository = $sourceRepository;
     }
 
-    public function run($sourceCode = null)
+    public function run($sourceCode)
     {
         $items = $this->sourceRepository->get($sourceCode)->getItems();
 
