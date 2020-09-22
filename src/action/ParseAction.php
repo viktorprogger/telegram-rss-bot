@@ -21,6 +21,6 @@ class ParseAction implements ActionInterface
     {
         $items = $this->sourceRepository->get($sourceCode)->getItems();
 
-        return new ResultCollection($items);
+        return new ResultCollection(iterator_to_array($items));
     }
 }

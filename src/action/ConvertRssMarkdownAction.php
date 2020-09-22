@@ -13,7 +13,7 @@ use rssBot\neww\ActionInterface;
 
 class ConvertRssMarkdownAction implements ActionInterface
 {
-    public function run(ItemInterface $item = null)
+    public function run($item = null)
     {
         if (!$item instanceof RssItemInterface) {
             throw new InvalidArgumentException('Given item must implement ' . RssItemInterface::class);

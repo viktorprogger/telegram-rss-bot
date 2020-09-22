@@ -17,7 +17,7 @@ class TelegramSendAction implements ActionInterface
         $this->sender = $sender;
     }
 
-    public function run(TextMessage $message = null)
+    public function run($message = null)
     {
         $this->sender->send($message);
     }

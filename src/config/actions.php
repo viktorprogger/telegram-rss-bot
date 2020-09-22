@@ -6,7 +6,6 @@ use rssBot\action\ConvertRssMarkdownAction;
 use rssBot\action\ParseAction;
 use rssBot\action\SourcesReadyAction;
 use rssBot\action\TelegramSendAction;
-use rssBot\neww\ActionInterface;
 
 return [
     SourcesReadyAction::class => [
@@ -27,7 +26,7 @@ return [
         ],
     ],
 
-    ActionInterface::class => [LogAction::class],
+    // ActionInterface::class => [LogAction::class],
     OpenDoorAction::class => [
         [
             'action' => TurnTeapotOnAction::class,

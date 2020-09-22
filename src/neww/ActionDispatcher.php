@@ -72,7 +72,8 @@ class ActionDispatcher implements ActionDispatcherInterface
 
         if ($listener->suites($result)) {
             if ($listener->isSynchronous()) {
-                $listener->getAction()->run($result);
+                $resultNew = $listener->getAction()->run($result);
+                $this->dispatch($listener->getAction(), $resultNew);
             } else {
                 $deferred[] = [$listener, $result];
             }
