@@ -6,11 +6,9 @@ namespace rssBot\models\sender\telegram;
 
 use GuzzleHttp\Client;
 use InvalidArgumentException;
-use rssBot\models\sender\AbstractSender;
 use rssBot\models\sender\messages\TextMessage;
-use Yiisoft\Validator\Rules;
 
-class Sender extends AbstractSender
+class Sender
 {
     protected const URI = 'https://api.telegram.org/';
 
@@ -21,15 +19,11 @@ class Sender extends AbstractSender
     public function __construct(
         string $token,
         string $chatId,
-        Client $client,
-        Rules $preFilter,
-        Rules $postFilter
+        Client $client
     ) {
         $this->token = $token;
         $this->chatId = $chatId;
         $this->client = $client;
-
-        parent::__construct($preFilter, $postFilter);
     }
 
     /**
@@ -53,6 +47,7 @@ class Sender extends AbstractSender
         }
 
         // TODO Implement other parameters from https://core.telegram.org/bots/api#sendmessage
+        // TODO Implement delay between messages due to official restrictions https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this
 
         $options = ['json' => $json];
         $this->client->post(self::URI . 'bot' . $this->token . '/sendMessage', $options);
