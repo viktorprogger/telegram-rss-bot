@@ -4736,12 +4736,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii-queue.git",
-                "reference": "ff63a29b2ee9cc1cf3bb60935d81e4508ccaabe1"
+                "reference": "4bec5ef1b3014d3e47f2c5f51043d334ea68b7eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii-queue/zipball/ff63a29b2ee9cc1cf3bb60935d81e4508ccaabe1",
-                "reference": "ff63a29b2ee9cc1cf3bb60935d81e4508ccaabe1",
+                "url": "https://api.github.com/repos/yiisoft/yii-queue/zipball/4bec5ef1b3014d3e47f2c5f51043d334ea68b7eb",
+                "reference": "4bec5ef1b3014d3e47f2c5f51043d334ea68b7eb",
                 "shasum": ""
             },
             "require": {
@@ -4749,17 +4749,14 @@
                 "psr/event-dispatcher": "^1.0",
                 "psr/log": "^1.1",
                 "yiisoft/friendly-exception": "^1.0",
+                "yiisoft/injector": "^1.0",
                 "yiisoft/serializer": "^3.0@dev"
             },
             "require-dev": {
-                "infection/infection": "^0.16.0",
-                "pda/pheanstalk": "*",
+                "infection/infection": "^0.17.0",
                 "phan/phan": "^3.0",
                 "phpunit/phpunit": "^9.3",
-                "yiisoft/composer-config-plugin": "^1.0@dev",
-                "yiisoft/di": "^3.0@dev",
-                "yiisoft/log": "^3.0@dev",
-                "yiisoft/yii-console": "^3.0@dev"
+                "yiisoft/test-support": "3.0.x-dev"
             },
             "suggest": {
                 "ext-pcntl": "Need for process signals"
@@ -4771,17 +4768,10 @@
                     "dev-master": "3.x-dev"
                 },
                 "config-plugin": {
-                    "tests": "config/tests.php",
                     "common": "config/common.php",
-                    "console": "config/console.php",
                     "params": [
                         "$params",
                         "config/params.php"
-                    ],
-                    "tests-app": [
-                        "$common",
-                        "$console",
-                        "tests/App/config/console.php"
                     ],
                     "events-console": "config/events-console.php"
                 }
@@ -4823,7 +4813,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-09-14T11:33:52+00:00"
+            "time": "2020-09-22T08:49:46+00:00"
         },
         {
             "name": "yiisoft/yii-queue-amqp",
