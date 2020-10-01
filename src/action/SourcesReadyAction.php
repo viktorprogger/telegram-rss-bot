@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace rssBot\action;
 
-use rssBot\models\action\action\ActionInterface;
-use rssBot\models\action\action\ResultCollection;
+use Evento\Action\ActionInterface;
+use Evento\Action\ResultCollection;
+use Evento\Action\ResultCollectionInterface;
 
 class SourcesReadyAction implements ActionInterface
 {
-    public function run($sources): ResultCollection
+    public function run($sources): ResultCollectionInterface
     {
         return new ResultCollection($sources);
     }

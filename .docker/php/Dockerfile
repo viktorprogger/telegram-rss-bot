@@ -33,7 +33,7 @@ xdebug.remote_enable=on\n\
 xdebug.remote_connect_back=0\n\
 " >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.0.0-alpha3
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.0.0-RC1
 
 WORKDIR /var/www
 

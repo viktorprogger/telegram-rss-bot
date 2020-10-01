@@ -13,14 +13,15 @@ use PhpAmqpLib\Connection\AbstractConnection;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use rssBot\models\action\action\ActionFactory;
-use rssBot\models\action\action\ActionFactoryInterface;
-use rssBot\models\action\dispatcher\listener\ActionListenerProvider;
-use rssBot\models\action\dispatcher\listener\ActionListenerProviderInterface;
+use Psr\SimpleCache\CacheInterface;
 use rssBot\models\source\repository\ParametersRepository;
 use rssBot\models\source\repository\SourceRepositoryInterface;
 use rssBot\models\telegram\Sender;
 use rssBot\system\Parameters;
+use Yiisoft\Aliases\Aliases;
+use Yiisoft\Cache\Cache;
+use Yiisoft\Cache\CacheInterface as YiiCacheInterface;
+use Yiisoft\Cache\File\FileCache;
 use Yiisoft\Composer\Config\Builder;
 use Yiisoft\Factory\Factory;
 use Yiisoft\Serializer\PhpSerializer;
@@ -96,10 +97,8 @@ return [
         '__class' => Sender::class,
         '__construct()' => [getenv('BOT_TOKEN'), getenv('CHAT_ID')],
     ],
-    ActionListenerProviderInterface::class => ActionListenerProvider::class,
-    ActionListenerProvider::class => [
-        '__class' => ActionListenerProvider::class,
-        '__construct()' => [Builder::require('actions')],
-    ],
-    ActionFactoryInterface::class => ActionFactory::class,
+
+    Aliases::class => ['__construct()' => [$params['yiisoft/aliases']]],
+    CacheInterface::class => FileCache::class,
+    YiiCacheInterface::class => Cache::class,
 ];

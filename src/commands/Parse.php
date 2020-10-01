@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace rssBot\commands;
 
+use Evento\Dispatcher\ActionDispatcherInterface;
 use rssBot\action\SourcesReadyAction;
-use rssBot\models\action\dispatcher\ActionDispatcher;
 use rssBot\models\source\repository\SourceRepositoryInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -19,12 +19,12 @@ final class Parse extends Command
 {
     protected static $defaultName = 'parse';
     private SourceRepositoryInterface $repository;
-    private ActionDispatcher $dispatcher;
+    private ActionDispatcherInterface $dispatcher;
     private SourcesReadyAction $action;
 
     public function __construct(
         SourceRepositoryInterface $repository,
-        ActionDispatcher $dispatcher,
+        ActionDispatcherInterface $dispatcher,
         SourcesReadyAction $action,
         string $name = null
     ) {
