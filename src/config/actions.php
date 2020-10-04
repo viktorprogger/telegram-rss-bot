@@ -9,39 +9,12 @@ use rssBot\action\TelegramSendAction;
 
 return [
     SourcesReadyAction::class => [
-        [
-            'action' => ParseAction::class,
-            'synchronous' => true,
-        ],
+        ParseAction::class,
     ],
     ParseAction::class => [
-        [
-            'action' => ConvertRssMarkdownAction::class,
-        ],
+        ConvertRssMarkdownAction::class,
     ],
     ConvertRssMarkdownAction::class => [
-        [
-            'action' => TelegramSendAction::class,
-            'synchronous' => true,
-        ],
-    ],
-
-    // ActionInterface::class => [LogAction::class],
-    OpenDoorAction::class => [
-        [
-            'action' => TurnTeapotOnAction::class,
-            'synchronous' => false,
-        ],
-        [
-            'action' => TurnLightOnAction::class,
-            'synchronous' => false,
-        ],
-    ],
-    CheckFingerprintAction::class => [
-        [
-            'action' => OpenDoorAction::class,
-            'condition' => fn (DoorAccessResult $access) => $access->allowed(),
-            'synchronous' => false,
-        ],
+        TelegramSendAction::class,
     ],
 ];

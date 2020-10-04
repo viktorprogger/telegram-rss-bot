@@ -47,7 +47,7 @@ final class Parse extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $codes = $this->source ?? iterator_to_array($this->repository->getCodes());
+        $codes = $this->source ?? $this->repository->getCodes();
         $this->dispatcher->dispatch($this->action, $this->action->run($codes));
 
         return 0;

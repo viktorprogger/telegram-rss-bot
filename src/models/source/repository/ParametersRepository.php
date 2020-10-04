@@ -6,17 +6,16 @@ namespace rssBot\models\source\repository;
 
 use rssBot\models\source\Factory;
 use rssBot\models\source\SourceInterface;
-use rssBot\system\Parameters;
 
 class ParametersRepository implements SourceRepositoryInterface
 {
     private Factory $factory;
-    private Parameters $parameters;
+    private array $sources;
 
-    public function __construct(Factory $factory, Parameters $parameters)
+    public function __construct(array $sources, Factory $factory)
     {
         $this->factory = $factory;
-        $this->parameters = $parameters;
+        $this->sources = $sources;
     }
 
     public function get(string $code): SourceInterface
@@ -30,7 +29,7 @@ class ParametersRepository implements SourceRepositoryInterface
 
     private function getDefinitions(): iterable
     {
-        yield from $this->parameters->get("sources");
+        yield from $this->sources;
     }
 
     public function getCodes(): iterable

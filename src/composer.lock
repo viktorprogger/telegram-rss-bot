@@ -580,20 +580,22 @@
         },
         {
             "name": "debril/feed-io",
-            "version": "v4.7.9",
+            "version": "v4.7.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alexdebril/feed-io.git",
-                "reference": "3fbc023b52d7b97fed7e7ab0dd9a83fb9c556414"
+                "reference": "96ca6d03eaf5e638273248c07a348ed76148bc25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/3fbc023b52d7b97fed7e7ab0dd9a83fb9c556414",
-                "reference": "3fbc023b52d7b97fed7e7ab0dd9a83fb9c556414",
+                "url": "https://api.github.com/repos/alexdebril/feed-io/zipball/96ca6d03eaf5e638273248c07a348ed76148bc25",
+                "reference": "96ca6d03eaf5e638273248c07a348ed76148bc25",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
                 "guzzlehttp/guzzle": "~6.2|~7.0",
                 "php": ">=7.1",
                 "psr/log": "~1.0",
@@ -602,7 +604,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.4",
                 "monolog/monolog": "1.*",
-                "phpunit/phpunit": "~7.5.0"
+                "phpunit/phpunit": "~9.3.0"
             },
             "suggest": {
                 "monolog/monolog": "Allows to handle logs"
@@ -639,7 +641,7 @@
             ],
             "support": {
                 "issues": "https://github.com/alexdebril/feed-io/issues",
-                "source": "https://github.com/alexdebril/feed-io/tree/v4.7.9"
+                "source": "https://github.com/alexdebril/feed-io/tree/v4.7.10"
             },
             "funding": [
                 {
@@ -647,7 +649,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-21T08:29:55+00:00"
+            "time": "2020-09-30T14:50:31+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -1115,23 +1117,23 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "v1.3.1",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
+                "reference": "60d379c243457e073cff02bc323a2a86cb355631"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
-                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/60d379c243457e073cff02bc323a2a86cb355631",
+                "reference": "60d379c243457e073cff02bc323a2a86cb355631",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.0"
+                "php": ">=5.5"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0"
+                "symfony/phpunit-bridge": "^4.4 || ^5.1"
             },
             "type": "library",
             "extra": {
@@ -1164,22 +1166,22 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/promises/issues",
-                "source": "https://github.com/guzzle/promises/tree/master"
+                "source": "https://github.com/guzzle/promises/tree/1.4.0"
             },
-            "time": "2016-12-20T10:07:11+00:00"
+            "time": "2020-09-30T07:37:28+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.6.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "239400de7a173fe9901b9ac7c06497751f00727a"
+                "reference": "53330f47520498c0ae1f61f7e2c90f55690c06a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/239400de7a173fe9901b9ac7c06497751f00727a",
-                "reference": "239400de7a173fe9901b9ac7c06497751f00727a",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/53330f47520498c0ae1f61f7e2c90f55690c06a3",
+                "reference": "53330f47520498c0ae1f61f7e2c90f55690c06a3",
                 "shasum": ""
             },
             "require": {
@@ -1192,15 +1194,15 @@
             },
             "require-dev": {
                 "ext-zlib": "*",
-                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.8 || ^9.3.10"
             },
             "suggest": {
-                "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
+                "laminas/laminas-httphandlerrunner": "Emit PSR-7 responses"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -1239,9 +1241,9 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.6.1"
+                "source": "https://github.com/guzzle/psr7/tree/1.7.0"
             },
-            "time": "2019-07-01T23:21:34+00:00"
+            "time": "2020-09-30T07:37:11+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -4055,12 +4057,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/viktorprogger/evento.git",
-                "reference": "217ff82b4fa4dfc6ec7b105009b10bec7e316379"
+                "reference": "661dcd0946a45fd99ed572a3efcca38f3e0ecdfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/viktorprogger/evento/zipball/217ff82b4fa4dfc6ec7b105009b10bec7e316379",
-                "reference": "217ff82b4fa4dfc6ec7b105009b10bec7e316379",
+                "url": "https://api.github.com/repos/viktorprogger/evento/zipball/661dcd0946a45fd99ed572a3efcca38f3e0ecdfd",
+                "reference": "661dcd0946a45fd99ed572a3efcca38f3e0ecdfd",
                 "shasum": ""
             },
             "require": {
@@ -4101,7 +4103,7 @@
                 "issues": "https://github.com/viktorprogger/evento/issues",
                 "source": "https://github.com/viktorprogger/evento/tree/master"
             },
-            "time": "2020-09-29T14:16:16+00:00"
+            "time": "2020-10-02T14:40:54+00:00"
         },
         {
             "name": "yiisoft/aliases",
@@ -4507,12 +4509,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/di.git",
-                "reference": "4042b039f024a384633dac018be7587cead02dd5"
+                "reference": "6a89ba79125fcc5c559d904a764a55e5c48ab8c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/di/zipball/4042b039f024a384633dac018be7587cead02dd5",
-                "reference": "4042b039f024a384633dac018be7587cead02dd5",
+                "url": "https://api.github.com/repos/yiisoft/di/zipball/6a89ba79125fcc5c559d904a764a55e5c48ab8c2",
+                "reference": "6a89ba79125fcc5c559d904a764a55e5c48ab8c2",
                 "shasum": ""
             },
             "require": {
@@ -4580,7 +4582,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-09-29T10:39:53+00:00"
+            "time": "2020-09-30T08:58:00+00:00"
         },
         {
             "name": "yiisoft/event-dispatcher",
@@ -4588,12 +4590,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/event-dispatcher.git",
-                "reference": "96cfd6266836bb8dee70167b0c769a1cc9b58658"
+                "reference": "612057e020a7e6572c071423fe74628000324e6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/event-dispatcher/zipball/96cfd6266836bb8dee70167b0c769a1cc9b58658",
-                "reference": "96cfd6266836bb8dee70167b0c769a1cc9b58658",
+                "url": "https://api.github.com/repos/yiisoft/event-dispatcher/zipball/612057e020a7e6572c071423fe74628000324e6a",
+                "reference": "612057e020a7e6572c071423fe74628000324e6a",
                 "shasum": ""
             },
             "require": {
@@ -4648,7 +4650,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-09-24T09:51:33+00:00"
+            "time": "2020-09-30T14:27:05+00:00"
         },
         {
             "name": "yiisoft/factory",
@@ -4656,12 +4658,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/factory.git",
-                "reference": "eaad1b40541f7ca6d042c98d3509503de5f9436f"
+                "reference": "5e934500a1dbb6fae4fa6a68da4804be66611a18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/factory/zipball/eaad1b40541f7ca6d042c98d3509503de5f9436f",
-                "reference": "eaad1b40541f7ca6d042c98d3509503de5f9436f",
+                "url": "https://api.github.com/repos/yiisoft/factory/zipball/5e934500a1dbb6fae4fa6a68da4804be66611a18",
+                "reference": "5e934500a1dbb6fae4fa6a68da4804be66611a18",
                 "shasum": ""
             },
             "require": {
@@ -4717,7 +4719,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-09-29T10:11:12+00:00"
+            "time": "2020-10-01T11:22:30+00:00"
         },
         {
             "name": "yiisoft/files",
@@ -5226,12 +5228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii-console.git",
-                "reference": "13fb162f400c20cdbdd995045165d5b21bfb5c38"
+                "reference": "ab965ae28f05a0486c933f6cb297709d50692703"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii-console/zipball/13fb162f400c20cdbdd995045165d5b21bfb5c38",
-                "reference": "13fb162f400c20cdbdd995045165d5b21bfb5c38",
+                "url": "https://api.github.com/repos/yiisoft/yii-console/zipball/ab965ae28f05a0486c933f6cb297709d50692703",
+                "reference": "ab965ae28f05a0486c933f6cb297709d50692703",
                 "shasum": ""
             },
             "require": {
@@ -5305,7 +5307,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2020-09-24T09:51:30+00:00"
+            "time": "2020-10-01T13:49:12+00:00"
         },
         {
             "name": "yiisoft/yii-cycle",
@@ -5617,12 +5619,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "0749ceaf15c136d085b722a5bb88141398a54142"
+                "reference": "6ab2408f21ada5aeaa240a034384233f2e746b0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/0749ceaf15c136d085b722a5bb88141398a54142",
-                "reference": "0749ceaf15c136d085b722a5bb88141398a54142",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/6ab2408f21ada5aeaa240a034384233f2e746b0a",
+                "reference": "6ab2408f21ada5aeaa240a034384233f2e746b0a",
                 "shasum": ""
             },
             "conflict": {
@@ -5725,6 +5727,8 @@
                 "mittwald/typo3_forum": "<1.2.1",
                 "monolog/monolog": ">=1.8,<1.12",
                 "namshi/jose": "<2.2",
+                "nette/application": ">=2.2,<2.2.10|>=2.3,<2.3.14|>=2.4,<2.4.16|>=3,<3.0.6",
+                "nette/nette": ">=2,<2.0.19|>=2.1,<2.1.13",
                 "nystudio107/craft-seomatic": "<3.3",
                 "nzo/url-encryptor-bundle": ">=4,<4.3.2|>=5,<5.0.1",
                 "october/backend": ">=1.0.319,<1.0.467",
@@ -5918,7 +5922,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-24T17:02:11+00:00"
+            "time": "2020-10-02T13:02:00+00:00"
         }
     ],
     "aliases": [],

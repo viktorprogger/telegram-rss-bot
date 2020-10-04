@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Evento\Dispatcher\Handler\HandlerFactory;
 use FeedIo\Adapter\ClientInterface as FeedClientInterface;
 use FeedIo\Adapter\Guzzle\Client as GuzzleFeedClient;
 use GuzzleHttp\Client as GuzzleClient;
@@ -17,7 +18,6 @@ use Psr\SimpleCache\CacheInterface;
 use rssBot\models\source\repository\ParametersRepository;
 use rssBot\models\source\repository\SourceRepositoryInterface;
 use rssBot\models\telegram\Sender;
-use rssBot\system\Parameters;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Cache\Cache;
 use Yiisoft\Cache\CacheInterface as YiiCacheInterface;
@@ -40,11 +40,9 @@ use Yiisoft\Yii\Queue\Driver\DriverInterface;
  */
 
 return [
-    Parameters::class => [
-        '__class' => Parameters::class,
-        '__construct()' => [require Builder::path('params')],
-    ],
     SourceRepositoryInterface::class => ParametersRepository::class,
+    ParametersRepository::class => ['__construct()' => [$params['sources']]],
+
     EventDispatcherProvider::class => [
         '__class' => EventDispatcherProvider::class,
         '__construct()' => [Builder::require('events-console')],
@@ -79,7 +77,7 @@ return [
 
     SerializerInterface::class => PhpSerializer::class,
     LoggerInterface::class => Logger::class,
-    Logger::class => static function () {
+    Logger::class => static function (): Logger {
         $handlers = [
             new StreamHandler(dirname(__DIR__) . '/runtime/application.log', Logger::WARNING, false),
             new StreamHandler(dirname(__DIR__) . '/runtime/debug.log', Logger::DEBUG),
@@ -92,7 +90,7 @@ return [
     },
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleClientInterface::class => GuzzleClient::class,
-    Factory::class => static fn(ContainerInterface $container) => new Factory($container),
+    Factory::class => static fn(ContainerInterface $container): Factory => new Factory($container),
     Sender::class => [
         '__class' => Sender::class,
         '__construct()' => [getenv('BOT_TOKEN'), getenv('CHAT_ID')],
@@ -101,4 +99,8 @@ return [
     Aliases::class => ['__construct()' => [$params['yiisoft/aliases']]],
     CacheInterface::class => FileCache::class,
     YiiCacheInterface::class => Cache::class,
+
+    HandlerFactory::class => [
+        'withDeferredDefault()' => [true],
+    ],
 ];

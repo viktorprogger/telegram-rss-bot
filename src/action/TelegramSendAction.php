@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace rssBot\action;
 
-use rssBot\models\action\action\ActionInterface;
+use Evento\Action\ActionInterface;
 use rssBot\models\telegram\Sender;
 
 class TelegramSendAction implements ActionInterface
