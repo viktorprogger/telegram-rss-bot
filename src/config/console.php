@@ -99,6 +99,7 @@ return [
     Aliases::class => ['__construct()' => [$params['yiisoft/aliases']]],
     CacheInterface::class => FileCache::class,
     YiiCacheInterface::class => Cache::class,
+    FileCache::class => static fn (Aliases $aliases, SerializerInterface $serializer) => new FileCache($aliases->get('@runtime/cache'), $serializer),
 
     HandlerFactory::class => [
         'withDeferredDefault()' => [true],

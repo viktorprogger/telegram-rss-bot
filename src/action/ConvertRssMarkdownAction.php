@@ -29,6 +29,6 @@ class ConvertRssMarkdownAction implements ActionInterface
             $result .= "[Читать дальше ->](" . $item->getLink() . ")";
         }
 
-        return new TextMessage($result, TextMessageType::markdown());
+        return new TextMessage($result, TextMessageType::markdown(), $item->getHash());
     }
 }

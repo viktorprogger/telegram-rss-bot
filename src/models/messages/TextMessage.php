@@ -5,19 +5,15 @@ declare(strict_types=1);
 namespace rssBot\models\messages;
 
 use JsonSerializable;
+use rssBot\models\source\HashAwareInterface;
 
-class TextMessage implements JsonSerializable
+class TextMessage implements JsonSerializable, HashAwareInterface
 {
     private string $text;
     private TextMessageType $type;
+    private ?string $hash;
 
-    /**
-     * TextMessage constructor.
-     *
-     * @param string $text
-     * @param int|TextMessageType|null $type
-     */
-    public function __construct(string $text, $type = null)
+    public function __construct(string $text, $type = null, ?string $hash = null)
     {
         if (is_int($type)) {
             $type = new TextMessageType($type);
@@ -25,6 +21,7 @@ class TextMessage implements JsonSerializable
 
         $this->text = $text;
         $this->type = $type ?? TextMessageType::plainText();
+        $this->hash = $hash;
     }
 
     public function getText(): string
@@ -44,5 +41,10 @@ class TextMessage implements JsonSerializable
             'text' => $this->text,
             'type' => $this->type->current(),
         ];
+    }
+
+    public function getHash(): string
+    {
+        return $this->hash ?? '';
     }
 }

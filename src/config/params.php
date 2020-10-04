@@ -18,7 +18,8 @@ return [
     ],
     'yiisoft/aliases' => [
         'root' => dirname(__DIR__),
-        'src' => '@root/src',
+        'src' => '@root',
+        'runtime' => '@root/runtime',
     ],
 
     // Общий конфиг Cycle
