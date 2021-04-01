@@ -9,7 +9,7 @@ services:
             - ./.docker/logs:/var/log
             - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/40-custom.ini:ro
             - ./.docker/data/composer:/root/.composer
-            - ./src:/var/www
+            - ./app:/var/www
             - ./.env:/var/.env
         environment:
             TZ: Europe/Moscow

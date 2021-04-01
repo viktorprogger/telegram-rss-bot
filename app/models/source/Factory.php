@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace rssBot\models\source;
 
+use Resender\Domain\Source\Rss\Source;
 use rssBot\models\exceptions\UnknownTypeException;
-use rssBot\models\source\rss\Source;
 use Yiisoft\Factory\Factory as GlobalFactory;
 
 class Factory
