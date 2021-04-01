@@ -1,4 +1,6 @@
 {
+    "name": "viktorprogger/telegram-rss-bot",
+    "description": "",
     "repositories": [
         {
             "type": "composer",
@@ -6,25 +8,24 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^8.0",
         "ext-json": "*",
         "debril/feed-io": "^4.5",
         "guzzlehttp/guzzle": "^6.3",
-        "monolog/monolog": "^2.0",
-        "viktorprogger/evento": "1.0.x-dev",
-        "yiisoft/cache": "3.0.x-dev",
-        "yiisoft/cache-file": "3.0.x-dev",
-        "yiisoft/composer-config-plugin": "^1.0.0",
+        "yiisoft/cache": "^1.0",
+        "yiisoft/cache-file": "^1.0",
+        "yiisoft/config": "1.0.x-dev",
         "yiisoft/di": "^3.0@dev",
         "yiisoft/factory": "^3.0@dev",
+        "yiisoft/friendly-exception": "^1.0",
+        "yiisoft/log": "^1.0",
+        "yiisoft/log-target-file": "^1.0",
         "yiisoft/validator": "^3.0@dev",
         "yiisoft/yii-console": "^3.0@dev",
-        "yiisoft/yii-cycle": "3.0.x-dev",
-        "yiisoft/yii-queue": "^3.0@dev",
-        "yiisoft/yii-queue-amqp": "^3.0@dev"
+        "yiisoft/yii-cycle": "3.0.x-dev"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-latest"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -35,6 +36,7 @@
         }
     },
     "extra": {
+        "config-plugin-options": { "force-check": true },
         "config-plugin": {
             "console": [
                 "$common",
@@ -43,8 +45,7 @@
             "params": [
                 "$params",
                 "config/params.php"
-            ],
-            "actions": "config/actions.php"
+            ]
         }
     },
     "config": {

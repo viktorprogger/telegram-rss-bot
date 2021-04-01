@@ -1,10 +1,10 @@
-FROM php:7.4-cli-alpine
+FROM php:8.0-cli-alpine
 
-ENV XDEBUG_VERSION=2.9.6 \
+ENV XDEBUG_VERSION=3.0.3 \
     COMPOSER_ALLOW_SUPERUSER=1
 
 RUN apk --no-cache add \
-        postgresql-dev \
+        mysql-dev \
         oniguruma-dev \
         icu-dev \
         gettext-dev \
@@ -13,32 +13,25 @@ RUN apk --no-cache add \
         make \
         git && \
     docker-php-ext-install \
-        mbstring \
         opcache \
         gettext \
         intl \
-        pdo_pgsql \
-        sockets \
+        pdo_mysql \
         pcntl \
         > /dev/null && \
     pecl install xdebug-$XDEBUG_VERSION > /dev/null && \
         docker-php-ext-enable xdebug > /dev/null && \
         apk del g++ autoconf make && \
-        rm -r /tmp/pear/* && \
-        mkdir -p /var/log/bot && \
-        touch /var/log/bot/xdebug.log && \
-        echo -e "xdebug.remote_port = 9001\n\
-xdebug.idekey = \"PHPSTORM\"\n\
-xdebug.remote_enable=on\n\
-xdebug.remote_connect_back=0\n\
-" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+        rm -r /tmp/pear/*
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.0.0-RC1
+RUN curl -sS https://getcomposer.org/installer | php -- --2 --install-dir=/usr/local/bin --filename=composer
+
+COPY .docker/php/php.ini /usr/local/etc/php/conf.d/40-custom.ini
 
 WORKDIR /var/www
 
-COPY . /var/www/
-RUN composer install --prefer-dist
+COPY ./src /var/www/
+# RUN composer install --prefer-dist
 
 RUN rm -rf ./* && \
     addgroup -g 1000 appuser && \

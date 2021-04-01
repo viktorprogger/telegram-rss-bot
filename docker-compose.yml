@@ -1,7 +1,9 @@
 version: "3.7"
 services:
     bot:
-        image: docker.pkg.github.com/viktorprogger/telegram-rss-bot/bot:${BUILD_TAG}
+        build:
+            dockerfile: .docker/php/Dockerfile
+            context: ./
         user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
         volumes:
             - ./.docker/logs:/var/log
@@ -11,26 +13,22 @@ services:
             - ./.env:/var/.env
         environment:
             TZ: Europe/Moscow
-            XDEBUG_CONFIG: "remote_enable=On remote_host=${HOST_IP}"
-            PHP_IDE_CONFIG: ${PHP_IDE_CONFIG}
-            APP_ENV: dev
         env_file:
             - .env
         links:
             - db
-            - amqp
+        extra_hosts:
+            - host.docker.internal:${HOST_IP:-host.docker.internal}
 
     db:
-        image: postgres:11-alpine
+        image: mysql:8.0
+        command: --default-authentication-plugin=mysql_native_password
         restart: on-failure
         volumes:
-            - .docker/data/db:/var/lib/postgresql/data
+            - .docker/data/db:/var/lib/mysql
         environment:
             TZ: Europe/Moscow
-            POSTGRES_PASSWORD: ${DB_PASSWORD}
-            POSTGRES_DB: ${DB_NAME}
-            POSTGRES_USER: ${DB_LOGIN}
-
-    amqp:
-        image: rabbitmq:3
-        restart: on-failure
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_USER: ${DB_LOGIN}

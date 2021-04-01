@@ -1,0 +1,78 @@
+version: 2.6
+
+silent: false
+
+tasks:
+  docker:build:
+    cmds:
+      - docker-compose build
+
+  up:
+    env:
+      USER_ID:
+        sh: id -u
+      GROUP_ID:
+        sh: id -g
+    cmds:
+      - docker-compose up -d --remove-orphans
+    status:
+      - docker-compose exec -T bot echo ''
+
+  down:
+    cmds:
+      - docker-compose down
+
+  bot:restart:
+    cmds:
+      - docker-compose restart bot
+
+  bot:exec:
+    deps: [up]
+    cmds:
+      - docker-compose exec bot {{.c}}
+
+  bot:run:
+    cmds:
+      - docker-compose run --rm bot {{.c}}
+
+  yii:
+    cmds:
+      - task: bot:run
+        vars:
+          c: php ./yii {{if .c}}{{.c}}{{end}}
+
+  yii:migrate:
+    cmds:
+      - task: yii
+        vars:
+          c: migrate --interactive=0
+
+  yii:migrate:fresh:
+    cmds:
+      - task: yii
+        vars:
+          c: migrate/fresh -n
+
+  composer:i:
+    cmds:
+      - task: bot:run
+        vars:
+          c: composer install
+
+  composer:u:
+    cmds:
+      - task: bot:run
+        vars:
+          c: composer update
+
+  composer:r:
+    cmds:
+      - task: bot:run
+        vars:
+          c: composer require {{.c}}
+
+  composer:remove:
+    cmds:
+      - task: bot:run
+        vars:
+          c: composer remove {{.c}}
