@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Resender\Infrastructure\Telegram;
+namespace Resender\Infrastructure\Target\Telegram;
 
 use InvalidArgumentException;
 
@@ -29,6 +29,21 @@ final class MessageFormat
         }
 
         return self::$instances[$format];
+    }
+
+    public static function text(): self
+    {
+        return self::getInstance(self::TEXT);
+    }
+
+    public static function markdown(): self
+    {
+        return self::getInstance(self::MARKDOWN);
+    }
+
+    public static function html(): self
+    {
+        return self::getInstance(self::HTML);
     }
 
     public function isText(): bool

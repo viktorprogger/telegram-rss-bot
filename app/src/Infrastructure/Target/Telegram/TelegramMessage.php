@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Resender\Infrastructure\Telegram;
+namespace Resender\Infrastructure\Target\Telegram;
 
 final class TelegramMessage
 {

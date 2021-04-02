@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Resender\Infrastructure\Telegram;
+namespace Resender\Infrastructure\Target\Telegram;
 
 use GuzzleHttp\Client;
-use Resender\Domain\Source\Github\GithubNotification;
-use Resender\Domain\Source\Rss\RssItem;
 use Resender\Domain\Target\TargetInterface;
+use Resender\Infrastructure\Source\Github\GithubNotification;
+use Resender\Infrastructure\Source\Rss\RssEntry;
 use RuntimeException;
 
 final class TelegramTarget implements TargetInterface
@@ -42,7 +42,7 @@ final class TelegramTarget implements TargetInterface
         $this->client->post(self::URI . 'bot' . $this->token . '/sendMessage', $options);
     }
 
-    public function sendRssItem(RssItem $item): void
+    public function sendRssItem(RssEntry $item): void
     {
         $body = html_entity_decode($item->getDescription());
         $body = strip_tags($body);
@@ -54,6 +54,9 @@ final class TelegramTarget implements TargetInterface
         if ($item->getLink() !== null) {
             $result .= "[Читать дальше ->](" . $item->getLink() . ")";
         }
+
+        $message = new TelegramMessage($result, MessageFormat::markdown());
+        $this->send($message);
     }
 
     public function sendGithubNotification(GithubNotification $notification): void

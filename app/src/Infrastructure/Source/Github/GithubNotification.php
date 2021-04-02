@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Resender\Domain\Source\Github;
+namespace Resender\Infrastructure\Source\Github;
 
 final class GithubNotification
 {

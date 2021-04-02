@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Resender\Domain\Source\Rss;
+namespace Resender\Infrastructure\Source\Rss;
 
 use DateTime;
 
-final class RssItem
+final class RssEntry
 {
     public function __construct(
         private string $title,

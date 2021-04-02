@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Resender\Infrastructure\Commands;
 
-use Resender\Domain\Source\Github\GithubNotification;
-use Resender\Domain\Source\Rss\RssItem;
 use Resender\Domain\Source\SourceRepositoryInterface;
 use Resender\Domain\Target\TargetRepositoryInterface;
+use Resender\Infrastructure\Source\Github\GithubNotification;
+use Resender\Infrastructure\Source\Rss\RssEntry;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -29,7 +29,7 @@ final class SourcesCommand extends Command
             foreach ($source->getItems() as $item) {
                 foreach ($source->getTargetIds() as $id) {
                     switch (get_class($item)) {
-                        case RssItem::class:
+                        case RssEntry::class:
                             $this->targetRepository->getById($id)->sendRssItem($item);
                             break;
                         case GithubNotification::class:

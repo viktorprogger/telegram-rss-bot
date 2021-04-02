@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Resender\Domain\Source;
 
-use Resender\Domain\Source\Github\Source as SourceGithub;
-use Resender\Domain\Source\Rss\Source as SourceRss;
+use Resender\Infrastructure\Source\Github\Source;
+use Resender\Infrastructure\Source\Github\Source as SourceGithub;
 
 interface SourceRepositoryInterface
 {
     /**
-     * @return SourceRss[]|SourceGithub[]
+     * @return SourceInterface[]
      */
     public function getSources(): iterable;
 }
