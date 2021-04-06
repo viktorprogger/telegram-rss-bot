@@ -29,21 +29,31 @@ final class SourcesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $tr = new Transaction($this->orm);
+        $rssRepository = $this->orm->getRepository(RssCache::class);
 
         foreach ($this->sourceRepository->getSources() as $source) {
             foreach ($source->getItems() as $item) {
                 foreach ($source->getTargetIds() as $id) {
                     switch (get_class($item)) {
                         case RssEntry::class:
-                            $rssItemCache = new RssCache();
-                            $rssItemCache->source_id = $source->getId();
-                            $rssItemCache->target_id = $id->value();
-                            $rssItemCache->hash = $item->getHash();
+                            $filter = [
+                                'source_id' => $source->getId(),
+                                'target_id' => $id->value(),
+                                'hash' => $item->getHash(),
+                            ];
+                            if ($rssRepository->findOne($filter) === null) {
+                                $tr = new Transaction($this->orm);
 
-                            $this->targetRepository->getById($id)->sendRssItem($item);
+                                $rssItemCache = new RssCache();
+                                $rssItemCache->source_id = $source->getId();
+                                $rssItemCache->target_id = $id->value();
+                                $rssItemCache->hash = $item->getHash();
 
-                            $tr->persist($rssItemCache);
+                                $this->targetRepository->getById($id)->sendRssItem($item);
+
+                                $tr->persist($rssItemCache);
+                                $tr->run();
+                            }
 
                             break;
                         case GithubNotification::class:
@@ -55,8 +65,6 @@ final class SourcesCommand extends Command
                 }
             }
         }
-
-        $tr->run();
 
         return self::SUCCESS;
     }
