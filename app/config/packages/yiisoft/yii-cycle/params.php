@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Cycle\ORM\PromiseFactoryInterface;
+use Spiral\Database\Driver\MySQL\MySQLDriver;
 use Yiisoft\Yii\Cycle\Command\Schema;
 use Yiisoft\Yii\Cycle\Command\Migration;
 use Yiisoft\Yii\Cycle\Schema\SchemaProviderInterface;
@@ -31,8 +32,16 @@ return [
             // Default database
             'default' => null,
             'aliases' => [],
-            'databases' => [],
-            'connections' => [],
+            'databases' => ['default' => ['connection' => 'default']],
+            'connections' => [
+                'default' => [
+                    'driver' => MySQLDriver::class,
+                    // Синтаксис подключения описан в https://www.php.net/manual/pdo.construct.php, смотрите DSN
+                    'connection' => 'mysql:dbname=' . getenv('DB_NAME') . ';host=db',
+                    'username' => getenv('DB_LOGIN'),
+                    'password' => getenv('DB_PASSWORD'),
+                ],
+            ],
         ],
 
         // Cycle migration config
