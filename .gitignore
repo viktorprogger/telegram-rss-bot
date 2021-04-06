@@ -5,6 +5,7 @@ app/vendor
 app/config/channels.php
 app/runtime/*
 !app/runtime/.gitkeep
+app/config/console-local.php
 .docker/data
 !.docker/data/.gitkeep
 .docker/logs

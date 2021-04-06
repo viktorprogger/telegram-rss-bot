@@ -10,8 +10,10 @@ use Resender\Infrastructure\Source\Rss\RssEntry;
 
 interface SourceInterface
 {
+    public function getId(): string;
+
     /**
-     * @return \Resender\Infrastructure\Source\Rss\RssEntry[]|GithubNotification[]
+     * @return RssEntry[]|GithubNotification[]
      */
     public function getItems(): iterable;
 

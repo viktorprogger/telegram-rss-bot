@@ -35,4 +35,19 @@ final class RssEntry
     {
         return $this->link;
     }
+
+    public function getHash(): string
+    {
+        return md5(
+            json_encode(
+                [
+                    $this->title,
+                    $this->description,
+                    $this->updated,
+                    $this->link,
+                ],
+                JSON_THROW_ON_ERROR
+            )
+        );
+    }
 }

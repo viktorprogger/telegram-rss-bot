@@ -12,7 +12,7 @@ use Resender\Domain\Target\TargetIdInterface;
 
 final class Source implements SourceInterface
 {
-    private TargetIdInterface $targets;
+    private array $targets;
 
     public function __construct(
         private string $url,
@@ -24,6 +24,11 @@ final class Source implements SourceInterface
         }
 
         $this->targets = $targets;
+    }
+
+    public function getId(): string
+    {
+        return $this->url;
     }
 
     public function getItems(): iterable

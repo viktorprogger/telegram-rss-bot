@@ -4,6 +4,7 @@
     "require": {
         "php": "^8.0",
         "ext-json": "*",
+        "cycle/annotated": "^2.2",
         "debril/feed-io": "^4.5",
         "guzzlehttp/guzzle": "^7.3.0",
         "yiisoft/cache": "^1.0",
@@ -34,7 +35,8 @@
         "config-plugin": {
             "console": [
                 "$common",
-                "config/console.php"
+                "config/console.php",
+                "?config/console-local.php"
             ],
             "params": [
                 "$params",

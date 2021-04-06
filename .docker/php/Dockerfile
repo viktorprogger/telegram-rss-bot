@@ -30,7 +30,7 @@ COPY .docker/php/php.ini /usr/local/etc/php/conf.d/40-custom.ini
 
 WORKDIR /var/www
 
-COPY ./src /var/www/
+COPY ./app /var/www/
 # RUN composer install --prefer-dist
 
 RUN rm -rf ./* && \

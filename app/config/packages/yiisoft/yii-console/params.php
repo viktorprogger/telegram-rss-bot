@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Resender\Infrastructure\Commands\SourcesCommand;
 use Yiisoft\Yii\Console\Command\Serve;
 
 return [
@@ -11,6 +12,7 @@ return [
         'autoExit' => false,
         'commands' => [
             'serve' => Serve::class,
+            'sources' => SourcesCommand::class,
         ],
         'version' => '3.0',
     ],

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Resender\Infrastructure\Target\Telegram;
 
-use GuzzleHttp\Client;
 use Resender\Domain\Target\TargetInterface;
 use Resender\Infrastructure\Source\Github\GithubNotification;
 use Resender\Infrastructure\Source\Rss\RssEntry;
@@ -12,12 +11,10 @@ use RuntimeException;
 
 final class TelegramTarget implements TargetInterface
 {
-    private const URI = 'https://api.telegram.org/';
-
     public function __construct(
         private string $token,
         private string $chatId,
-        private Client $client
+        private TelegramClientInterface $client
     ) {
     }
 
@@ -27,19 +24,14 @@ final class TelegramTarget implements TargetInterface
      */
     private function send(TelegramMessage $message): void
     {
-        $json = [
-            'text' => $message->getText(),
-            'chat_id' => $this->chatId,
-        ];
-
+        $format = null;
         if ($message->getFormat()->isMarkdown()) {
-            $json['parse_mode'] = 'Markdown';
+            $format = 'Markdown';
         } elseif ($message->getFormat()->isHtml()) {
-            $json['parse_mode'] = 'HTML';
+            $format = 'HTML';
         }
 
-        $options = ['json' => $json];
-        $this->client->post(self::URI . 'bot' . $this->token . '/sendMessage', $options);
+        $this->client->send($this->token, $this->chatId, $message->getText(), $format);
     }
 
     public function sendRssItem(RssEntry $item): void
@@ -47,6 +39,7 @@ final class TelegramTarget implements TargetInterface
         $body = html_entity_decode($item->getDescription());
         $body = strip_tags($body);
         $body = trim($body);
+        $body = preg_replace('/([*_\[\]()])/', '\\\$1', $body); // TODO
 
         $result = '*' . $item->getTitle() . "*\n";
         $result .= $body . "\n\n";

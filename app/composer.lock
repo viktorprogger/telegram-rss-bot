@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a5ef07aff7f56fc2d1f6db21937e737",
+    "content-hash": "fe8414e0561b5b00d44c5691fe2baf78",
     "packages": [
         {
             "name": "cycle/annotated",
