@@ -29,6 +29,8 @@ final class SourcesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $tr = new Transaction($this->orm);
+
         foreach ($this->sourceRepository->getSources() as $source) {
             foreach ($source->getItems() as $item) {
                 foreach ($source->getTargetIds() as $id) {
@@ -41,9 +43,7 @@ final class SourcesCommand extends Command
 
                             $this->targetRepository->getById($id)->sendRssItem($item);
 
-                            $tr = new Transaction($this->orm);
                             $tr->persist($rssItemCache);
-                            $tr->run();
 
                             break;
                         case GithubNotification::class:
@@ -55,5 +55,9 @@ final class SourcesCommand extends Command
                 }
             }
         }
+
+        $tr->run();
+
+        return self::SUCCESS;
     }
 }

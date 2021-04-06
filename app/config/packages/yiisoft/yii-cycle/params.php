@@ -6,6 +6,8 @@ use Cycle\ORM\PromiseFactoryInterface;
 use Spiral\Database\Driver\MySQL\MySQLDriver;
 use Yiisoft\Yii\Cycle\Command\Schema;
 use Yiisoft\Yii\Cycle\Command\Migration;
+use Yiisoft\Yii\Cycle\Schema\Provider\FromConveyorSchemaProvider;
+use Yiisoft\Yii\Cycle\Schema\Provider\SimpleCacheSchemaProvider;
 use Yiisoft\Yii\Cycle\Schema\SchemaProviderInterface;
 
 return [
@@ -78,13 +80,23 @@ return [
          *     ],
          * ]
          */
-        'schema-providers' => [],
+        'schema-providers' => [
+            // Uncomment next line to enable schema cache
+             SimpleCacheSchemaProvider::class => ['key' => 'cycle-orm-cache-key'],
+            FromConveyorSchemaProvider::class => [
+                'generators' => [
+                    Cycle\Schema\Generator\SyncTables::class, // sync table changes to database
+                ],
+            ],
+        ],
 
         /**
          * Config for {@see \Yiisoft\Yii\Cycle\Schema\Conveyor\AnnotatedSchemaConveyor}
          * Annotated entity directories list.
          * {@see \Yiisoft\Aliases\Aliases} are also supported.
          */
-        'annotated-entity-paths' => [],
+        'annotated-entity-paths' => [
+            '@root/src/Infrastructure',
+        ],
     ],
 ];

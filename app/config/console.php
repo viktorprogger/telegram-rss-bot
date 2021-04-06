@@ -15,12 +15,13 @@ use Resender\Infrastructure\Target\StaticTargetRepository;
 use Resender\Infrastructure\Target\StringTargetId;
 use Resender\Infrastructure\Target\Telegram\TelegramClientGuzzle;
 use Resender\Infrastructure\Target\Telegram\TelegramClientInterface;
+use Resender\Infrastructure\Target\Telegram\TelegramClientStdout;
 use Resender\Infrastructure\Target\Telegram\TelegramTarget;
 
 return [
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleInterface::class => Guzzle::class,
-    TelegramClientInterface::class => \Resender\Infrastructure\Target\Telegram\TelegramClientStdout::class,
+    TelegramClientInterface::class => TelegramClientStdout::class,
 
     SourceRepositoryInterface::class => static function (FeedIo $reader) {
         $sources = [

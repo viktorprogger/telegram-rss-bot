@@ -17,4 +17,9 @@ final class Source implements SourceInterface
     {
         // TODO: Implement getTargetIds() method.
     }
+
+    public function getId(): string
+    {
+        // TODO: Implement getId() method.
+    }
 }
