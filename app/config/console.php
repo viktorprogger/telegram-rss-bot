@@ -9,6 +9,7 @@ use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
 use Resender\Domain\Source\SourceRepositoryInterface;
 use Resender\Domain\Target\TargetRepositoryInterface;
+use Resender\Infrastructure\SentryInitiator;
 use Resender\Infrastructure\Source\Rss\Source;
 use Resender\Infrastructure\Source\StaticSourceRepository;
 use Resender\Infrastructure\Target\StaticTargetRepository;
@@ -21,6 +22,9 @@ return [
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleInterface::class => Guzzle::class,
     TelegramClientInterface::class => TelegramClientGuzzle::class,
+    SentryInitiator::class => [
+        '__construct()' => ['https://b6a226cfb9b94b928832bcd27d24f9b1@o566448.ingest.sentry.io/5709307'],
+    ],
 
     SourceRepositoryInterface::class => static function (FeedIo $reader) {
         $tgPhpinfo = new StringTargetId('tg-php-info');

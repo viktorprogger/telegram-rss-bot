@@ -87,6 +87,9 @@ return [
         ],
     ],
     'providers-console' => [
+        '/' => [
+            'config/providers-console.php',
+        ],
         'yiisoft/yii-console' => [
             'providers-console.php',
         ],

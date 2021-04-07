@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Resender\Infrastructure\ConsoleApplication;
 use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Yiisoft\Factory\Definitions\Reference;
@@ -20,7 +21,7 @@ return [
     ],
 
     Application::class => [
-        '__class' => Application::class,
+        '__class' => ConsoleApplication::class,
         'setDispatcher()' => [Reference::to(SymfonyEventDispatcher::class)],
         'setCommandLoader()' => [Reference::to(CommandLoaderInterface::class)],
         'addOptions()' => [
