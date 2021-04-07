@@ -1,0 +1,49 @@
+{
+    "name": "viktorprogger/telegram-rss-bot",
+    "description": "",
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "cycle/annotated": "^2.2",
+        "debril/feed-io": "^4.5",
+        "guzzlehttp/guzzle": "^7.3.0",
+        "yiisoft/cache": "^1.0",
+        "yiisoft/cache-file": "^1.0",
+        "yiisoft/config": "1.0.x-dev",
+        "yiisoft/di": "^3.0@dev",
+        "yiisoft/factory": "^3.0@dev",
+        "yiisoft/friendly-exception": "^1.0",
+        "yiisoft/log": "^1.0",
+        "yiisoft/log-target-file": "^1.0",
+        "yiisoft/validator": "^3.0@dev",
+        "yiisoft/yii-console": "^3.0@dev",
+        "yiisoft/yii-cycle": "3.0.x-dev"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+
+    "autoload": {
+        "psr-4": {
+            "Resender\\": "src"
+        }
+    },
+    "extra": {
+        "config-plugin-options": { "force-check": true },
+        "config-plugin": {
+            "console": [
+                "$common",
+                "config/console.php"
+            ],
+            "params": [
+                "$params",
+                "config/params.php"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

@@ -1,7 +1,12 @@
 .idea
 .env
 tags
-src/vendor
-src/config/channels.php
-src/runtime/*
-!src/runtime/.gitkeep
+app/vendor
+app/config/channels.php
+app/runtime/*
+!app/runtime/.gitkeep
+app/config/console-local.php
+.docker/data
+!.docker/data/.gitkeep
+.docker/logs
+!.docker/logs/.gitkeep

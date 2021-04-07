@@ -1,31 +1,40 @@
 version: "3.7"
 services:
     bot:
-        image: docker.pkg.github.com/viktorprogger/telegram-rss-bot/bot:${BUILD_TAG}
+        build:
+            dockerfile: .docker/php/Dockerfile
+            context: ./
         user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
         volumes:
             - ./.docker/logs:/var/log
             - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/40-custom.ini:ro
-            - ./.docker/data/composer/cache:/root/.composer/cache
-            - ./.docker/data/composer/auth.json:/.composer/auth.json:ro
-            - ./src:/var/www
+            - ./.docker/data/composer:/root/.composer
+            - ./app:/var/www
             - ./.env:/var/.env
         environment:
             TZ: Europe/Moscow
+            DB_NAME: ${DB_NAME}
+            DB_LOGIN: ${DB_LOGIN}
+            DB_PASSWORD: ${DB_PASSWORD}
+            RSS_BOT_TOKEN: ${RSS_BOT_TOKEN}
         env_file:
             - .env
-        depends_on:
+        links:
             - db
+        extra_hosts:
+            - host.docker.internal:${HOST_IP:-host.docker.internal}
 
     db:
-        image: postgres:11-alpine
-        restart: always
+        image: mysql:8.0
+        command: --default-authentication-plugin=mysql_native_password
+        restart: on-failure
         volumes:
-            - .docker/data/db:/var/lib/postgresql/data
+            - .docker/data/db:/var/lib/mysql
+        ports:
+            - "${DB_PORT:-3308}:3306"
         environment:
             TZ: Europe/Moscow
-            POSTGRES_PASSWORD: ${DB_PASSWORD}
-            POSTGRES_DB: ${DB_NAME}
-            POSTGRES_USER: ${DB_LOGIN}
-        ports:
-            - ${DB_PORT:-3306}:5432
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_NAME}
+            MYSQL_USER: ${DB_LOGIN}
