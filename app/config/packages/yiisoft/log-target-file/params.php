@@ -13,7 +13,6 @@ return [
                 LogLevel::ERROR,
                 LogLevel::WARNING,
                 LogLevel::INFO,
-                LogLevel::DEBUG,
             ],
             'dirMode' => 0755,
             'fileMode' => null,
