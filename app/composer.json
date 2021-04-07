@@ -21,6 +21,8 @@
         "yiisoft/yii-cycle": "3.0.x-dev"
     },
     "require-dev": {
+        "infection/infection": "^0.21.5",
+        "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-latest"
     },
     "minimum-stability": "dev",
@@ -29,6 +31,11 @@
     "autoload": {
         "psr-4": {
             "Resender\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Resender\\Test\\Unit\\": "tests/unit"
         }
     },
     "extra": {
