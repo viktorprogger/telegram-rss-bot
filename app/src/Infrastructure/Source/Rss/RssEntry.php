@@ -9,11 +9,17 @@ use DateTime;
 final class RssEntry
 {
     public function __construct(
+        private string $sourceTitle,
         private string $title,
         private string $description,
         private ?DateTime $updated,
         private ?string $link,
     ) {
+    }
+
+    public function getSourceTitle(): string
+    {
+        return $this->sourceTitle;
     }
 
     public function getTitle(): string

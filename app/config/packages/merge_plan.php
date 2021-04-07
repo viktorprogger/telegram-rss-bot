@@ -31,7 +31,6 @@ return [
         '/' => [
             '$common',
             'config/console.php',
-            '?config/console-local.php',
         ],
         'yiisoft/yii-cycle' => [
             'console.php',

@@ -15,17 +15,20 @@ use Resender\Infrastructure\Target\StaticTargetRepository;
 use Resender\Infrastructure\Target\StringTargetId;
 use Resender\Infrastructure\Target\Telegram\TelegramClientGuzzle;
 use Resender\Infrastructure\Target\Telegram\TelegramClientInterface;
-use Resender\Infrastructure\Target\Telegram\TelegramClientStdout;
 use Resender\Infrastructure\Target\Telegram\TelegramTarget;
 
 return [
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleInterface::class => Guzzle::class,
-    TelegramClientInterface::class => TelegramClientStdout::class,
+    TelegramClientInterface::class => TelegramClientGuzzle::class,
 
     SourceRepositoryInterface::class => static function (FeedIo $reader) {
+        $tgPhpinfo = new StringTargetId('tg-php-info');
         $sources = [
-            new Source('https://blog.jetbrains.com/phpstorm/feed/', $reader, new StringTargetId('tg-php-info')),
+            new Source('Space', 'https://blog.jetbrains.com/space/feed/', $reader, $tgPhpinfo),
+            new Source('PhpStorm', 'https://blog.jetbrains.com/phpstorm/feed/', $reader, $tgPhpinfo),
+            new Source('YouTrack', 'https://blog.jetbrains.com/youtrack/feed/', $reader, $tgPhpinfo),
+            new Source('Habr SamDark', 'https://habr.com/ru/users/SamDark/rss/posts/?fl=ru', $reader, $tgPhpinfo),
         ];
 
         return new StaticSourceRepository(...$sources);
@@ -33,7 +36,7 @@ return [
 
     TargetRepositoryInterface::class => static function (TelegramClientInterface $client) {
         $targets = [
-            'tg-php-info' => new TelegramTarget('', '', $client), // TODO
+            'tg-php-info' => new TelegramTarget(getenv('RSS_BOT_TOKEN'), '@vitorprogger_php_info', $client),
         ];
 
         return new StaticTargetRepository($targets);

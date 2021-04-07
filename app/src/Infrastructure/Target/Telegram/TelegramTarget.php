@@ -26,7 +26,7 @@ final class TelegramTarget implements TargetInterface
     {
         $format = null;
         if ($message->getFormat()->isMarkdown()) {
-            $format = 'Markdown';
+            $format = 'MarkdownV2';
         } elseif ($message->getFormat()->isHtml()) {
             $format = 'HTML';
         }
@@ -36,16 +36,19 @@ final class TelegramTarget implements TargetInterface
 
     public function sendRssItem(RssEntry $item): void
     {
+        $markdownEscapeRegex = '/([*_\[\]()>~#+=|{}.!-])/';
+
         $body = html_entity_decode($item->getDescription());
         $body = strip_tags($body);
         $body = trim($body);
-        $body = preg_replace('/([*_\[\]()])/', '\\\$1', $body); // TODO
+        $body = preg_replace($markdownEscapeRegex, '\\\$1', $body);
 
-        $result = '*' . $item->getTitle() . "*\n";
+        $result = '*' . preg_replace($markdownEscapeRegex, '\\\$1', $item->getTitle()) . "*\n";
+        $result .= '_' . $item->getSourceTitle() . "_\n\n";
         $result .= $body . "\n\n";
 
         if ($item->getLink() !== null) {
-            $result .= "[Читать дальше ->](" . $item->getLink() . ")";
+            $result .= "[Read more →](" . $item->getLink() . ")";
         }
 
         $message = new TelegramMessage($result, MessageFormat::markdown());

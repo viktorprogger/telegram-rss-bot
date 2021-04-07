@@ -35,8 +35,7 @@
         "config-plugin": {
             "console": [
                 "$common",
-                "config/console.php",
-                "?config/console-local.php"
+                "config/console.php"
             ],
             "params": [
                 "$params",

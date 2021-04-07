@@ -15,6 +15,7 @@ final class Source implements SourceInterface
     private array $targets;
 
     public function __construct(
+        private string $title,
         private string $url,
         private FeedIo $reader,
         TargetIdInterface ...$targets
@@ -37,7 +38,13 @@ final class Source implements SourceInterface
         $itemsSource = $this->reader->read($this->url)->getFeed();
 
         foreach ($itemsSource as $item) {
-            yield new RssEntry($item->getTitle(), $item->getDescription(), $item->getLastModified(), $item->getLink());
+            yield new RssEntry(
+                $this->title,
+                $item->getTitle(),
+                $item->getDescription(),
+                $item->getLastModified(),
+                $item->getLink()
+            );
         }
     }
 

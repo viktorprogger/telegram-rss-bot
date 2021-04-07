@@ -18,8 +18,13 @@ $config = new Config(
     '/config/packages',
 );
 
+$diConfig = $config->get('console');
+if (file_exists(__DIR__ . '/config/console-local.php')) {
+    $diConfig = array_merge($diConfig, require __DIR__ . '/config/console-local.php');
+}
+
 $container = new Container(
-    $config->get('console'),
+    $diConfig,
     $config->get('providers-console'),
 );
 
@@ -32,7 +37,7 @@ $exitCode = 1;
 try {
     $application->start();
     $exitCode = $application->run(null, new ConsoleBufferedOutput());
-} catch (\Error $error) {
+} catch (Error $error) {
     $application->renderThrowable($error, new ConsoleBufferedOutput());
 } finally {
     $application->shutdown($exitCode);
