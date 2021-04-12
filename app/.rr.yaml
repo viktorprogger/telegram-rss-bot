@@ -24,7 +24,7 @@ server:
   # Worker starting command, with any required arguments.
   #
   # This option is required.
-  command: "php public/index.php"
+  command: "php /var/www/public/index.php"
 
 # Logging settings (docs: https://roadrunner.dev/docs/beep-beep-logging)
 logs:
