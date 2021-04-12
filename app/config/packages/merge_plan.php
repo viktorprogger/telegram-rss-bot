@@ -14,10 +14,16 @@ return [
         'yiisoft/log-target-file' => [
             'common.php',
         ],
-        'yiisoft/validator' => [
+        'yiisoft/router-fastroute' => [
             'common.php',
         ],
         'yiisoft/yii-cycle' => [
+            'common.php',
+        ],
+        'yiisoft/router' => [
+            'common.php',
+        ],
+        'yiisoft/validator' => [
             'common.php',
         ],
         'yiisoft/yii-event' => [
@@ -76,6 +82,9 @@ return [
         'yiisoft/log-target-file' => [
             'params.php',
         ],
+        'yiisoft/router-fastroute' => [
+            'params.php',
+        ],
         'yiisoft/yii-cycle' => [
             'params.php',
         ],
@@ -95,11 +104,27 @@ return [
         ],
     ],
     'providers-web' => [
+        '/' => [
+            'config/providers-web.php',
+        ],
         'yiisoft/yii-cycle' => [
             'providers-web.php',
         ],
     ],
     'web' => [
+        '/' => [
+            '$common',
+            'config/web.php',
+        ],
+        'yiisoft/error-handler' => [
+            'web.php',
+        ],
+        'yiisoft/router-fastroute' => [
+            'web.php',
+        ],
+        'yiisoft/middleware-dispatcher' => [
+            'web.php',
+        ],
         'yiisoft/yii-event' => [
             'web.php',
         ],

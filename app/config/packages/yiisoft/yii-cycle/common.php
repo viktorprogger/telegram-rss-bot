@@ -43,7 +43,6 @@ return [
             $container->get(DatabaseManager::class),
             null,
             $container->get(SpiralFactoryInterface::class),
-            $container
         );
     },
     // Schema provider

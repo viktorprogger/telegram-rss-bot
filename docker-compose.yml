@@ -17,7 +17,7 @@ services:
             DB_LOGIN: ${DB_LOGIN}
             DB_PASSWORD: ${DB_PASSWORD}
             RSS_BOT_TOKEN: ${RSS_BOT_TOKEN}
-            XDEBUG_SESSION: "${XDEBUG_AUTOSTART:-0}"
+            XDEBUG_SESSION: "${XDEBUG_AUTOSTART:-}"
         env_file:
             - .env
         links:

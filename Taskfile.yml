@@ -71,7 +71,7 @@ tasks:
         vars:
           c: composer require {{.c}}
 
-  composer:remove:
+  composer:rm:
     cmds:
       - task: bot:run
         vars:
