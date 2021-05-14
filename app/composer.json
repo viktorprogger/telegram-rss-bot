@@ -14,7 +14,7 @@
         "yiisoft/cache-file": "^1.0",
         "yiisoft/config": "1.0.x-dev",
         "yiisoft/di": "^3.0@dev",
-        "yiisoft/error-handler": "3.0.x-dev",
+        "yiisoft/error-handler": "^1.0",
         "yiisoft/factory": "^3.0@dev",
         "yiisoft/friendly-exception": "^1.0",
         "yiisoft/log": "^1.0",
@@ -24,6 +24,8 @@
         "yiisoft/validator": "3.0.x-dev",
         "yiisoft/yii-console": "^3.0@dev",
         "yiisoft/yii-cycle": "3.0.x-dev",
+        "yiisoft/yii-queue": "dev-channel-factory",
+        "yiisoft/yii-queue-amqp": "dev-channel-factory",
         "yiisoft/yii-web": "3.0.x-dev"
     },
     "require-dev": {

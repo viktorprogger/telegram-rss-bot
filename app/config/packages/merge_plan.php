@@ -20,6 +20,9 @@ return [
         'yiisoft/yii-cycle' => [
             'common.php',
         ],
+        'yiisoft/yii-queue-amqp' => [
+            'common.php',
+        ],
         'yiisoft/router' => [
             'common.php',
         ],
@@ -30,6 +33,9 @@ return [
             'common.php',
         ],
         'yiisoft/aliases' => [
+            'common.php',
+        ],
+        'yiisoft/yii-queue' => [
             'common.php',
         ],
     ],
@@ -92,6 +98,9 @@ return [
             'params.php',
         ],
         'yiisoft/aliases' => [
+            'params.php',
+        ],
+        'yiisoft/yii-queue' => [
             'params.php',
         ],
     ],
