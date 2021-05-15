@@ -8,7 +8,9 @@ use Yiisoft\Yii\Queue\AMQP\Adapter;
 use Yiisoft\Yii\Queue\Cli\LoopInterface;
 use Yiisoft\Yii\Queue\Cli\SignalLoop;
 use Yiisoft\Yii\Queue\Cli\SimpleLoop;
+use Yiisoft\Yii\Queue\Queue;
 use Yiisoft\Yii\Queue\QueueFactory;
+use Yiisoft\Yii\Queue\QueueInterface;
 use Yiisoft\Yii\Queue\Worker\Worker as QueueWorker;
 use Yiisoft\Yii\Queue\Worker\WorkerInterface;
 
@@ -27,9 +29,9 @@ return [
     },
     QueueFactory::class => [
         '__construct()' => [
-            'definitions' => $params['yiisoft/yii-queue']['channel-definitions'],
+            'channelConfiguration' => $params['yiisoft/yii-queue']['channel-definitions'],
             'enableRuntimeChannelDefinition' => true,
         ],
     ],
-    AdapterInterface::class => Adapter::class,
+    QueueInterface::class => Queue::class,
 ];

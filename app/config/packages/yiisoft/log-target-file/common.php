@@ -5,6 +5,7 @@ declare(strict_types=1);
 use Psr\Log\LoggerInterface;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Log\Logger;
+use Yiisoft\Log\StreamTarget;
 use Yiisoft\Log\Target\File\FileRotator;
 use Yiisoft\Log\Target\File\FileRotatorInterface;
 use Yiisoft\Log\Target\File\FileTarget;
@@ -12,7 +13,7 @@ use Yiisoft\Log\Target\File\FileTarget;
 /* @var $params array */
 
 return [
-    LoggerInterface::class => static fn (FileTarget $fileTarget) => new Logger([$fileTarget]),
+    LoggerInterface::class => static fn (FileTarget $fileTarget) => (new Logger([new StreamTarget(), $fileTarget]))->setFlushInterval(0),
 
     FileRotatorInterface::class => [
         'class' => FileRotator::class,

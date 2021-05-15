@@ -68,12 +68,12 @@
         "web.php": "7b30a1ef334d708d7df893d10badf134"
     },
     "yiisoft/yii-queue": {
-        "version": "dev-channel-factory 926b58f",
-        "common.php": "416366c3707466dd2cf5186d7d3a11d9",
+        "version": "dev-channel-factory 9ec7d36",
+        "common.php": "26276d04502ddb10ee60c5e52bf687b7",
         "params.php": "8256c857e805c4ea5fb4e86b1d3195e9"
     },
     "yiisoft/yii-queue-amqp": {
-        "version": "dev-channel-factory 73ba0b4",
-        "common.php": "14191e262bfc5c704b8621bf3c79bccb"
+        "version": "dev-channel-factory c0b2f77",
+        "common.php": "9d295f9de3fbb873be3357a4011e0b83"
     }
 }

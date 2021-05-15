@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Resender\SubDomain\Rss\Infrastructure\QueueHandler\SourceHandler;
 use Yiisoft\Yii\Queue\Command\ListenCommand;
 use Yiisoft\Yii\Queue\Command\RunCommand;
 
@@ -13,7 +14,9 @@ return [
         ],
     ],
     'yiisoft/yii-queue' => [
-        'handlers' => [],
+        'handlers' => [
+            SourceHandler::MESSAGE_NAME => [SourceHandler::class, 'handle'],
+        ],
         'channel-definitions' => [],
     ],
 ];

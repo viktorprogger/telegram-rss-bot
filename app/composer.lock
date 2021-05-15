@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a34bb80f4e87427118f91209156fbdc",
+    "content-hash": "d69283b8fcaf94adbdd933d9fed8f2c0",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -6914,12 +6914,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii-queue.git",
-                "reference": "926b58fa50488f6dac8f57fe401f4558b399dae1"
+                "reference": "c8f5d68d86b5d2267643f8136643888432c1af4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii-queue/zipball/926b58fa50488f6dac8f57fe401f4558b399dae1",
-                "reference": "926b58fa50488f6dac8f57fe401f4558b399dae1",
+                "url": "https://api.github.com/repos/yiisoft/yii-queue/zipball/c8f5d68d86b5d2267643f8136643888432c1af4b",
+                "reference": "c8f5d68d86b5d2267643f8136643888432c1af4b",
                 "shasum": ""
             },
             "require": {
@@ -6990,7 +6990,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-05-06T23:08:35+00:00"
+            "time": "2021-05-15T19:08:35+00:00"
         },
         {
             "name": "yiisoft/yii-queue-amqp",
@@ -6998,12 +6998,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii-queue-amqp.git",
-                "reference": "73ba0b46f9df95d90b440a378117cde3881fd5c5"
+                "reference": "c0b2f77a564c06d83a6a5258665ccb88feb2826f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii-queue-amqp/zipball/73ba0b46f9df95d90b440a378117cde3881fd5c5",
-                "reference": "73ba0b46f9df95d90b440a378117cde3881fd5c5",
+                "url": "https://api.github.com/repos/yiisoft/yii-queue-amqp/zipball/c0b2f77a564c06d83a6a5258665ccb88feb2826f",
+                "reference": "c0b2f77a564c06d83a6a5258665ccb88feb2826f",
                 "shasum": ""
             },
             "require": {
@@ -7068,7 +7068,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-05-14T12:36:02+00:00"
+            "time": "2021-05-15T19:02:14+00:00"
         },
         {
             "name": "yiisoft/yii-web",

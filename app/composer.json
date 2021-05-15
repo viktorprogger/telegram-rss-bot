@@ -49,6 +49,7 @@
     "extra": {
         "config-plugin-options": { "force-check": true },
         "config-plugin": {
+            "common": "config/common.php",
             "console": [
                 "$common",
                 "config/console.php"

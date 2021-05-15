@@ -5,6 +5,9 @@ declare(strict_types=1);
 // Do not edit. Content will be replaced.
 return [
     'common' => [
+        '/' => [
+            'config/common.php',
+        ],
         'yiisoft/cache' => [
             'common.php',
         ],

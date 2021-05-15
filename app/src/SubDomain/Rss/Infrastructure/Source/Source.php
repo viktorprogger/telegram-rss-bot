@@ -42,7 +42,7 @@ final class Source implements SourceInterface
             yield new Entry(
                 $this->title,
                 $item->getTitle(),
-                $item->getDescription(),
+                $item->getContent(),
                 $item->getLastModified(),
                 $item->getLink()
             );
