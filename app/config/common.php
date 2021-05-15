@@ -7,21 +7,21 @@ use FeedIo\Adapter\Guzzle\Client as GuzzleFeedClient;
 use FeedIo\FeedIo;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
-use Resender\Domain\Source\SourceRepositoryInterface;
-use Resender\Domain\Target\TargetRepositoryInterface;
-use Resender\Infrastructure\SentryInitiator;
-use Resender\Infrastructure\Source\Rss\Source;
-use Resender\Infrastructure\Source\StaticSourceRepository;
-use Resender\Infrastructure\Target\StaticTargetRepository;
-use Resender\Infrastructure\Target\StringTargetId;
-use Resender\Infrastructure\Target\Telegram\TelegramClientGuzzle;
-use Resender\Infrastructure\Target\Telegram\TelegramClientInterface;
-use Resender\Infrastructure\Target\Telegram\TelegramTarget;
+use Resender\SubDomain\Rss\Domain\Source\SourceRepositoryInterface;
+use Resender\SubDomain\Rss\Domain\Target\TargetRepositoryInterface;
+use Resender\SubDomain\Rss\Infrastructure\SentryInitiator;
+use Resender\SubDomain\Rss\Infrastructure\Source\Source;
+use Resender\SubDomain\Rss\Infrastructure\Source\StaticSourceRepository;
+use Resender\SubDomain\Rss\Infrastructure\Target\StaticTargetRepository;
+use Resender\SubDomain\Rss\Infrastructure\Target\StringTargetId;
+use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramClientInterface;
+use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramClientStdout;
+use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramTarget;
 
 return [
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleInterface::class => Guzzle::class,
-    TelegramClientInterface::class => TelegramClientGuzzle::class,
+    TelegramClientInterface::class => TelegramClientStdout::class,
     SentryInitiator::class => [
         '__construct()' => ['https://b6a226cfb9b94b928832bcd27d24f9b1@o566448.ingest.sentry.io/5709307'],
     ],
@@ -40,7 +40,12 @@ return [
 
     TargetRepositoryInterface::class => static function (TelegramClientInterface $client) {
         $targets = [
-            'tg-php-info' => new TelegramTarget(getenv('RSS_BOT_TOKEN'), '@vitorprogger_php_info', $client),
+            'tg-php-info' => new TelegramTarget(
+                'tg-php-info',
+                getenv('RSS_BOT_TOKEN'),
+                '@vitorprogger_php_info',
+                $client
+            ),
         ];
 
         return new StaticTargetRepository($targets);

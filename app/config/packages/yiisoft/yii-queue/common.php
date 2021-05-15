@@ -26,7 +26,7 @@ return [
             : $container->get(SimpleLoop::class);
     },
     QueueFactory::class => [
-        '__construct' => [
+        '__construct()' => [
             'definitions' => $params['yiisoft/yii-queue']['channel-definitions'],
             'enableRuntimeChannelDefinition' => true,
         ],

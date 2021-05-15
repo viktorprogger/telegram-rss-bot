@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Resender\Infrastructure\Commands\SourcesCommand;
+use Resender\SubDomain\Rss\Infrastructure\Commands\SourcesCommand;
 use Yiisoft\Yii\Console\Command\Serve;
 
 return [
