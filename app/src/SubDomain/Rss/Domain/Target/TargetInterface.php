@@ -10,5 +10,5 @@ interface TargetInterface
 {
     public function getId(): TargetIdInterface;
 
-    public function sendRssItem(Entry $item): void;
+    public function send(Entry $item): void;
 }

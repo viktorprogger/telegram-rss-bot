@@ -4,29 +4,21 @@ declare(strict_types=1);
 
 namespace Resender\SubDomain\Rss\Infrastructure\Source\Entity;
 
-/**
- * @Entity(table="rss_cache", role="rss_cache")
- */
+use Cycle\Annotated\Annotation\Column;
+use Cycle\Annotated\Annotation\Entity;
+
+#[Entity(role: 'rss_cache', table: 'rss_cache')]
 final class RssCache
 {
-    /**
-     * @Column(type="primary")
-     * @var int
-     */
+    #[Column(type: 'primary')]
     public ?int $id = null;
-    /**
-     * @Column(type="string")
-     * @var string
-     */
+
+    #[Column(type: 'string')]
     public string $hash;
-    /**
-     * @Column(type="string")
-     * @var string
-     */
+
+    #[Column(type: 'string')]
     public string $source_id;
-    /**
-     * @Column(type="string")
-     * @var string
-     */
+
+    #[Column(type: 'string')]
     public string $target_id;
 }

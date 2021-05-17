@@ -96,7 +96,7 @@ return [
          * {@see \Yiisoft\Aliases\Aliases} are also supported.
          */
         'annotated-entity-paths' => [
-            '@root/src/Infrastructure',
+            '@root/src',
         ],
     ],
 ];

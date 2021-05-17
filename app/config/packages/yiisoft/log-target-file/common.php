@@ -13,7 +13,8 @@ use Yiisoft\Log\Target\File\FileTarget;
 /* @var $params array */
 
 return [
-    LoggerInterface::class => static fn (FileTarget $fileTarget) => (new Logger([new StreamTarget(), $fileTarget]))->setFlushInterval(0),
+    StreamTarget::class => static fn() => (new StreamTarget())->setExportInterval(1),
+    LoggerInterface::class => static fn (StreamTarget $streamTarget, FileTarget $fileTarget) => (new Logger([$streamTarget, $fileTarget]))->setFlushInterval(1),
 
     FileRotatorInterface::class => [
         'class' => FileRotator::class,

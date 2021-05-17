@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Resender\SubDomain\Rss\Domain;
 
-use Cycle\ORM\ORM;
-use Cycle\ORM\Transaction;
 use Resender\SubDomain\Rss\Domain\Source\SourceInterface;
-use Resender\SubDomain\Rss\Domain\Target\TargetRepositoryInterface;
 use Resender\SubDomain\Rss\Infrastructure\QueueHandler\TargetHandler;
-use Resender\SubDomain\Rss\Infrastructure\Source\Entity\RssCache;
 use Yiisoft\Yii\Queue\Message\Message;
 use Yiisoft\Yii\Queue\QueueFactory;
 
@@ -35,7 +31,7 @@ final class SourceProcessor
 
             foreach ($source->getTargetIds() as $id) {
                 $data = [
-                    'target' => $id,
+                    'target' => $id->value(),
                     'item' => $itemArray,
                     'sourceId' => $source->getId(),
                 ];

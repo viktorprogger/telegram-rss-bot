@@ -14,14 +14,14 @@ use Resender\SubDomain\Rss\Infrastructure\Source\Source;
 use Resender\SubDomain\Rss\Infrastructure\Source\StaticSourceRepository;
 use Resender\SubDomain\Rss\Infrastructure\Target\StaticTargetRepository;
 use Resender\SubDomain\Rss\Infrastructure\Target\StringTargetId;
+use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramClientGuzzle;
 use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramClientInterface;
-use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramClientStdout;
 use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramTarget;
 
 return [
     FeedClientInterface::class => GuzzleFeedClient::class,
     GuzzleInterface::class => Guzzle::class,
-    TelegramClientInterface::class => TelegramClientStdout::class,
+    TelegramClientInterface::class => TelegramClientGuzzle::class,
     SentryInitiator::class => [
         '__construct()' => ['https://b6a226cfb9b94b928832bcd27d24f9b1@o566448.ingest.sentry.io/5709307'],
     ],
@@ -41,7 +41,7 @@ return [
     TargetRepositoryInterface::class => static function (TelegramClientInterface $client) {
         $targets = [
             'tg-php-info' => new TelegramTarget(
-                'tg-php-info',
+                new StringTargetId('tg-php-info'),
                 getenv('RSS_BOT_TOKEN'),
                 '@vitorprogger_php_info',
                 $client

@@ -9,7 +9,7 @@ use Resender\SubDomain\Rss\Domain\Source\SourceRepositoryInterface;
 use Resender\SubDomain\Rss\Domain\SourceProcessor;
 use Yiisoft\Yii\Queue\Message\MessageInterface;
 
-class SourceHandler
+final class SourceHandler
 {
     public const CHANNEL_NAME = 'rss-source';
     public const MESSAGE_NAME = 'rss-source';
@@ -18,8 +18,7 @@ class SourceHandler
         private SourceProcessor $sourceProcessor,
         private SourceRepositoryInterface $repository,
         private LoggerInterface $logger,
-    )
-    {
+    ) {
     }
 
     public function handle(MessageInterface $message): void

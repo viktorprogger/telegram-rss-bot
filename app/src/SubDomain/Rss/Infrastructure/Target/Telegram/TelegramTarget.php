@@ -7,7 +7,6 @@ namespace Resender\SubDomain\Rss\Infrastructure\Target\Telegram;
 use Resender\SubDomain\Rss\Domain\Source\Entry;
 use Resender\SubDomain\Rss\Domain\Target\TargetIdInterface;
 use Resender\SubDomain\Rss\Domain\Target\TargetInterface;
-use RuntimeException;
 
 final class TelegramTarget implements TargetInterface
 {
@@ -28,7 +27,7 @@ final class TelegramTarget implements TargetInterface
      * @see https://core.telegram.org/bots/api#sendmessage
      * @see https://core.telegram.org/bots/faq#my-bot-is-hitting-limits-how-do-i-avoid-this
      */
-    private function send(TelegramMessage $message): void
+    private function sendInternal(TelegramMessage $message): void
     {
         $format = null;
         if ($message->getFormat()->isMarkdown()) {
@@ -40,7 +39,7 @@ final class TelegramTarget implements TargetInterface
         $this->client->send($this->token, $this->chatId, $message->getText(), $format);
     }
 
-    public function sendRssItem(Entry $item): void
+    public function send(Entry $item): void
     {
         $markdownEscapeRegex = '/([*_\[\]()>~#+=|{}.!-])/';
 
@@ -58,6 +57,6 @@ final class TelegramTarget implements TargetInterface
         }
 
         $message = new TelegramMessage($result, MessageFormat::markdown());
-        $this->send($message);
+        $this->sendInternal($message);
     }
 }

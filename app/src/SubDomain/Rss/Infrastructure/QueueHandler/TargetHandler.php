@@ -54,7 +54,7 @@ final class TargetHandler
             $rssItemCache->target_id = $target->getId()->value();
             $rssItemCache->hash = $entry->getHash();
 
-            $target->sendRssItem($entry);
+            $target->send($entry);
 
             $tr->persist($rssItemCache);
             $tr->run();
