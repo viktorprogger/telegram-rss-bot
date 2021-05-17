@@ -7,18 +7,27 @@
         "cycle/annotated": "^2.2",
         "debril/feed-io": "^4.5",
         "guzzlehttp/guzzle": "^7.3.0",
+        "httpsoft/http-message": "^1.0",
         "sentry/sdk": "^3.1",
+        "spiral/roadrunner": "v2.0",
         "yiisoft/cache": "^1.0",
         "yiisoft/cache-file": "^1.0",
         "yiisoft/config": "1.0.x-dev",
         "yiisoft/di": "^3.0@dev",
+        "yiisoft/error-handler": "^1.0",
         "yiisoft/factory": "^3.0@dev",
         "yiisoft/friendly-exception": "^1.0",
         "yiisoft/log": "^1.0",
         "yiisoft/log-target-file": "^1.0",
-        "yiisoft/validator": "^3.0@dev",
+        "yiisoft/router": "3.0.x-dev",
+        "yiisoft/router-fastroute": "3.0.x-dev",
+        "yiisoft/validator": "3.0.x-dev",
         "yiisoft/yii-console": "^3.0@dev",
-        "yiisoft/yii-cycle": "3.0.x-dev"
+        "yiisoft/yii-cycle": "3.0.x-dev",
+        "yiisoft/yii-event": "^1.0",
+        "yiisoft/yii-queue": "dev-channel-factory",
+        "yiisoft/yii-queue-amqp": "dev-channel-factory",
+        "yiisoft/yii-web": "3.0.x-dev"
     },
     "require-dev": {
         "infection/infection": "^0.21.5",
@@ -41,12 +50,20 @@
     "extra": {
         "config-plugin-options": { "force-check": true },
         "config-plugin": {
+            "common": "config/common.php",
             "console": [
                 "$common",
                 "config/console.php"
             ],
+            "web": [
+                "$common",
+                "config/web.php"
+            ],
             "providers-console": [
                 "config/providers-console.php"
+            ],
+            "providers-web": [
+                "config/providers-web.php"
             ],
             "params": [
                 "$params",

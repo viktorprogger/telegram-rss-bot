@@ -5,6 +5,9 @@ declare(strict_types=1);
 // Do not edit. Content will be replaced.
 return [
     'common' => [
+        '/' => [
+            'config/common.php',
+        ],
         'yiisoft/cache' => [
             'common.php',
         ],
@@ -14,16 +17,28 @@ return [
         'yiisoft/log-target-file' => [
             'common.php',
         ],
-        'yiisoft/validator' => [
+        'yiisoft/router-fastroute' => [
             'common.php',
         ],
         'yiisoft/yii-cycle' => [
+            'common.php',
+        ],
+        'yiisoft/yii-queue-amqp' => [
+            'common.php',
+        ],
+        'yiisoft/router' => [
+            'common.php',
+        ],
+        'yiisoft/validator' => [
             'common.php',
         ],
         'yiisoft/yii-event' => [
             'common.php',
         ],
         'yiisoft/aliases' => [
+            'common.php',
+        ],
+        'yiisoft/yii-queue' => [
             'common.php',
         ],
     ],
@@ -76,6 +91,9 @@ return [
         'yiisoft/log-target-file' => [
             'params.php',
         ],
+        'yiisoft/router-fastroute' => [
+            'params.php',
+        ],
         'yiisoft/yii-cycle' => [
             'params.php',
         ],
@@ -83,6 +101,9 @@ return [
             'params.php',
         ],
         'yiisoft/aliases' => [
+            'params.php',
+        ],
+        'yiisoft/yii-queue' => [
             'params.php',
         ],
     ],
@@ -95,11 +116,27 @@ return [
         ],
     ],
     'providers-web' => [
+        '/' => [
+            'config/providers-web.php',
+        ],
         'yiisoft/yii-cycle' => [
             'providers-web.php',
         ],
     ],
     'web' => [
+        '/' => [
+            '$common',
+            'config/web.php',
+        ],
+        'yiisoft/error-handler' => [
+            'web.php',
+        ],
+        'yiisoft/router-fastroute' => [
+            'web.php',
+        ],
+        'yiisoft/middleware-dispatcher' => [
+            'web.php',
+        ],
         'yiisoft/yii-event' => [
             'web.php',
         ],

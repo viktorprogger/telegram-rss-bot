@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Resender\Test\Unit\Infrastructure\Source;
 
 use PHPUnit\Framework\TestCase;
-use Resender\Domain\Source\SourceInterface;
-use Resender\Infrastructure\Source\StaticSourceRepository;
+use Resender\SubDomain\Rss\Domain\Source\SourceInterface;
+use Resender\SubDomain\Rss\Infrastructure\Source\StaticSourceRepository;
 
 class StaticSourceRepositoryTest extends TestCase
 {
