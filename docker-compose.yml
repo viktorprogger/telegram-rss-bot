@@ -18,8 +18,7 @@ services:
             DB_PASSWORD: ${DB_PASSWORD}
             RSS_BOT_TOKEN: ${RSS_BOT_TOKEN}
             XDEBUG_MODE: ${XDEBUG_MODE:-off}
-            XDEBUG_CONFIG: "client_host=host.docker.internal start_with_request=${XDEBUG_START_POLICY:-default} log=/var/www/xdebug.log"
-            XDEBUG_TRIGGER: ''
+            XDEBUG_CONFIG: "client_host=host.docker.internal"
         ports:
             - "${WEB_PORT:-80}:80"
         env_file:

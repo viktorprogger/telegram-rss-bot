@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Resender\SubDomain\Rss\Infrastructure\Target\Telegram;
 
+use Resender\Domain\Client\Telegram\MessageFormat;
+use Resender\Domain\Client\Telegram\TelegramMessage;
+use Resender\Domain\Client\TelegramClientInterface;
 use Resender\SubDomain\Rss\Domain\Source\Entry;
 use Resender\SubDomain\Rss\Domain\Target\TargetIdInterface;
 use Resender\SubDomain\Rss\Domain\Target\TargetInterface;

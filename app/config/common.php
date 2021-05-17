@@ -7,6 +7,8 @@ use FeedIo\Adapter\Guzzle\Client as GuzzleFeedClient;
 use FeedIo\FeedIo;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
+use Resender\Domain\Client\TelegramClientInterface;
+use Resender\Infrastructure\Client\Telegram\TelegramClientGuzzle;
 use Resender\SubDomain\Rss\Domain\Source\SourceRepositoryInterface;
 use Resender\SubDomain\Rss\Domain\Target\TargetRepositoryInterface;
 use Resender\SubDomain\Rss\Infrastructure\SentryInitiator;
@@ -14,8 +16,6 @@ use Resender\SubDomain\Rss\Infrastructure\Source\Source;
 use Resender\SubDomain\Rss\Infrastructure\Source\StaticSourceRepository;
 use Resender\SubDomain\Rss\Infrastructure\Target\StaticTargetRepository;
 use Resender\SubDomain\Rss\Infrastructure\Target\StringTargetId;
-use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramClientGuzzle;
-use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramClientInterface;
 use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramTarget;
 
 return [

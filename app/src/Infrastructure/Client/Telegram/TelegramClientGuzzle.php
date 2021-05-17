@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Resender\SubDomain\Rss\Infrastructure\Target\Telegram;
+namespace Resender\Infrastructure\Client\Telegram;
 
 use GuzzleHttp\Client;
+use Resender\Domain\Client\TelegramClientInterface;
 
 final class TelegramClientGuzzle implements TelegramClientInterface
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Resender\SubDomain\Rss\Infrastructure\Target\Telegram;
+namespace Resender\Domain\Client\Telegram;
 
 use InvalidArgumentException;
 

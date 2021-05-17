@@ -13,7 +13,9 @@ use Yiisoft\Log\Target\File\FileTarget;
 /* @var $params array */
 
 return [
-    StreamTarget::class => static fn() => (new StreamTarget())->setExportInterval(1),
+    StreamTarget::class => static fn() => (new StreamTarget())
+        ->setExportInterval(1)
+        ->setLevels($params['yiisoft/log']['levels']),
     LoggerInterface::class => static fn (StreamTarget $streamTarget, FileTarget $fileTarget) => (new Logger([$streamTarget, $fileTarget]))->setFlushInterval(1),
 
     FileRotatorInterface::class => [
@@ -35,7 +37,7 @@ return [
             $params['yiisoft/log-target-file']['fileTarget']['fileMode'],
         );
 
-        $fileTarget->setLevels($params['yiisoft/log-target-file']['fileTarget']['levels']);
+        $fileTarget->setLevels($params['yiisoft/log']['levels']);
 
         return $fileTarget;
     },
