@@ -7,6 +7,7 @@ RUN apk --no-cache add \
         mysql-dev \
         oniguruma-dev \
         icu-dev \
+        gmp-dev \
         gettext-dev \
         g++ \
         autoconf \
@@ -19,6 +20,7 @@ RUN apk --no-cache add \
         pdo_mysql \
         pcntl \
         sockets \
+        gmp \
         > /dev/null && \
     pecl install xdebug-$XDEBUG_VERSION > /dev/null && \
         docker-php-ext-enable xdebug > /dev/null && \

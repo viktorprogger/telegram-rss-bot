@@ -8,6 +8,8 @@
         "debril/feed-io": "^4.5",
         "guzzlehttp/guzzle": "^7.3.0",
         "httpsoft/http-message": "^1.0",
+        "moneyphp/money": "^4.0",
+        "ramsey/uuid": "^4.1",
         "sentry/sdk": "^3.1",
         "spiral/roadrunner": "v2.0",
         "yiisoft/cache": "^1.0",
