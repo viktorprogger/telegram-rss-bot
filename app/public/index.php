@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Resender\SubDomain\Rss\Infrastructure\Web\ApplicationRunner;
+use Resender\Infrastructure\Web\ApplicationRunner;
 
 file_put_contents(dirname(__DIR__) . '/runtime/logs/test.php', date('[Y-m-d H:i:s]') . "  test\n", FILE_APPEND);
 

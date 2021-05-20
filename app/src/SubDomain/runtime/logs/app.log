@@ -1,0 +1,24 @@
+2021-05-20 14:12:15.182000 [error][application] Yiisoft\ErrorHandler\Exception\ErrorException with message 'require(/var/www/src/SubDomain/config/packages/merge_plan.php): Failed to open stream: No such file or directory' 
+
+in /var/www/vendor/yiisoft/config/src/Config.php:48
+
+Stack trace:
+#0 /var/www/vendor/yiisoft/error-handler/src/ErrorHandler.php(122): Yiisoft\ErrorHandler\Exception\ErrorException->__construct(message: ''require(/var/w...', code: '2', severity: '2', filename: ''/var/www/vendo...', line: '48', previous: '???')
+#1 /var/www/vendor/yiisoft/config/src/Config.php(48): Yiisoft\ErrorHandler\ErrorHandler::Yiisoft\ErrorHandler\{closure:/var/www/vendor/yiisoft/error-handler/src/ErrorHandler.php:116-123}(severity: '2', message: ''require(/var/w...', file: ''/var/www/vendo...', line: '48')
+#2 /var/www/src/SubDomain/Rss/Infrastructure/Web/ApplicationRunner.php(51): Yiisoft\Config\Config->__construct(rootPath: ''/var/www/src/S...', configsPath: ''/config/packag...')
+#3 /var/www/public/index.php(13): Resender\SubDomain\Rss\Infrastructure\Web\ApplicationRunner->run()
+#4 {main}
+
+Message context:
+
+throwable: Yiisoft\ErrorHandler\Exception\ErrorException: require(/var/www/src/SubDomain/config/packages/merge_plan.php): Failed to open stream: No such file or directory in /var/www/vendor/yiisoft/config/src/Config.php:48
+Stack trace:
+#0 /var/www/vendor/yiisoft/error-handler/src/ErrorHandler.php(122): Yiisoft\ErrorHandler\Exception\ErrorException->__construct(message: ''require(/var/w...', code: '2', severity: '2', filename: ''/var/www/vendo...', line: '48', previous: '???')
+#1 /var/www/vendor/yiisoft/config/src/Config.php(48): Yiisoft\ErrorHandler\ErrorHandler::Yiisoft\ErrorHandler\{closure:/var/www/vendor/yiisoft/error-handler/src/ErrorHandler.php:116-123}(severity: '2', message: ''require(/var/w...', file: ''/var/www/vendo...', line: '48')
+#2 /var/www/src/SubDomain/Rss/Infrastructure/Web/ApplicationRunner.php(51): Yiisoft\Config\Config->__construct(rootPath: ''/var/www/src/S...', configsPath: ''/config/packag...')
+#3 /var/www/public/index.php(13): Resender\SubDomain\Rss\Infrastructure\Web\ApplicationRunner->run()
+#4 {main}
+time: 1621519935.182042
+memory: 1150784
+category: 'application'
+

@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Resender\SubDomain\Rss\Infrastructure\Web;
+namespace Resender\Infrastructure\Web;
 
 use Psr\Container\ContainerInterface;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -15,15 +14,11 @@ use Yiisoft\Config\Config;
 use Yiisoft\Di\Container;
 use Yiisoft\ErrorHandler\ErrorHandler;
 use Yiisoft\ErrorHandler\Middleware\ErrorCatcher;
-use Yiisoft\ErrorHandler\Renderer\HtmlRenderer;
 use Yiisoft\ErrorHandler\Renderer\PlainTextRenderer;
-use Yiisoft\Http\Method;
 use Yiisoft\Log\Logger;
 use Yiisoft\Log\Target\File\FileTarget;
 use Yiisoft\Yii\Event\ListenerConfigurationChecker;
 use Yiisoft\Yii\Web\Application;
-use Yiisoft\Yii\Web\SapiEmitter;
-use Yiisoft\Yii\Web\ServerRequestFactory;
 
 use function dirname;
 use function microtime;
