@@ -76,3 +76,9 @@ tasks:
       - task: bot:run
         vars:
           c: composer remove {{.c}}
+
+  rr:serve:
+    cmds:
+      - task: bot:run
+        vars:
+          c: ./rr serve
