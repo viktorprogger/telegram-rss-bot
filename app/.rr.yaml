@@ -1,61 +1,23 @@
-######################################################################################
-#                       THIS IS SAMPLE OF THE CONFIGURATION                          #
-# IT'S NOT A DEFAULT CONFIGURATION, IT'S JUST A REFERENCE TO ALL OPTIONS AND PLUGINS #
-#       MORE DOCS CAN BE FOUND HERE: <https://roadrunner.dev/docs/intro-config>      #
-######################################################################################
-
+# Docs: https://roadrunner.dev/docs/intro-config
 # Production usage guide: https://roadrunner.dev/docs/beep-beep-production
 
 # Hint: RR will replace any config options using reference to environment variables,
 # eg.: `option_key: ${ENVIRONMENT_VARIABLE_NAME}`.
 
-# Important: TCP port numbers for each plugin (rpc, http, etc) must be unique!
-
-# Remote Procedures Calling (docs: https://roadrunner.dev/docs/beep-beep-rpc)
-# Is used for connecting to RoadRunner server from your PHP workers.
-
 # Application server settings (docs: https://roadrunner.dev/docs/php-worker)
 server:
-  # Worker starting command, with any required arguments.
-  #
-  # This option is required.
   command: "php /var/www/public/index.php"
 
-# Logging settings (docs: https://roadrunner.dev/docs/beep-beep-logging)
+# https://roadrunner.dev/docs/beep-beep-logging
 logs:
-  # Logging mode can be "development" or "production". Do not forget to change this value for production environment.
-  #
-  # Development mode (which makes DPanicLevel logs panic), uses a console encoder, writes to standard error, and
-  # disables sampling. Stacktraces are automatically included on logs of WarnLevel and above.
-  #
-  # Default: "development"
   mode: development
-
-  # Logging level can be "panic", "error", "warning", "info", "debug".
-  #
-  # Default: "debug"
   level: debug
-
-  # Encoding format can be "console" or "json" (last is preferred for production usage).
-  #
-  # Default: "console"
   encoding: console
-
-  # Output can be file (eg.: "/var/log/rr_errors.log"), "stderr" or "stdout".
-  #
-  # Default: "stderr"
   output: stdout
-
-  # Errors only output can be file (eg.: "/var/log/rr_errors.log"), "stderr" or "stdout".
-  #
-  # Default: "stderr"
   err_output: stderr
 
-# HTTP plugin settings.
+# https://roadrunner.dev/docs/http-https
 http:
-  # Host and port to listen on (eg.: `127.0.0.1:8080`).
-  #
-  # This option is required.
   address: 0.0.0.0:80
 
   # Maximal incoming request size in megabytes. Zero means no limit.
@@ -92,9 +54,7 @@ http:
     # Default: 60s
     destroy_timeout: 60s
 
-    # Supervisor is used to control http workers (previous name was "limit", docs:
-    # https://roadrunner.dev/docs/php-limit). "Soft" limits will not interrupt current request processing. "Hard"
-    # limit on the contrary - interrupts the execution of the request.
+    # Supervisor is used to control http workers (docs: https://roadrunner.dev/docs/php-limit)
     supervisor:
       # How often to check the state of the workers.
       #
@@ -122,57 +82,13 @@ http:
       exec_ttl: 60s
 
 # Automatically detect PHP file changes and reload connected services (docs:
-# https://roadrunner.dev/docs/beep-beep-reload). Drop this section for this feature disabling.
+# https://roadrunner.dev/docs/beep-beep-reload)
 reload:
-  # Sync interval.
-  #
-  # Default: "1s"
   interval: 1s
-
-  # Global patterns to sync.
-  #
-  # Default: [".php"]
   patterns: [".php"]
-
-  # List of included for sync services (this is a map, where key name is a plugin name).
-  #
-  # Default: <empty map>
   services:
     http:
-      # Directories to sync. If recursive is set to true, recursive sync will be applied only to the directories in
-      # "dirs" section. Dot (.) means "current working directory".
-      #
-      # Default: []
       dirs: ["."]
-
-      # Recursive search for file patterns to add.
-      #
-      # Default: false
       recursive: true
-
-      # Ignored folders.
-      #
-      # Default: []
-      ignore: []
-
-      # Service specific file pattens to sync.
-      #
-      # Default: []
+      ignore: [runtime]
       patterns: [".php"]
-
-# RoadRunner internal container configuration (docs: https://github.com/spiral/endure).
-endure:
-  # How long to wait for stopping.
-  #
-  # Default: 30s
-  grace_period: 30s
-
-  # Print graph in the graphviz format to the stdout (paste here to visualize https://dreampuf.github.io)
-  #
-  # Default: false
-  print_graph: false
-
-  # Logging level. Possible values: "debug", "info", "warning", "error", "panic", "fatal".
-  #
-  # Default: "error"
-  log_level: error
