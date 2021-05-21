@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Resender\SubDomain\Wallet\Infrastructure\Entity\Wallet;
+namespace Resender\SubDomain\Wallet\Domain\Entity\Wallet;
 
 use Resender\SubDomain\Wallet\Domain\Entity\User\UserIdInterface;
-use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletIdInterface;
-use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletInterface;
 
-final class Wallet implements WalletInterface
+final class Wallet
 {
     private array $userIds;
 

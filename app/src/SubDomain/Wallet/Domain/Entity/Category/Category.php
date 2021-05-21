@@ -2,13 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Resender\SubDomain\Wallet\Infrastructure\Entity\Category;
+namespace Resender\SubDomain\Wallet\Domain\Entity\Category;
 
 use Money\Money;
-use Resender\SubDomain\Wallet\Domain\Entity\Category\CategoryIdInterface;
-use Resender\SubDomain\Wallet\Domain\Entity\Category\CategoryInterface;
 
-final class Category implements CategoryInterface
+final class Category
 {
     public function __construct(private CategoryIdInterface $id, private string $title, private Money $targetFunds)
     {
