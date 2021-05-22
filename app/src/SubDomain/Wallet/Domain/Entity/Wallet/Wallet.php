@@ -8,15 +8,16 @@ use Resender\SubDomain\Wallet\Domain\Entity\User\UserIdInterface;
 
 final class Wallet
 {
-    private array $userIds;
+    private array $guestIds;
 
     public function __construct(
         private WalletIdInterface $id,
         private UserIdInterface $ownerId,
+        private bool $active,
         private string $title,
-        UserIdInterface ...$userIds
+        UserIdInterface ...$guestIds
     ) {
-        $this->userIds = $userIds;
+        $this->guestIds = $guestIds;
     }
 
     public function getId(): WalletIdInterface
@@ -29,6 +30,11 @@ final class Wallet
         return $this->ownerId;
     }
 
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
     public function getTitle(): string
     {
         return $this->title;
@@ -37,8 +43,8 @@ final class Wallet
     /**
      * @return UserIdInterface[]
      */
-    public function getUserIds(): array
+    public function getGuestIds(): array
     {
-        return $this->userIds;
+        return $this->guestIds;
     }
 }

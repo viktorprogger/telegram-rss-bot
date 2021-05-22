@@ -10,9 +10,14 @@ final class WalletUpdateData
 {
     private array $userIds;
 
-    public function __construct(private string $title, UserIdInterface ...$userIds)
+    public function __construct(private bool $active, private string $title, UserIdInterface ...$userIds)
     {
         $this->userIds = $userIds;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active;
     }
 
     public function getTitle(): string

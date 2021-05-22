@@ -12,12 +12,12 @@ interface CategoryRepositoryInterface
 
     public function update(CategoryIdInterface $id, CategoryUpdateData $data): void;
 
-    public function findById(CategoryIdInterface $id): ?CategoryInterface;
+    public function findById(CategoryIdInterface $id): ?Category;
 
     /**
      * @param WalletIdInterface $walletId
      *
-     * @return CategoryInterface[]
+     * @return Category[]
      */
     public function findByWallet(WalletIdInterface $walletId): iterable;
 

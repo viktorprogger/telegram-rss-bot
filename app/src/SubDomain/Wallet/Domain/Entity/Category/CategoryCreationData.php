@@ -9,10 +9,15 @@ use Money\Money;
 
 final class CategoryCreationData
 {
-    public function __construct(private CategoryIdInterface $id, private string $title, private Money $targetFunds)
+    public function __construct(
+        private CategoryIdInterface $id,
+        private bool $active,
+        private string $title,
+        private Money $targetFunds
+    )
     {
         if (strlen($this->title) < 4) {
-            // TODO Convert to a module-specific exception
+            // TODO Convert to a module-specific exception and maybe extract to a common validator
             throw new InvalidArgumentException('Category title length must be more than 3 characters');
         }
     }
@@ -20,6 +25,11 @@ final class CategoryCreationData
     public function getId(): CategoryIdInterface
     {
         return $this->id;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active;
     }
 
     public function getTitle(): string

@@ -8,13 +8,22 @@ use Money\Money;
 
 final class Category
 {
-    public function __construct(private CategoryIdInterface $id, private string $title, private Money $targetFunds)
-    {
+    public function __construct(
+        private CategoryIdInterface $id,
+        private bool $active,
+        private string $title,
+        private Money $targetFunds
+    ) {
     }
 
     public function getId(): CategoryIdInterface
     {
         return $this->id;
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active;
     }
 
     public function getTitle(): string

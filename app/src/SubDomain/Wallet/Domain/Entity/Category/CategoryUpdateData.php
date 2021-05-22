@@ -9,12 +9,17 @@ use Money\Money;
 
 final class CategoryUpdateData
 {
-    public function __construct(private string $title, private Money $targetFunds)
+    public function __construct(private bool $active, private string $title, private Money $targetFunds)
     {
         if (strlen($this->title) < 4) {
             // TODO Convert to a module-specific exception
             throw new InvalidArgumentException('Category title length must be more than 3 characters');
         }
+    }
+
+    public function isActive(): bool
+    {
+        return $this->active;
     }
 
     public function getTitle(): string
