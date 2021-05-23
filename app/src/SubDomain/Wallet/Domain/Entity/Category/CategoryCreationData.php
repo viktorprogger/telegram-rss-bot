@@ -6,12 +6,14 @@ namespace Resender\SubDomain\Wallet\Domain\Entity\Category;
 
 use InvalidArgumentException;
 use Money\Money;
+use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletIdInterface;
 
 final class CategoryCreationData
 {
     public function __construct(
         private CategoryIdInterface $id,
         private bool $active,
+        private WalletIdInterface $walletId,
         private string $title,
         private Money $targetFunds
     )
@@ -27,6 +29,11 @@ final class CategoryCreationData
         return $this->id;
     }
 
+    public function getWalletId(): WalletIdInterface
+    {
+        return $this->walletId;
+    }
+
     public function isActive(): bool
     {
         return $this->active;
@@ -34,7 +41,7 @@ final class CategoryCreationData
 
     public function getTitle(): string
     {
-        return $this->title;
+        return trim($this->title);
     }
 
     public function getTargetFunds(): Money
