@@ -44,6 +44,8 @@ class CategoryRepository implements CategoryRepositoryInterface
         $entity->walletId = $data->getWalletId()->value();
         $entity->title = $data->getTitle();
         $entity->amount = $data->getTargetFunds()->getAmount();
+
+        (new Transaction($this->orm))->persist($entity)->run();
     }
 
     public function update(CategoryIdInterface $id, CategoryUpdateData $data): void
@@ -55,6 +57,8 @@ class CategoryRepository implements CategoryRepositoryInterface
 
         $entity->active = $data->isActive();
         $entity->title = $data->getTitle();
+
+        (new Transaction($this->orm))->persist($entity)->run();
     }
 
     public function findById(CategoryIdInterface $id): ?Category

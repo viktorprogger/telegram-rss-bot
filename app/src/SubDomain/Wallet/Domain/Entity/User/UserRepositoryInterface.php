@@ -8,5 +8,5 @@ interface UserRepositoryInterface
 {
     public function create(UserCreationData $data): void;
 
-    public function findById(UserIdInterface $id): ?UserInterface;
+    public function findById(UserIdInterface $id): ?User;
 }
