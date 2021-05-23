@@ -9,7 +9,7 @@ use Resender\SubDomain\Wallet\Domain\Entity\User\UserIdInterface;
 /**
  * String representation of this id - telegram user id, a big numeric string
  */
-final class UserIdTelegram implements UserIdInterface
+final class UserIdGeneric implements UserIdInterface
 {
     public function __construct(private string $id)
     {
