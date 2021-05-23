@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Resender\SubDomain\Rss\Infrastructure\Commands\SourcesCommand;
+use Resender\SubDomain\Wallet\Subdomain\TelegramBot\Infrastructure\Console\SetTelegramWebhookCommand;
 use Yiisoft\Yii\Console\Command\Serve;
 
 return [
@@ -13,6 +14,7 @@ return [
         'commands' => [
             'serve' => Serve::class,
             'sources' => SourcesCommand::class,
+            'wallet/set-telegram-webhook' => SetTelegramWebhookCommand::class
         ],
         'version' => '3.0',
     ],

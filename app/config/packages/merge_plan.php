@@ -66,6 +66,12 @@ return [
         'yiisoft/yii-cycle' => [
             'events-console.php',
         ],
+        'yiisoft/log' => [
+            'events-console.php',
+        ],
+        'yiisoft/yii-console' => [
+            'events-console.php',
+        ],
         'yiisoft/yii-event' => [
             '$events',
             'events-console.php',
@@ -121,6 +127,11 @@ return [
         ],
         'yiisoft/yii-cycle' => [
             'providers-web.php',
+        ],
+    ],
+    'routes' => [
+        '/' => [
+            'config/routes.php',
         ],
     ],
     'web' => [

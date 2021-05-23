@@ -18,8 +18,9 @@
         "web.php": "e6f389ca4fc59c9acaf87a05794d39e3"
     },
     "yiisoft/log": {
-        "version": "1.0.1",
-        "events-web.php": "550b5ab87519380102e93143cee95913"
+        "version": "1.0.2",
+        "events-web.php": "550b5ab87519380102e93143cee95913",
+        "events-console.php": "dba155a1e9ddff313d6899eebe684799"
     },
     "yiisoft/log-target-file": {
         "version": "1.0.3",
@@ -45,10 +46,11 @@
         "common.php": "49c02d9de47834a2d5141ae9df93d0f3"
     },
     "yiisoft/yii-console": {
-        "version": "dev-master 52b741b",
+        "version": "dev-master df9dfe2",
         "params.php": "3f530a78778873a4e841a8b15fd79097",
         "console.php": "b633ce29f1e3a1cb3618e5e213e54987",
-        "providers-console.php": "b140cb50c88c8560f2d370c27a9ea541"
+        "providers-console.php": "b140cb50c88c8560f2d370c27a9ea541",
+        "events-console.php": "dbc14d9b634c9319468a203d2ae77c35"
     },
     "yiisoft/yii-cycle": {
         "version": "dev-master 5249640",
@@ -68,8 +70,8 @@
         "web.php": "7b30a1ef334d708d7df893d10badf134"
     },
     "yiisoft/yii-queue": {
-        "version": "dev-channel-factory 9ec7d36",
-        "common.php": "26276d04502ddb10ee60c5e52bf687b7",
+        "version": "dev-channel-factory 23b18eb",
+        "common.php": "f16e78f824d0db07dfe07bcecc09a4bb",
         "params.php": "8256c857e805c4ea5fb4e86b1d3195e9"
     },
     "yiisoft/yii-queue-amqp": {

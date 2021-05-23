@@ -39,7 +39,7 @@ final class TelegramTarget implements TargetInterface
             $format = 'HTML';
         }
 
-        $this->client->send($this->token, $this->chatId, $message->getText(), $format);
+        $this->client->sendMessage($this->token, $this->chatId, $message->getText(), $format);
     }
 
     public function send(Entry $item): void

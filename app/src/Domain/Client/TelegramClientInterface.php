@@ -6,5 +6,7 @@ namespace Resender\Domain\Client;
 
 interface TelegramClientInterface
 {
-    public function send(string $token, string $chat, string $text, ?string $mode = null): void;
+    public function sendMessage(string $token, string $chat, string $text, ?string $mode = null): void;
+
+    public function send(string $apiEndpoint, string $token, array $data = []): void;
 }

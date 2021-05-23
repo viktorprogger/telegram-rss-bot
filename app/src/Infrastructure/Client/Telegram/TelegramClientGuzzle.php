@@ -15,7 +15,7 @@ final class TelegramClientGuzzle implements TelegramClientInterface
     {
     }
 
-    public function send(string $token, string $chat, string $text, ?string $mode = null): void
+    public function sendMessage(string $token, string $chat, string $text, ?string $mode = null): void
     {
         $data = [
             'text' => $text,
@@ -26,6 +26,11 @@ final class TelegramClientGuzzle implements TelegramClientInterface
             $data['parse_mode'] = $mode;
         }
 
-        $this->client->post(self::URI . "bot$token/sendMessage", ['json' => $data]);
+        $this->send('sendMessage', $token, $data);
+    }
+
+    public function send(string $apiEndpoint, string $token, array $data = []): void
+    {
+        $this->client->post(self::URI . "bot$token/$apiEndpoint", ['json' => $data]);
     }
 }

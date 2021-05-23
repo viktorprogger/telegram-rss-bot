@@ -15,7 +15,15 @@ use Spiral\RoadRunner\Http\PSR7Worker;
 use Spiral\RoadRunner\Http\PSR7WorkerInterface;
 use Spiral\RoadRunner\Worker as RRWorker;
 use Spiral\RoadRunner\WorkerInterface;
+use Yiisoft\Config\Config;
+use Yiisoft\Request\Body\RequestBodyParser;
+use Yiisoft\Router\Group;
+use Yiisoft\Router\RouteCollection;
+use Yiisoft\Router\RouteCollectionInterface;
+use Yiisoft\Router\RouteCollectorInterface;
 use Yiisoft\Yii\Web\NotFoundHandler;
+
+/** @var Config $config */
 
 return [
     PSR7WorkerInterface::class => PSR7Worker::class,
@@ -25,4 +33,13 @@ return [
     UploadedFileFactoryInterface::class => UploadedFileFactory::class,
     RequestHandlerInterface::class => NotFoundHandler::class,
     ResponseFactoryInterface::class => ResponseFactory::class,
+    RouteCollectionInterface::class => static function (RouteCollectorInterface $collector) use ($config) {
+        $collector->addGroup(
+            Group::create()
+                ->middleware(RequestBodyParser::class)
+                ->routes(...$config->get('routes'))
+        );
+
+        return new RouteCollection($collector);
+    }
 ];

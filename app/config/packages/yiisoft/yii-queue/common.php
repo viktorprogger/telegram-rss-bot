@@ -3,13 +3,12 @@
 declare(strict_types=1);
 
 use Psr\Container\ContainerInterface;
-use Yiisoft\Yii\Queue\Adapter\AdapterInterface;
-use Yiisoft\Yii\Queue\AMQP\Adapter;
 use Yiisoft\Yii\Queue\Cli\LoopInterface;
 use Yiisoft\Yii\Queue\Cli\SignalLoop;
 use Yiisoft\Yii\Queue\Cli\SimpleLoop;
 use Yiisoft\Yii\Queue\Queue;
 use Yiisoft\Yii\Queue\QueueFactory;
+use Yiisoft\Yii\Queue\QueueFactoryInterface;
 use Yiisoft\Yii\Queue\QueueInterface;
 use Yiisoft\Yii\Queue\Worker\Worker as QueueWorker;
 use Yiisoft\Yii\Queue\Worker\WorkerInterface;
@@ -27,6 +26,7 @@ return [
             ? $container->get(SignalLoop::class)
             : $container->get(SimpleLoop::class);
     },
+    QueueFactoryInterface::class => QueueFactory::class,
     QueueFactory::class => [
         '__construct()' => [
             'channelConfiguration' => $params['yiisoft/yii-queue']['channel-definitions'],

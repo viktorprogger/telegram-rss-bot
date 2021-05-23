@@ -17,6 +17,18 @@ use Resender\SubDomain\Rss\Infrastructure\Source\StaticSourceRepository;
 use Resender\SubDomain\Rss\Infrastructure\Target\StaticTargetRepository;
 use Resender\SubDomain\Rss\Infrastructure\Target\StringTargetId;
 use Resender\SubDomain\Rss\Infrastructure\Target\Telegram\TelegramTarget;
+use Resender\SubDomain\Wallet\Domain\Entity\Category\CategoryIdFactoryInterface;
+use Resender\SubDomain\Wallet\Domain\Entity\Category\CategoryRepositoryInterface;
+use Resender\SubDomain\Wallet\Domain\Entity\User\UserIdFactoryInterface;
+use Resender\SubDomain\Wallet\Domain\Entity\User\UserRepositoryInterface;
+use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletIdFactoryInterface;
+use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletRepositoryInterface;
+use Resender\SubDomain\Wallet\Infrastructure\Entity\Category\CategoryIdFactory;
+use Resender\SubDomain\Wallet\Infrastructure\Entity\Category\CategoryRepository;
+use Resender\SubDomain\Wallet\Infrastructure\Entity\User\UserIdFactory;
+use Resender\SubDomain\Wallet\Infrastructure\Entity\User\UserRepository;
+use Resender\SubDomain\Wallet\Infrastructure\Entity\Wallet\WalletIdFactory;
+use Resender\SubDomain\Wallet\Infrastructure\Entity\Wallet\WalletRepository;
 
 return [
     FeedClientInterface::class => GuzzleFeedClient::class,
@@ -37,7 +49,6 @@ return [
 
         return new StaticSourceRepository(...$sources);
     },
-
     TargetRepositoryInterface::class => static function (TelegramClientInterface $client) {
         $targets = [
             'tg-php-info' => new TelegramTarget(
@@ -50,4 +61,12 @@ return [
 
         return new StaticTargetRepository($targets);
     },
+
+
+    CategoryRepositoryInterface::class => CategoryRepository::class,
+    CategoryIdFactoryInterface::class => CategoryIdFactory::class,
+    UserRepositoryInterface::class => UserRepository::class,
+    UserIdFactoryInterface::class => UserIdFactory::class,
+    WalletRepositoryInterface::class => WalletRepository::class,
+    WalletIdFactoryInterface::class => WalletIdFactory::class,
 ];

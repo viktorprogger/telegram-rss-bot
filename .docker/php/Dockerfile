@@ -21,6 +21,7 @@ RUN apk --no-cache add \
         pcntl \
         sockets \
         gmp \
+        bcmath \
         > /dev/null && \
     pecl install xdebug-$XDEBUG_VERSION > /dev/null && \
         docker-php-ext-enable xdebug > /dev/null && \
