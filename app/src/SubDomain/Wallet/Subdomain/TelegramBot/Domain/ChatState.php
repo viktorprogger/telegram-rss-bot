@@ -17,12 +17,16 @@ final class ChatState
     /** @const int Внутри категории */
     public const CATEGORY = 3;
 
+    /** @const int Создание категории */
+    public const CATEGORY_CREATION = 4;
+
     /** @var self[] */
     private static array $instances = [];
 
     private function __construct(private int $value)
     {
-        if (!in_array($this->value, [self::OUTSIDE, self::WALLET, self::CATEGORY], true)) {
+        $available = [self::OUTSIDE, self::WALLET, self::CATEGORY, self::CATEGORY_CREATION];
+        if (!in_array($this->value, $available, true)) {
             throw new InvalidArgumentException('Incorrect chat state');
         }
     }
@@ -51,6 +55,11 @@ final class ChatState
         return self::getInstance(self::CATEGORY);
     }
 
+    public static function categoryCreation(): self
+    {
+        return self::getInstance(self::CATEGORY_CREATION);
+    }
+
     public function getValue(): int
     {
         return $this->value;
@@ -69,5 +78,10 @@ final class ChatState
     public function isCategory(): bool
     {
         return $this->value === self::CATEGORY;
+    }
+
+    public function isCategoryCreation(): bool
+    {
+        return $this->value === self::CATEGORY_CREATION;
     }
 }
