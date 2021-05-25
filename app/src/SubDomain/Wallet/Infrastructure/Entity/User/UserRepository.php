@@ -12,7 +12,7 @@ use Resender\SubDomain\Wallet\Domain\Entity\User\UserIdInterface;
 use Resender\SubDomain\Wallet\Domain\Entity\User\UserRepositoryInterface;
 use RuntimeException;
 
-class UserRepository implements UserRepositoryInterface
+final class UserRepository implements UserRepositoryInterface
 {
     public function __construct(private ORM $orm)
     {

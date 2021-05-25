@@ -8,7 +8,7 @@ use Resender\SubDomain\Wallet\Subdomain\TelegramBot\Domain\ChatState;
 use Resender\SubDomain\Wallet\Subdomain\TelegramBot\Domain\TelegramRequest;
 use Yiisoft\Yii\Queue\Message\AbstractMessage;
 
-class WebhookMessage extends AbstractMessage
+final class WebhookMessage extends AbstractMessage
 {
     public const NAME = 'wallet-webhook';
 

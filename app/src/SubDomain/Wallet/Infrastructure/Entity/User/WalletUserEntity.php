@@ -8,7 +8,7 @@ use Cycle\Annotated\Annotation\Column;
 use Cycle\Annotated\Annotation\Entity;
 
 #[Entity(table: 'wl_wallet_user')]
-class WalletUserEntity
+final class WalletUserEntity
 {
     #[Column(type: 'primary')]
     public int $id;

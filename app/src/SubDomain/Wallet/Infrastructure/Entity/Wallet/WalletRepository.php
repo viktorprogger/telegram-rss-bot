@@ -18,7 +18,7 @@ use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletUpdateData;
 use RuntimeException;
 
 // TODO Replace exceptions with custom ones
-class WalletRepository implements WalletRepositoryInterface
+final class WalletRepository implements WalletRepositoryInterface
 {
     public function __construct(
         private ORM $orm,

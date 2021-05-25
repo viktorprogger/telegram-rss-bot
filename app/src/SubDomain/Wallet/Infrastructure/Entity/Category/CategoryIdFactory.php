@@ -8,7 +8,7 @@ use Resender\SubDomain\Wallet\Domain\Entity\Category\CategoryIdFactoryInterface;
 use Resender\SubDomain\Wallet\Domain\Entity\Category\CategoryIdInterface;
 use Resender\SubDomain\Wallet\Infrastructure\Entity\UuidFactory;
 
-class CategoryIdFactory implements CategoryIdFactoryInterface
+final class CategoryIdFactory implements CategoryIdFactoryInterface
 {
     public function __construct(private UuidFactory $uuidFactory)
     {

@@ -19,7 +19,7 @@ use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletIdInterface;
 use RuntimeException;
 
 // TODO Replace exceptions with custom ones
-class CategoryRepository implements CategoryRepositoryInterface
+final class CategoryRepository implements CategoryRepositoryInterface
 {
     public function __construct(
         private ORM $orm,
