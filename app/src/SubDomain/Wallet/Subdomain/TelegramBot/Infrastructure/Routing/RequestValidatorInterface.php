@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Resender\SubDomain\Wallet\Subdomain\TelegramBot\Domain;
+namespace Resender\SubDomain\Wallet\Subdomain\TelegramBot\Infrastructure\Routing;
 
 use Resender\Domain\Client\Telegram\TelegramMessage;
 use Yiisoft\Validator\Rule;
