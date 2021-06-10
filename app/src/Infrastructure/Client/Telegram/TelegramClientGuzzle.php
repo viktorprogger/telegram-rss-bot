@@ -29,8 +29,13 @@ final class TelegramClientGuzzle implements TelegramClientInterface
         $this->send('sendMessage', $token, $data);
     }
 
-    public function send(string $apiEndpoint, string $token, array $data = []): void
+    public function send(string $apiEndpoint, string $token, array $data = []): ?array
     {
-        $this->client->post(self::URI . "bot$token/$apiEndpoint", ['json' => $data]);
+        $response = $this->client->post(self::URI . "bot$token/$apiEndpoint", ['json' => $data])->getBody()->getContents();
+        if (!empty($response)) {
+            return json_decode($response, true, flags: JSON_THROW_ON_ERROR);
+        }
+
+        return null;
     }
 }
