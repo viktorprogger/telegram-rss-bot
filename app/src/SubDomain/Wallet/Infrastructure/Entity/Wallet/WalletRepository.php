@@ -94,7 +94,7 @@ final class WalletRepository implements WalletRepositoryInterface
         return $result;
     }
 
-    public function findByUser(UserIdInterface $userId): iterable
+    public function findByUser(UserIdInterface $userId): array
     {
         $result = [];
         /** @var WalletEntity[] $entities */

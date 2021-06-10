@@ -80,7 +80,7 @@ final class CategoryRepository implements CategoryRepositoryInterface
         return $result;
     }
 
-    public function findByWallet(WalletIdInterface $walletId): iterable
+    public function findByWallet(WalletIdInterface $walletId): array
     {
         $result = [];
         /** @var CategoryEntity[] $entities */

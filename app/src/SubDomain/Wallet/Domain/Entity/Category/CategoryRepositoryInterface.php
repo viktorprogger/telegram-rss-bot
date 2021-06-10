@@ -19,7 +19,7 @@ interface CategoryRepositoryInterface
      *
      * @return Category[]
      */
-    public function findByWallet(WalletIdInterface $walletId): iterable;
+    public function findByWallet(WalletIdInterface $walletId): array;
 
     public function remove(CategoryIdInterface $id): void;
 }
