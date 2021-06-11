@@ -20,7 +20,9 @@ class GetUpdatesCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         foreach ($this->client->send('getUpdates', $this->token) as $update) {
-            // TODO Зарегать незареганного юзверя и обработать его сообщение
+            dump($update);
         }
+
+        return 0;
     }
 }
