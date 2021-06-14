@@ -24,7 +24,7 @@ final class TelegramClientLog implements TelegramClientInterface
         $this->send('sendMessage', $token, $fields);
     }
 
-    public function send(string $apiEndpoint, string $token, array $data = []): void
+    public function send(string $apiEndpoint, string $token, array $data = []): ?array
     {
         $fields = [
             'endpoint' => $apiEndpoint,
@@ -33,5 +33,7 @@ final class TelegramClientLog implements TelegramClientInterface
         ];
 
         $this->logger->debug('A message to Telegram', $fields);
+
+        return null;
     }
 }

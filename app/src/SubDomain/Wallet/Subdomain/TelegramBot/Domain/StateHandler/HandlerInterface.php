@@ -10,5 +10,5 @@ use Resender\SubDomain\Wallet\Subdomain\TelegramBot\Domain\TelegramRequest;
 
 interface HandlerInterface
 {
-    public function handle(ChatState $state, TelegramRequest $request): TelegramMessage;
+    public function handle(ChatState $state, TelegramRequest $request): ?TelegramMessage;
 }

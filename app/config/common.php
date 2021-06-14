@@ -7,6 +7,8 @@ use FeedIo\Adapter\Guzzle\Client as GuzzleFeedClient;
 use FeedIo\FeedIo;
 use GuzzleHttp\Client as Guzzle;
 use GuzzleHttp\ClientInterface as GuzzleInterface;
+use Ramsey\Uuid\UuidFactory as RamseyFactory;
+use Ramsey\Uuid\UuidFactoryInterface;
 use Resender\Domain\Client\TelegramClientInterface;
 use Resender\Infrastructure\Client\Telegram\TelegramClientGuzzle;
 use Resender\SubDomain\Rss\Domain\Source\SourceRepositoryInterface;
@@ -69,4 +71,6 @@ return [
     UserIdFactoryInterface::class => UserIdFactory::class,
     WalletRepositoryInterface::class => WalletRepository::class,
     WalletIdFactoryInterface::class => WalletIdFactory::class,
+
+    UuidFactoryInterface::class => RamseyFactory::class,
 ];
