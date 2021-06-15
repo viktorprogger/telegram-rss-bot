@@ -28,8 +28,8 @@
         "params.php": "16e4ea41a7d8964fff91d711bc5bb173"
     },
     "yiisoft/middleware-dispatcher": {
-        "version": "dev-master 08a0356",
-        "web.php": "d07654b14d02612668a155e0963e3d4f"
+        "version": "dev-master e56a1e8",
+        "web.php": "06eae76af898d597371ca530ef90d00d"
     },
     "yiisoft/router": {
         "version": "dev-master 7942b3e",

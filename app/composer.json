@@ -70,7 +70,6 @@
                 "config/providers-web.php"
             ],
             "params": [
-                "$params",
                 "config/params.php"
             ],
             "routes": "config/routes.php"

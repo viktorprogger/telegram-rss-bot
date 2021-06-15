@@ -65,6 +65,13 @@ tasks:
         vars:
           c: composer update
 
+
+  composer:du:
+    cmds:
+      - task: bot:run
+        vars:
+          c: composer du
+
   composer:r:
     cmds:
       - task: bot:run
