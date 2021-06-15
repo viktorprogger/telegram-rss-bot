@@ -12,31 +12,31 @@ final class TelegramMessage
     public function __construct(
         private string $text,
         private MessageFormat $format,
+        private string $chatId,
         private array $inlineKeyboard = [],
     ) {
     }
 
-    /**
-     * @return InlineKeyboardButton[]
-     */
-    public function getInlineKeyboard(): array
+    public function getArray(): array
     {
-        return $this->inlineKeyboard;
-    }
+        $result = [
+            'text' => $this->text,
+            'chat_id' => $this->chatId,
+        ];
 
-    /**
-     * @return string
-     */
-    public function getText(): string
-    {
-        return $this->text;
-    }
+        if ($this->format->isMarkdown()) {
+            $result['parse_mode'] = 'MarkdownV2';
+        } elseif ($this->format->isHtml()) {
+            $result['parse_mode'] = 'HTML';
+        }
 
-    /**
-     * @return MessageFormat
-     */
-    public function getFormat(): MessageFormat
-    {
-        return $this->format;
+        foreach ($this->inlineKeyboard as $button) {
+            $result['reply_markup']['inline_keyboard'][0][] = [
+                'text' => $button->getLabel(),
+                'callback_data' => $button->getCallbackData(),
+            ];
+        }
+
+        return $result;
     }
 }

@@ -18,18 +18,20 @@ final class GetWalletsAction implements ActionInterface
 
     public function handle(TelegramRequest $request): TelegramMessage
     {
-        $wallets = $this->repository->findByUser($request->getUserId());
-        if ($wallets === []) {
-            return new TelegramMessage('Пока нет ни одного кошелька', MessageFormat::text());
-        }
-
         $titles = [];
         $buttons = [];
+
+        $wallets = $this->repository->findByUser($request->getUserId());
+        if ($wallets === []) {
+            $titles[] = 'Пока нет ни одного кошелька';
+        }
+
         foreach ($wallets as $wallet) {
             $titles[] = $wallet->getTitle();
             $buttons[] = new InlineKeyboardButton($wallet->getTitle(), 'categories:' . $wallet->getId()->value());
         }
+        $buttons[] = new InlineKeyboardButton('➕ Создать кошелек ➕', 'wallet-create');
 
-        return new TelegramMessage(implode("\n", $titles), MessageFormat::text(), $buttons);
+        return new TelegramMessage(implode("\n", $titles), MessageFormat::text(), $request->getChatId(), $buttons);
     }
 }

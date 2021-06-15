@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Resender\Infrastructure\Client\Telegram;
 
 use Psr\Log\LoggerInterface;
+use Resender\Domain\Client\Telegram\TelegramMessage;
 use Resender\Domain\Client\TelegramClientInterface;
 
 final class TelegramClientLog implements TelegramClientInterface
@@ -13,15 +14,9 @@ final class TelegramClientLog implements TelegramClientInterface
     {
     }
 
-    public function sendMessage(string $token, string $chat, string $text, ?string $mode = null): void
+    public function sendMessage(string $token, TelegramMessage $message): void
     {
-        $fields = [
-            'chat' => $chat,
-            'text' => $text,
-            'mode' => $mode,
-        ];
-
-        $this->send('sendMessage', $token, $fields);
+        $this->send('sendMessage', $token, $message->getArray());
     }
 
     public function send(string $apiEndpoint, string $token, array $data = []): ?array

@@ -32,14 +32,6 @@ final class TelegramTarget implements TargetInterface
      */
     private function sendInternal(TelegramMessage $message): void
     {
-        $format = null;
-        if ($message->getFormat()->isMarkdown()) {
-            $format = 'MarkdownV2';
-        } elseif ($message->getFormat()->isHtml()) {
-            $format = 'HTML';
-        }
-
-        $this->client->sendMessage($this->token, $this->chatId, $message->getText(), $format);
     }
 
     public function send(Entry $item): void
@@ -59,7 +51,7 @@ final class TelegramTarget implements TargetInterface
             $result .= "[Read more →](" . $item->getLink() . ")";
         }
 
-        $message = new TelegramMessage($result, MessageFormat::markdown());
-        $this->sendInternal($message);
+        $message = new TelegramMessage($result, MessageFormat::markdown(), $this->chatId);
+        $this->client->sendMessage($this->token, $message);
     }
 }

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Resender\Infrastructure\Client\Telegram;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use Resender\Domain\Client\Telegram\TelegramMessage;
 use Resender\Domain\Client\TelegramClientInterface;
 
 final class TelegramClientGuzzle implements TelegramClientInterface
@@ -15,25 +17,25 @@ final class TelegramClientGuzzle implements TelegramClientInterface
     {
     }
 
-    public function sendMessage(string $token, string $chat, string $text, ?string $mode = null): void
+    public function sendMessage(string $token, TelegramMessage $message): void
     {
-        $data = [
-            'text' => $text,
-            'chat_id' => $chat,
-        ];
-
-        if ($mode !== null) {
-            $data['parse_mode'] = $mode;
-        }
-
-        $this->send('sendMessage', $token, $data);
+        $this->send('sendMessage', $token, $message->getArray());
     }
 
     public function send(string $apiEndpoint, string $token, array $data = []): ?array
     {
-        $response = $this->client->post(self::URI . "bot$token/$apiEndpoint", ['json' => $data])->getBody()->getContents();
-        if (!empty($response)) {
-            return json_decode($response, true, flags: JSON_THROW_ON_ERROR);
+        try {
+            dump($data);
+            $response = $this->client->post(self::URI . "bot$token/$apiEndpoint", ['json' => $data])->getBody(
+            )->getContents();
+
+            if (!empty($response)) {
+                dump($response);
+
+                return json_decode($response, true, flags: JSON_THROW_ON_ERROR);
+            }
+        } catch (ClientException $exception) {
+            dump(json_decode($exception->getResponse()->getBody()->getContents()));
         }
 
         return null;

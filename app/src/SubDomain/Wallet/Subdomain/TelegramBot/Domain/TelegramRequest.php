@@ -12,10 +12,16 @@ final class TelegramRequest
 {
     public function __construct(
         private UserIdInterface $userId,
-        private ?WalletIdInterface $walletId,
-        private ?CategoryIdInterface $categoryId,
-        private mixed $data,
+        private string $chatId,
+        private ?WalletIdInterface $walletId = null,
+        private ?CategoryIdInterface $categoryId = null,
+        private mixed $data = null,
     ) {
+    }
+
+    public function getChatId(): string
+    {
+        return $this->chatId;
     }
 
     public function getUserId(): UserIdInterface
