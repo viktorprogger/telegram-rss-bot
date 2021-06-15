@@ -56,16 +56,20 @@ final class GetUpdatesCommand extends Command
                 $this->userRepository->create(new UserCreationData($userId));
             }
 
-            $data = $message['text'] ?? $message['data'];
+            $data = trim($message['text'] ?? $message['data']);
             $chatId = (string) ($message['chat']['id'] ?? $message['message']['chat']['id']);
 
-            if (in_array(trim($data), ['/start', 'wallet-create'], true)) {
+            if (in_array(trim($data), ['/start'], true)) {
                 $action = $this->container->get(GetWalletsAction::class);
                 dump($action->handle(new TelegramRequest($userId, $chatId)));
                 $this->client->sendMessage(
                     $this->token,
                     $action->handle(new TelegramRequest($userId, $chatId))
                 );
+            }
+
+            if (strpos($data, '/create_wallet ') === 0) {
+                // TODO
             }
 
             $updateEntity = new TelegramUpdateEntity();
