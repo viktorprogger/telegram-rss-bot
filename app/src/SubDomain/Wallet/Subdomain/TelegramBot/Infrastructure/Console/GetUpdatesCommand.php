@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Resender\SubDomain\Wallet\Subdomain\TelegramBot\Infrastructure\Console;
 
+use Cycle\ORM\ORM;
+use Cycle\ORM\Transaction;
+use DateTimeImmutable;
+use DateTimeZone;
 use Psr\Container\ContainerInterface;
 use Resender\Domain\Client\TelegramClientInterface;
 use Resender\SubDomain\Wallet\Domain\Entity\User\UserCreationData;
@@ -11,6 +15,7 @@ use Resender\SubDomain\Wallet\Domain\Entity\User\UserIdFactoryInterface;
 use Resender\SubDomain\Wallet\Domain\Entity\User\UserRepositoryInterface;
 use Resender\SubDomain\Wallet\Subdomain\TelegramBot\Domain\Action\GetWalletsAction;
 use Resender\SubDomain\Wallet\Subdomain\TelegramBot\Domain\TelegramRequest;
+use Resender\SubDomain\Wallet\Subdomain\TelegramBot\Infrastructure\Entity\TelegramUpdateEntity;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -25,6 +30,7 @@ final class GetUpdatesCommand extends Command
         private UserIdFactoryInterface $userIdFactory,
         private UserRepositoryInterface $userRepository,
         private ContainerInterface $container,
+        private ORM $orm,
         string $name = null,
     ) {
         parent::__construct($name);
@@ -32,21 +38,41 @@ final class GetUpdatesCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        foreach ($this->client->send('getUpdates', $this->token)['result'] ?? [] as $update) {
+        /** @var TelegramUpdateEntity|null $lastUpdate */
+        $lastUpdate = $this->orm->getRepository(TelegramUpdateEntity::class)
+            ->select()
+            ->orderBy('id', 'DESC')
+            ->fetchOne();
+
+        $data = ['allowed_updates' => ['message', 'callback_query']];
+        if ($lastUpdate !== null) {
+            $data['offset'] = $lastUpdate->id + 1;
+        }
+        foreach ($this->client->send('getUpdates', $this->token, $data)['result'] ?? [] as $update) {
             dump($update);
-            $userId = $this->userIdFactory->create((string) $update['message']['from']['id']);
+            $message = $update['message'] ?? $update['callback_query'];
+            $userId = $this->userIdFactory->create('tg-' . $message['from']['id']);
             if ($this->userRepository->findById($userId) === null) {
                 $this->userRepository->create(new UserCreationData($userId));
             }
 
-            if (trim($update['message']['text']) === '/start') {
+            $data = $message['text'] ?? $message['data'];
+            $chatId = (string) ($message['chat']['id'] ?? $message['message']['chat']['id']);
+
+            if (in_array(trim($data), ['/start', 'wallet-create'], true)) {
                 $action = $this->container->get(GetWalletsAction::class);
-                dump($action->handle(new TelegramRequest($userId, (string) $update['message']['chat']['id'])));
+                dump($action->handle(new TelegramRequest($userId, $chatId)));
                 $this->client->sendMessage(
                     $this->token,
-                    $action->handle(new TelegramRequest($userId, (string) $update['message']['chat']['id']))
+                    $action->handle(new TelegramRequest($userId, $chatId))
                 );
             }
+
+            $updateEntity = new TelegramUpdateEntity();
+            $updateEntity->contents = json_encode($update);
+            $updateEntity->created_at = new DateTimeImmutable(timezone: new DateTimeZone('UTC'));
+            $updateEntity->id = $update['update_id'];
+            (new Transaction($this->orm))->persist($updateEntity)->run();
         }
 
         return ExitCode::OK;
