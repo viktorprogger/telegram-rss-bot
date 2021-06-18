@@ -14,7 +14,7 @@ final class WalletIdFactory implements WalletIdFactoryInterface
     {
     }
 
-    public function create(?string $value): WalletIdInterface
+    public function create(?string $value = null): WalletIdInterface
     {
         return new WalletIdUuid($this->uuidFactory->create($value));
     }

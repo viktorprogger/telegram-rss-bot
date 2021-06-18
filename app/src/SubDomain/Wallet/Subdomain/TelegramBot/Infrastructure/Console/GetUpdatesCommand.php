@@ -69,7 +69,17 @@ final class GetUpdatesCommand extends Command
             }
 
             if (strpos($data, '/create_wallet ') === 0) {
-                // TODO
+                $walletName = trim(explode(' ', $data, 2)[1] ?? '');
+                if ($walletName === '') {
+                    // TODO send error message
+                } else {
+                    $action = $this->container->get(GetWalletsAction::class);
+                    dump($action->handle(new TelegramRequest($userId, $chatId)));
+                    $this->client->sendMessage(
+                        $this->token,
+                        $action->handle(new TelegramRequest($userId, $chatId))
+                    );
+                }
             }
 
             $updateEntity = new TelegramUpdateEntity();

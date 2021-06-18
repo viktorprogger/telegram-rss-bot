@@ -6,5 +6,5 @@ namespace Resender\SubDomain\Wallet\Domain\Entity\Wallet;
 
 interface WalletIdFactoryInterface
 {
-    public function create(?string $value): WalletIdInterface;
+    public function create(?string $value = null): WalletIdInterface;
 }
