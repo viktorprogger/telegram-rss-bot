@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Resender\SubDomain\Wallet\Subdomain\TelegramBot\Domain\Action;
 
-use Resender\Domain\Client\Telegram\TelegramMessage;
+use Resender\Domain\Client\Telegram\Response;
 use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletCreationData;
 use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletIdFactoryInterface;
 use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletRepositoryInterface;
@@ -19,7 +19,7 @@ class CreateWalletAction implements ActionInterface
     ) {
     }
 
-    public function handle(TelegramRequest $request): TelegramMessage
+    public function handle(TelegramRequest $request, Response $response): Response
     {
         $walletData = new WalletCreationData(
             $this->idFactory->create(),
@@ -31,6 +31,6 @@ class CreateWalletAction implements ActionInterface
         $this->repository->create($walletData);
 
         // TODO хрень хренью. Надо отделить экшены от формирования сообщений
-        return $this->getWalletsAction->handle($request);
+        return $this->getWalletsAction->handle($request, $response);
     }
 }

@@ -6,6 +6,7 @@ namespace Resender\SubDomain\Wallet\Subdomain\TelegramBot\Domain\Action;
 
 use Resender\Domain\Client\Telegram\InlineKeyboardButton;
 use Resender\Domain\Client\Telegram\MessageFormat;
+use Resender\Domain\Client\Telegram\Response;
 use Resender\Domain\Client\Telegram\TelegramMessage;
 use Resender\SubDomain\Wallet\Domain\Entity\Wallet\WalletRepositoryInterface;
 use Resender\SubDomain\Wallet\Subdomain\TelegramBot\Domain\TelegramRequest;
@@ -16,7 +17,7 @@ final class GetWalletsAction implements ActionInterface
     {
     }
 
-    public function handle(TelegramRequest $request): TelegramMessage
+    public function handle(TelegramRequest $request, Response $response): Response
     {
         $titles = [];
         $buttons = [];
@@ -32,6 +33,8 @@ final class GetWalletsAction implements ActionInterface
         }
         $buttons[] = new InlineKeyboardButton('➕ Создать кошелек ➕', 'wallet-create');
 
-        return new TelegramMessage(implode("\n", $titles), MessageFormat::text(), $request->getChatId(), $buttons);
+        return $response->withMessage(
+            new TelegramMessage(implode("\n", $titles), MessageFormat::text(), $request->getChatId(), $buttons)
+        );
     }
 }

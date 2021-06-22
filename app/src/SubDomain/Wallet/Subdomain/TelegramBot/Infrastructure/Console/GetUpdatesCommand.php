@@ -9,6 +9,8 @@ use Cycle\ORM\Transaction;
 use DateTimeImmutable;
 use DateTimeZone;
 use Psr\Container\ContainerInterface;
+use Resender\Domain\Client\Telegram\Response;
+use Resender\Domain\Client\Telegram\TelegramCallbackResponse;
 use Resender\Domain\Client\TelegramClientInterface;
 use Resender\SubDomain\Wallet\Domain\Entity\User\UserCreationData;
 use Resender\SubDomain\Wallet\Domain\Entity\User\UserIdFactoryInterface;
@@ -50,6 +52,12 @@ final class GetUpdatesCommand extends Command
         }
         foreach ($this->client->send('getUpdates', $this->token, $data)['result'] ?? [] as $update) {
             dump($update);
+            $response = new Response();
+
+            if (isset($update['callback_query'])) {
+                $response = $response->withCallbackResponse(new TelegramCallbackResponse($update['callback_query']['id']));
+            }
+
             $message = $update['message'] ?? $update['callback_query'];
             $userId = $this->userIdFactory->create('tg-' . $message['from']['id']);
             if ($this->userRepository->findById($userId) === null) {
@@ -61,11 +69,7 @@ final class GetUpdatesCommand extends Command
 
             if (in_array(trim($data), ['/start'], true)) {
                 $action = $this->container->get(GetWalletsAction::class);
-                dump($action->handle(new TelegramRequest($userId, $chatId)));
-                $this->client->sendMessage(
-                    $this->token,
-                    $action->handle(new TelegramRequest($userId, $chatId))
-                );
+                $response = $action->handle(new TelegramRequest($userId, $chatId), $response);
             }
 
             if (strpos($data, '/create_wallet ') === 0) {
@@ -74,19 +78,34 @@ final class GetUpdatesCommand extends Command
                     // TODO send error message
                 } else {
                     $action = $this->container->get(GetWalletsAction::class);
-                    dump($action->handle(new TelegramRequest($userId, $chatId)));
-                    $this->client->sendMessage(
-                        $this->token,
-                        $action->handle(new TelegramRequest($userId, $chatId))
-                    );
+                    $response = $action->handle(new TelegramRequest($userId, $chatId), $response);
                 }
             }
+            dump($response);
 
             $updateEntity = new TelegramUpdateEntity();
             $updateEntity->contents = json_encode($update);
             $updateEntity->created_at = new DateTimeImmutable(timezone: new DateTimeZone('UTC'));
             $updateEntity->id = $update['update_id'];
             (new Transaction($this->orm))->persist($updateEntity)->run();
+
+            foreach ($response->getCallbackQueries() as $callbackQuery) {
+                $this->client->send(
+                    'answerCallbackQuery',
+                    $this->token,
+                    [
+                        'callback_query_id' => $callbackQuery->getId(),
+                        'text' => $callbackQuery->getText(),
+                        'show_alert' => $callbackQuery->isShowAlert(),
+                        'url' => $callbackQuery->getUrl(),
+                        'cache_time' => $callbackQuery->getCacheTime(),
+                    ],
+                );
+            }
+
+            foreach ($response->getMessages() as $message) {
+                $this->client->sendMessage($this->token, $message);
+            }
         }
 
         return ExitCode::OK;
