@@ -25,7 +25,7 @@
         "yiisoft/yii-console": "^3.0@dev",
         "yiisoft/yii-cycle": "3.0.x-dev",
         "yiisoft/yii-event": "^1.0",
-        "yiisoft/yii-queue": "dev-channel-factory",
+        "yiisoft/yii-queue": "dev-master",
         "yiisoft/yii-queue-amqp": "dev-channel-factory",
         "yiisoft/yii-web": "3.0.x-dev"
     },

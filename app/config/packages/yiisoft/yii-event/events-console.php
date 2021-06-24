@@ -6,5 +6,5 @@ use Resender\Infrastructure\Queue\FailureEventHandler;
 use Yiisoft\Yii\Queue\Event\JobFailure;
 
 return [
-    JobFailure::class => [FailureEventHandler::class, 'handle'],
+    JobFailure::class => [[FailureEventHandler::class, 'handle']],
 ];

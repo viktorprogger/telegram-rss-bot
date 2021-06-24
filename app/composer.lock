@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d14666c15603a97547d2b797d8fe987d",
+    "content-hash": "1a3d176d7ff1d7196e42e0c3ef5e9b7b",
     "packages": [
         {
             "name": "alexkart/curl-builder",
@@ -6910,16 +6910,16 @@
         },
         {
             "name": "yiisoft/yii-queue",
-            "version": "dev-channel-factory",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii-queue.git",
-                "reference": "e87a72a731c40c47f8c7c2914667cc68c49b8274"
+                "reference": "fd191d809440cdaa899870a856e5f2a5b3470796"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii-queue/zipball/e87a72a731c40c47f8c7c2914667cc68c49b8274",
-                "reference": "e87a72a731c40c47f8c7c2914667cc68c49b8274",
+                "url": "https://api.github.com/repos/yiisoft/yii-queue/zipball/fd191d809440cdaa899870a856e5f2a5b3470796",
+                "reference": "fd191d809440cdaa899870a856e5f2a5b3470796",
                 "shasum": ""
             },
             "require": {
@@ -6940,6 +6940,7 @@
             "suggest": {
                 "ext-pcntl": "Need for process signals"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -6990,7 +6991,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-05-17T11:23:06+00:00"
+            "time": "2021-06-02T14:57:45+00:00"
         },
         {
             "name": "yiisoft/yii-queue-amqp",
@@ -10478,5 +10479,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

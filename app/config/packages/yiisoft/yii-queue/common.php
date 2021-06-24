@@ -3,13 +3,12 @@
 declare(strict_types=1);
 
 use Psr\Container\ContainerInterface;
-use Yiisoft\Yii\Queue\Adapter\AdapterInterface;
-use Yiisoft\Yii\Queue\AMQP\Adapter;
 use Yiisoft\Yii\Queue\Cli\LoopInterface;
 use Yiisoft\Yii\Queue\Cli\SignalLoop;
 use Yiisoft\Yii\Queue\Cli\SimpleLoop;
 use Yiisoft\Yii\Queue\Queue;
 use Yiisoft\Yii\Queue\QueueFactory;
+use Yiisoft\Yii\Queue\QueueFactoryInterface;
 use Yiisoft\Yii\Queue\QueueInterface;
 use Yiisoft\Yii\Queue\Worker\Worker as QueueWorker;
 use Yiisoft\Yii\Queue\Worker\WorkerInterface;
@@ -34,4 +33,5 @@ return [
         ],
     ],
     QueueInterface::class => Queue::class,
+    QueueFactoryInterface::class => QueueFactory::class,
 ];

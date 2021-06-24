@@ -32,7 +32,7 @@ return [
             new Source('Space', 'https://blog.jetbrains.com/space/feed/', $reader, $tgPhpinfo),
             new Source('PhpStorm', 'https://blog.jetbrains.com/phpstorm/feed/', $reader, $tgPhpinfo),
             new Source('YouTrack', 'https://blog.jetbrains.com/youtrack/feed/', $reader, $tgPhpinfo),
-            new Source('Habr SamDark', 'https://habr.com/ru/users/SamDark/rss/posts/?fl=ru', $reader, $tgPhpinfo),
+            // new Source('Habr SamDark', 'https://habr.com/ru/users/SamDark/rss/posts/?fl=ru', $reader, $tgPhpinfo),
         ];
 
         return new StaticSourceRepository(...$sources);
