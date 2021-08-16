@@ -6,6 +6,7 @@ namespace Resender\SubDomain\Rss\Infrastructure\Source;
 
 use FeedIo\Feed\ItemInterface as FeedItemInterface;
 use FeedIo\FeedIo;
+use FeedIo\Reader\ReadErrorException;
 use InvalidArgumentException;
 use Resender\SubDomain\Rss\Domain\Source\Entry;
 use Resender\SubDomain\Rss\Domain\Source\SourceInterface;
@@ -35,17 +36,20 @@ final class Source implements SourceInterface
 
     public function getItems(): iterable
     {
-        /** @var FeedItemInterface[] $itemsSource */
-        $itemsSource = $this->reader->read($this->url)->getFeed();
+        try {
+            /** @var FeedItemInterface[] $itemsSource */
+            $itemsSource = $this->reader->read($this->url)->getFeed();
 
-        foreach ($itemsSource as $item) {
-            yield new Entry(
-                $this->title,
-                $item->getTitle(),
-                $item->getContent(),
-                $item->getLastModified(),
-                $item->getLink()
-            );
+            foreach ($itemsSource as $item) {
+                yield new Entry(
+                    $this->title,
+                    $item->getTitle(),
+                    $item->getContent(),
+                    $item->getLastModified(),
+                    $item->getLink()
+                );
+            }
+        } catch (ReadErrorException) {
         }
     }
 
