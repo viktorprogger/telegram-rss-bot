@@ -23,8 +23,12 @@ services:
       - "${WEB_PORT:-80}:80"
     env_file:
       - .env
+    depends_on:
+      - db
+      - amqp
     links:
       - db
+      - amqp
     extra_hosts:
       - host.docker.internal:${HOST_IP:-host.docker.internal}
 
@@ -51,6 +55,9 @@ services:
       XDEBUG_CONFIG: "client_host=host.docker.internal"
     env_file:
       - .env
+    depends_on:
+      - db
+      - amqp
     links:
       - db
       - amqp
@@ -80,6 +87,9 @@ services:
       XDEBUG_CONFIG: "client_host=host.docker.internal"
     env_file:
       - .env
+    depends_on:
+      - db
+      - amqp
     links:
       - db
       - amqp
